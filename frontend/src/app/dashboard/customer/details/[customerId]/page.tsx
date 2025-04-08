@@ -1,21 +1,25 @@
 import FormCardSkeleton from '@/components/form-card-skeleton';
 import PageContainer from '@/components/layout/page-container';
 import { Suspense } from 'react';
-import ProductViewPage from '@/features/products/components/product-view-page';
+import CustomerDetailPage from '@/features/customer/pages/customer-detail.page';
+import { userService } from '@/lib/services/user.service';
 
 export const metadata = {
-  title: 'Dashboard : Product View'
+  title: 'Dashboard : Customer View'
 };
 
-type PageProps = { params: Promise<{ productId: string }> };
+type PageProps = { params: Promise<{ customerId: string }> };
 
 export default async function Page(props: PageProps) {
   const params = await props.params;
+
+  const { data: user } = await userService.details(params.customerId);
+
   return (
     <PageContainer scrollable>
       <div className='flex-1 space-y-4'>
         <Suspense fallback={<FormCardSkeleton />}>
-          <ProductViewPage productId={params.productId} />
+          <CustomerDetailPage customer={user} />
         </Suspense>
       </div>
     </PageContainer>

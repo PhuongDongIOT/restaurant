@@ -46,7 +46,7 @@ import { usePathname } from 'next/navigation';
 import * as React from 'react';
 import { Icons } from '../icons';
 import { OrgSwitcher } from '../org-switcher';
-import { useMediaQuery } from '@/hooks/use-media-query';
+import { useMediaQuery } from '@/lib/hooks/use-media-query';
 
 export const company = {
   name: 'Acme Inc',
@@ -94,7 +94,7 @@ export default function AppSidebar() {
               return item?.items && item?.items?.length > 0 ? (
                 <Collapsible
                   key={item.title}
-                  asChild
+                  asChild 
                   defaultOpen={item.isActive}
                   className='group/collapsible'
                 >

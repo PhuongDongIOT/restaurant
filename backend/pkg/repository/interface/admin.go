@@ -10,6 +10,7 @@ type AdminRepository interface {
 	GetUserByID(id string) (domain.Users, error)
 	UpdateBlockUserByID(user domain.Users) error
 	GetUsers(page int) ([]models.UserDetailsAtAdmin, error)
+	GetCustomerDetails(id int) (models.UserDetailsResponse, error)
 	NewPaymentMethod(string) error
 	ListPaymentMethods() ([]domain.PaymentMethod, error)
 	CheckIfPaymentMethodAlreadyExists(payment string) (bool, error)

@@ -35,8 +35,7 @@ export default async function RootLayout({
 }) {
   const session = await auth();
   const cookieStore = await cookies();
-  const activeThemeValue = cookieStore.get('active_theme')?.value;
-  const isScaled = activeThemeValue?.endsWith('-scaled');
+  // const activeThemeValue = cookieStore.get('active_theme')?.value;
 
   return (
     <html lang='en' suppressHydrationWarning>
@@ -45,11 +44,11 @@ export default async function RootLayout({
         <NuqsAdapter>
           <Providers
             session={session}
-            activeThemeValue={activeThemeValue as string}
+            // activeThemeValue={activeThemeValue as string}
           >
             <Toaster />
             <ProvidersRedux>
-            {children}
+              {children}
             </ProvidersRedux>
           </Providers>
         </NuqsAdapter>

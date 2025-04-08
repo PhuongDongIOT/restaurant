@@ -1,52 +1,32 @@
+import { ICart, ICartItem, IRemoveCartItem } from "@/lib/schemas/cart.schema";
 import { compareArrays } from "@/lib/utils";
-import { Discount } from "@/types/product.types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 const calcAdjustedTotalPrice = (
   totalPrice: number,
-  data: CartItem,
+  data: ICartItem,
   quantity?: number
 ): number => {
   return (
     (totalPrice + data.discount.percentage > 0
       ? Math.round(data.price - (data.price * data.discount.percentage) / 100)
       : data.discount.amount > 0
-      ? Math.round(data.price - data.discount.amount)
-      : data.price) * (quantity ? quantity : data.quantity)
+        ? Math.round(data.price - data.discount.amount)
+        : data.price) * (quantity ? quantity : data.quantity)
   );
 };
 
-export type RemoveCartItem = {
-  id: number;
-  attributes: string[];
-};
-
-export type CartItem = {
-  id: number;
-  name: string;
-  srcUrl: string;
-  price: number;
-  attributes: string[];
-  discount: Discount;
-  quantity: number;
-};
-
-export type Cart = {
-  items: CartItem[];
-  totalQuantities: number;
-};
-
 // Define a type for the slice state
-interface CartsState {
-  cart: Cart | null;
+interface ICartsState {
+  cart: ICart | null;
   totalPrice: number;
   adjustedTotalPrice: number;
   action: "update" | "add" | "delete" | null;
 }
 
 // Define the initial state using that type
-const initialState: CartsState = {
+const initialState: ICartsState = {
   cart: null,
   totalPrice: 0,
   adjustedTotalPrice: 0,
@@ -58,7 +38,7 @@ export const cartsSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<CartItem>) => {
+    addToCart: (state, action: PayloadAction<ICartItem>) => {
       // if cart is empty then add
       if (state.cart === null) {
         state.cart = {
@@ -87,9 +67,9 @@ export const cartsSlice = createSlice({
             if (
               eachCartItem.id === action.payload.id
                 ? !compareArrays(
-                    eachCartItem.attributes,
-                    isItemInCart.attributes
-                  )
+                  eachCartItem.attributes,
+                  isItemInCart.attributes
+                )
                 : eachCartItem.id !== action.payload.id
             )
               return eachCartItem;
@@ -120,7 +100,7 @@ export const cartsSlice = createSlice({
         state.adjustedTotalPrice +
         calcAdjustedTotalPrice(state.totalPrice, action.payload);
     },
-    removeCartItem: (state, action: PayloadAction<RemoveCartItem>) => {
+    removeCartItem: (state, action: PayloadAction<IRemoveCartItem>) => {
       if (state.cart === null) return;
 
       // check item in cart
@@ -138,9 +118,9 @@ export const cartsSlice = createSlice({
               if (
                 eachCartItem.id === action.payload.id
                   ? !compareArrays(
-                      eachCartItem.attributes,
-                      isItemInCart.attributes
-                    )
+                    eachCartItem.attributes,
+                    isItemInCart.attributes
+                  )
                   : eachCartItem.id !== action.payload.id
               )
                 return eachCartItem;
@@ -162,7 +142,7 @@ export const cartsSlice = createSlice({
     },
     remove: (
       state,
-      action: PayloadAction<RemoveCartItem & { quantity: number }>
+      action: PayloadAction<IRemoveCartItem & { quantity: number }>
     ) => {
       if (!state.cart) return;
 

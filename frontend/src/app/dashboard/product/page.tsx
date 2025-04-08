@@ -1,5 +1,5 @@
 import PageContainer from '@/components/layout/page-container';
-import { buttonVariants } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
 import { DataTableSkeleton } from '@/components/ui/table/data-table-skeleton';
@@ -9,8 +9,11 @@ import { IconPlus } from '@tabler/icons-react';
 import Link from 'next/link';
 import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
-import ProductListingPage from '@/features/products/components/product-listing';
+import ProductListingPage from '@/features/products/pages/products.page';
 import ProductTableAction from '@/features/products/components/product-tables/product-table-action';
+import { ProductDialog } from '@/features/products/components/product-dialog/product-dialog';
+import { CategoryCreateDialog } from '@/features/categorys/components/category-dialog/category-create.dialog';
+import { categoryService } from '@/lib/services/category.service';
 
 export const metadata = {
   title: 'Dashboard: Products'
@@ -27,6 +30,8 @@ export default async function Page(props: pageProps) {
 
   // This key is used for invoke suspense if any of the search params changed (used for filters).
   const key = serialize({ ...searchParams });
+  const { data: categories } = await categoryService.filters();
+
 
   return (
     <PageContainer scrollable={false}>
@@ -36,15 +41,31 @@ export default async function Page(props: pageProps) {
             title='Products'
             description='Manage products (Server side table functionalities.)'
           />
-          <Link
-            href='/dashboard/product/new'
-            className={cn(buttonVariants(), 'text-xs md:text-sm')}
-          >
-            <IconPlus className='mr-2 h-4 w-4' /> Add New
-          </Link>
+          <div className='flex gap-2'>
+            <CategoryCreateDialog>
+              <Button
+                className='text-xs md:text-sm'
+              >
+                <IconPlus className='mr-2 h-4 w-4' />New Category
+              </Button>
+            </CategoryCreateDialog>
+            <ProductDialog>
+              <Button
+                className={cn(buttonVariants(), 'text-xs md:text-sm')}
+              >
+                <IconPlus className='mr-2 h-4 w-4' />Product Fast
+              </Button>
+            </ProductDialog>
+            <Link
+              href='/dashboard/product/new'
+              className={cn(buttonVariants(), 'text-xs md:text-sm')}
+            >
+              <IconPlus className='mr-2 h-4 w-4' />New Product
+            </Link>
+          </div>
         </div>
         <Separator />
-        <ProductTableAction />
+        <ProductTableAction categories={categories} />
         <Suspense
           key={key}
           fallback={<DataTableSkeleton columnCount={5} rowCount={10} />}

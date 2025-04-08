@@ -2,13 +2,12 @@
 
 import React from "react";
 import { Provider } from "react-redux";
-import { makeStore } from "../lib/store";
 import { PersistGate } from "redux-persist/integration/react";
+import { makeStore } from "../lib/store";
 
 type ProvidersReduxProps = {
     children: React.ReactNode;
 };
-
 const ProvidersRedux = ({ children }: ProvidersReduxProps) => {
     const { store, persistor } = makeStore();
 

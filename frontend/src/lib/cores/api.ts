@@ -1,11 +1,11 @@
 import { checkTokenExpired, clearCookieUserAuthenticated, getCookie, setCookieUserAuthenticated } from '../customs/cookies';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/constants/common';
 import { delay } from '@/constants/mock-api';
-import authService from '@/lib/services/auth.services';
-import { ApiOptions } from '@/types/api.type';
+import authService from '@/lib/services/auth.service';
 import { stringify } from 'qs';
+import { IApiOptions } from '../schemas/api.schema';
 
-const WEB_API_URL = process.env.NEXT_PUBLIC_WEB_API_URL; // Store this as a constant
+export const WEB_API_URL = process.env.NEXT_PUBLIC_WEB_API_URL; // Store this as a constant
 
 let isRefreshingToken = false;
 
@@ -19,13 +19,9 @@ const redirectLogin = (): never => { // Explicit return type and avoid "throw"
 const refreshTokenIfNeeded = async (): Promise<string> => {
   const accessToken = getCookie(ACCESS_TOKEN_KEY);
 
-  if (!accessToken) {
-    return accessToken; // No token, no refresh needed
-  }
+  if (!accessToken) return accessToken; // No token, no refresh needed
 
-  if (!checkTokenExpired(accessToken)) {
-    return accessToken; // Token is valid, no refresh needed
-  }
+  if (!checkTokenExpired(accessToken)) return accessToken; // Token is valid, no refresh needed
 
   const refreshToken = getCookie(REFRESH_TOKEN_KEY);
 
@@ -89,9 +85,9 @@ const handleError = async (error: any): Promise<never> => {
   }
 };
 
-const handleHeaders = async (options?: ApiOptions): Promise<HeadersInit> => {
+const handleHeaders = async (options?: IApiOptions): Promise<HeadersInit> => {
   let headers: HeadersInit = {
-    'Content-Type': 'application/json',
+    // 'Content-Type': 'application/json',
     ...(options?.headers || {}),  // Existing headers
   };
 
@@ -111,44 +107,40 @@ const handleHeaders = async (options?: ApiOptions): Promise<HeadersInit> => {
   return headers;
 };
 
-const handleQueryParams = (options?: ApiOptions): string => {
+const handleQueryParams = (options?: IApiOptions): string => {
   const params: Record<string, any> = {};  // Using Record for type safety
 
-  if (options?.locale) {
-    params.locale = options.locale;
-  }
+  if (options?.locale) params.locale = options.locale;
 
-  if (options?.queryParams) {
-    Object.assign(params, options.queryParams); // Merging queryParams safely
-  }
+  if (options?.queryParams) Object.assign(params, options.queryParams); // Merging queryParams safely
 
-  if (Object.keys(params).length > 0) {
-    return `?${stringify(params)}`;
-  }
+  if (Object.keys(params).length > 0) return `?${stringify(params)}`;
 
   return '';
 };
 
 // Generic API functions.  'T' is the expected response type.
-const apiCall = async <T>(urlPath: string, method: string, data?: object, options?: ApiOptions): Promise<T> => {
+const apiCall = async <T>(urlPath: string, method: string, data?: object, options?: IApiOptions): Promise<T> => {
   const url = `${WEB_API_URL}${urlPath}${handleQueryParams(options)}`;
-
+  
   const fetchOptions: RequestInit = {
     method,
     cache: 'no-cache',
     headers: await handleHeaders(options),
-    ...(data ? { body: JSON.stringify(data) } : {}),  // Conditionally add body
+    ...(data ? { body: data as any } : {}),  // Conditionally add body
   };
 
+  console.log(fetchOptions);
+  
   return fetch(url, fetchOptions)
     .then(handleResponse)
     .catch(handleError);
 };
 
 export const Api = {
-  get: <T>(urlPath: string, options?: ApiOptions): Promise<T> => apiCall<T>(urlPath, 'GET', undefined, options),
-  post: <T>(urlPath: string, data?: object, options?: ApiOptions): Promise<T> => apiCall<T>(urlPath, 'POST', data, options),
-  put: <T>(urlPath: string, data?: object, options?: ApiOptions): Promise<T> => apiCall<T>(urlPath, 'PUT', data, options),
-  patch: <T>(urlPath: string, data?: object, options?: ApiOptions): Promise<T> => apiCall<T>(urlPath, 'PATCH', data, options),
-  delete: <T>(urlPath: string, options?: ApiOptions): Promise<T> => apiCall<T>(urlPath, 'DELETE', undefined, options),
+  get: <T>(urlPath: string, options?: IApiOptions): Promise<T> => apiCall<T>(urlPath, 'GET', undefined, options),
+  post: <T>(urlPath: string, data?: object, options?: IApiOptions): Promise<T> => apiCall<T>(urlPath, 'POST', data, options),
+  put: <T>(urlPath: string, data?: object, options?: IApiOptions): Promise<T> => apiCall<T>(urlPath, 'PUT', data, options),
+  patch: <T>(urlPath: string, data?: object, options?: IApiOptions): Promise<T> => apiCall<T>(urlPath, 'PATCH', data, options),
+  delete: <T>(urlPath: string, options?: IApiOptions): Promise<T> => apiCall<T>(urlPath, 'DELETE', undefined, options),
 };

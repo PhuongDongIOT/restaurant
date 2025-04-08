@@ -3,10 +3,11 @@ import { NavigationMenuMain } from '@/components/layout/navigation-menu-main';
 import { DialogDemo } from '@/features/categorys/components/dialog-demo';
 import { ModalCartProvider } from '@/features/categorys/components/modal-cart-provider';
 import { ModalProvider } from '@/features/categorys/components/modal-provider';
-import ShoppingCarts from '@/features/categorys/components/shopping-carts';
+import ShoppingCarts from '@/features/cart/components/shopping-carts';
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import { FooterSection } from './_components/footer-section';
+import { SelectedProductProvider } from '@/features/products/contexts/selected-product.context';
 
 export const metadata: Metadata = {
     title: 'Next Shadcn Dashboard Starter',
@@ -22,20 +23,22 @@ export default async function DashboardLayout({
     const cookieStore = await cookies();
     return (
         <main>
-            <header className='px-4 py-2 w-full'>
+            <header className='bg-white relative z-[999] px-4 py-2 w-full'>
                 <NavigationMenuMain />
             </header>
             <ModalCartProvider>
                 <>
                     <ModalProvider>
-                        {children}
-                        <DialogDemo />
+                        <SelectedProductProvider>
+                            {children}
+                            <DialogDemo />
+                        </SelectedProductProvider>
                     </ModalProvider>
-                    <ShoppingCarts />
                     <NavBarFixed />
+                    <ShoppingCarts />
                 </>
             </ModalCartProvider>
-            <footer>
+            <footer className='relative z-[9]'>
                 <FooterSection />
             </footer>
         </main>

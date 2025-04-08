@@ -46,6 +46,14 @@ export const navItems: NavItem[] = [
     items: [] // No child items
   },
   {
+    title: 'Customer',
+    url: '/dashboard/customer',
+    icon: 'product',
+    shortcut: ['c', 'c'],
+    isActive: false,
+    items: [] // No child items
+  },
+  {
     title: 'Mail',
     url: '/dashboard/mail',
     icon: 'kanban',

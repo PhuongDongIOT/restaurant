@@ -21,10 +21,10 @@ func NewInventoryRepository(DB *gorm.DB) *inventoryRepository {
 func (i *inventoryRepository) AddInventory(inventory models.AddInventories, url string) (models.InventoryResponse, error) {
 
 	query := `
-    INSERT INTO inventories (category_id, product_name, size, stock, price, image)
+    INSERT INTO inventories (category_id, product_name, size, stock, price, description, image)
     VALUES (?, ?, ?, ?, ?, ?);
     `
-	err := i.DB.Exec(query, inventory.CategoryID, inventory.ProductName, inventory.Size, inventory.Stock, inventory.Price, url).Error
+	err := i.DB.Exec(query, inventory.CategoryID, inventory.ProductName, inventory.Size, inventory.Stock, inventory.Price, inventory.Description, url).Error
 	if err != nil {
 		return models.InventoryResponse{}, err
 	}
@@ -89,6 +89,30 @@ func (i *inventoryRepository) DeleteInventory(inventoryID string) error {
 }
 
 // detailed product details
+func (i *inventoryRepository) IndividualProducts(id string) (models.Inventories, error) {
+	pid, error := strconv.Atoi(id)
+	if error != nil {
+		return models.Inventories{}, errors.New("convertion not happened")
+	}
+	var product models.Inventories
+	err := i.DB.Raw(`
+	SELECT
+		*
+		FROM
+			inventories
+		
+		WHERE
+			inventories.id = ?
+			`, pid).Scan(&product).Error
+
+	if err != nil {
+		return models.Inventories{}, errors.New("error retrieved record")
+	}
+	return product, nil
+
+}
+
+// detailed product details
 func (i *inventoryRepository) ShowIndividualProducts(id string) (models.Inventories, error) {
 	pid, error := strconv.Atoi(id)
 	if error != nil {
@@ -120,7 +144,7 @@ func (ad *inventoryRepository) ListProducts(page int) ([]models.Inventories, err
 	offset := (page - 1) * 10
 	var productDetails []models.Inventories
 
-	if err := ad.DB.Raw("select id,category_id,product_name,image,size,stock,price from inventories limit $1 offset $2", 10, offset).Scan(&productDetails).Error; err != nil {
+	if err := ad.DB.Raw("select id,category_id,product_name,image,size,stock,price, description from inventories limit $1 offset $2", 10, offset).Scan(&productDetails).Error; err != nil {
 		return []models.Inventories{}, err
 	}
 
@@ -132,7 +156,7 @@ func (ad *inventoryRepository) ListProductsByCategory(id int) ([]models.Inventor
 
 	var productDetails []models.Inventories
 
-	if err := ad.DB.Raw("select id,category_id,product_name,image,size,stock,price from inventories WHERE category_id = $1", id).Scan(&productDetails).Error; err != nil {
+	if err := ad.DB.Raw("select id,category_id,product_name,image,size,stock,price,description from inventories WHERE category_id = $1", id).Scan(&productDetails).Error; err != nil {
 		return []models.Inventories{}, err
 	}
 

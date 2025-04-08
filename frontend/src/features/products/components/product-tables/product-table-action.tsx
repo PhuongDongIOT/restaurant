@@ -3,12 +3,15 @@
 import { DataTableFilterBox } from '@/components/ui/table/data-table-filter-box';
 import { DataTableResetFilter } from '@/components/ui/table/data-table-reset-filter';
 import { DataTableSearch } from '@/components/ui/table/data-table-search';
-import {
-  CATEGORY_OPTIONS,
-  useProductTableFilters
-} from './use-product-table-filters';
+import { useProductTableFilters } from './use-product-table-filters';
+import { ICategory } from '@/lib/schemas/category.schema';
+import { mapToFilterCategoryOptions } from '@/features/categorys/util';
 
-export default function ProductTableAction() {
+type ProductTableActionProps = {
+  categories: ICategory[]
+}
+
+export default function ProductTableAction({ categories }: ProductTableActionProps) {
   const {
     categoriesFilter,
     setCategoriesFilter,
@@ -27,9 +30,9 @@ export default function ProductTableAction() {
         setPage={setPage}
       />
       <DataTableFilterBox
-        filterKey='categories'
+        filterKey='category'
         title='Categories'
-        options={CATEGORY_OPTIONS}
+        options={mapToFilterCategoryOptions(categories)}
         setFilterValue={setCategoriesFilter}
         filterValue={categoriesFilter}
       />

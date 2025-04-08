@@ -72,6 +72,30 @@ func (i *inventoryUseCase) DeleteInventory(inventoryID string) error {
 
 }
 
+func (i *inventoryUseCase) IndividualProducts(id string) (models.Inventories, error) {
+
+	product, err := i.repository.IndividualProducts(id)
+	if err != nil {
+		return models.Inventories{}, err
+	}
+
+	DiscountPercentage, err := i.offerRepository.FindDiscountPercentage(product.CategoryID)
+	if err != nil {
+		return models.Inventories{}, err
+	}
+
+	//make discounted price by calculation
+	var discount float64
+	if DiscountPercentage > 0 {
+		discount = (product.Price * float64(DiscountPercentage)) / 100
+	}
+
+	product.DiscountedPrice = product.Price - discount
+
+	return product, nil
+
+}
+
 func (i *inventoryUseCase) ShowIndividualProducts(id string) (models.Inventories, error) {
 
 	product, err := i.repository.ShowIndividualProducts(id)

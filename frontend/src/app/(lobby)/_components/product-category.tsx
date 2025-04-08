@@ -1,31 +1,24 @@
 "use client";
 
 import { ScrollArea } from "@radix-ui/react-scroll-area";
-import { AlbumArtwork } from "@/features/categorys/components/album-artwork";
+import { ProductCard } from "@/features/products/components/product-card";
 import { ScrollBar } from "@/components/ui/scroll-area";
-import { categories } from "@/features/categorys/data/categories";
+import { IProduct } from "@/lib/schemas/product.schema";
 
-export interface GalleryItem {
-    id: string;
+export interface ProductCategoryProps {
     title: string;
     description: string;
-    href: string;
-    image: string;
+    products: IProduct[];
 }
 
-export interface GalleryProps {
-    title?: string;
-    description?: string;
-}
-
-const Category = ({
-    title = "Món xu hướng",
-    description = "Món ăn cao cấp, xa xỉ, sử dụng nguyên liệu quý hiếm và có cách chế biến cầu kỳ, tinh tế.",
-}: GalleryProps) => {
-
+export function ProductCategory ({
+    title,
+    description,
+    products
+}: ProductCategoryProps) {
     return (
-        <section className="py-8">
-            <div className="container mx-auto">
+        <section className="w-full">
+            <div className="mx-auto">
                 <div className="flex flex-col gap-4 mb-4 md:mb-14 lg:mb-16">
                     <div className="flex flex-col gap-4">
                         <h2 className="text-3xl font-medium md:text-4xl lg:text-5xl line-clamp-1">
@@ -35,15 +28,15 @@ const Category = ({
                     </div>
                     <div className="relative">
                         <ScrollArea>
-                            <div className="grid grid-cols-4 lg:grid-cols-6 gap-4">
-                                {categories.map((category) => (
-                                    <AlbumArtwork
-                                        key={category.name}
-                                        category={category}
+                            <div className="grid grid-cols-4 lg:grid-cols-8 gap-4">
+                                {products.map((product) => (
+                                    <ProductCard
+                                        key={product.id}
+                                        product={product}
                                         className="w-[250px]"
                                         aspectRatio="portrait"
                                         width={250}
-                                        height={330}
+                                        height={280}
                                     />
                                 ))}
                             </div>
@@ -55,5 +48,3 @@ const Category = ({
         </section>
     );
 };
-
-export { Category };

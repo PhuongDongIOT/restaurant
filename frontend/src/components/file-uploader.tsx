@@ -246,7 +246,7 @@ export function FileUploader(props: FileUploaderProps) {
       </Dropzone>
       {files?.length ? (
         <ScrollArea className='h-fit w-full px-3'>
-          <div className='max-h-48 space-y-4'>
+          <div className='grid col-span-4 max-h-48 space-y-4'>
             {files?.map((file, index) => (
               <FileCard
                 key={index}

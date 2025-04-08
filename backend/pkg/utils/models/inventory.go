@@ -20,6 +20,7 @@ type Inventories struct {
 	CategoryID          int     `json:"category_id"`
 	Image               string  `json:"image"`
 	ProductName         string  `json:"product_name"`
+	Description         string  `json:"description"`
 	Size                string  `json:"size"`
 	Stock               int     `json:"stock"`
 	Price               float64 `json:"price"`
@@ -32,6 +33,7 @@ type AddInventories struct {
 	ID          uint    `json:"id"`
 	CategoryID  int     `json:"category_id"`
 	ProductName string  `json:"product_name"`
+	Description string  `json:"description"`
 	Size        string  `json:"size"`
 	Stock       int     `json:"stock"`
 	Price       float64 `json:"price"`

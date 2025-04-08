@@ -25,6 +25,17 @@ func NewAdminUseCase(repo interfaces.AdminRepository, h helper_interface.Helper)
 	}
 }
 
+func (i *adminUseCase) GetCustomerDetails(id int) (models.UserDetailsResponse, error) {
+
+	details, err := i.adminRepository.GetCustomerDetails(id)
+	if err != nil {
+		return models.UserDetailsResponse{}, errors.New("error in getting details")
+	}
+
+	return details, nil
+
+}
+
 func (ad *adminUseCase) LoginHandler(adminDetails models.AdminLogin) (domain.TokenAdmin, error) {
 
 	// getting details of the admin based on the email provided

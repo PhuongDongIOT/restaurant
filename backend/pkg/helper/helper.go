@@ -100,7 +100,7 @@ func (h *helper) AddImageToS3(file *multipart.FileHeader) (string, error) {
 	defer f.Close()
 
 	result, uploadErr := uploader.Upload(context.TODO(), &s3.PutObjectInput{
-		Bucket: aws.String("awsbutket1379"),
+		Bucket: aws.String("awsbutket2468"),
 		Key:    aws.String(file.Filename),
 		Body:   f,
 		// ACL:    "public-read",

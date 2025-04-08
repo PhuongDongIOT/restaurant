@@ -97,7 +97,7 @@ func (c *categoryRepository) DeleteCategory(categoryID string) error {
 
 func (c *categoryRepository) GetCategories() ([]domain.Category, error) {
 	var model []domain.Category
-	err := c.DB.Raw("SELECT * FROM categories").Scan(&model).Error
+	err := c.DB.Raw("SELECT id, category, image FROM categories").Scan(&model).Error
 	if err != nil {
 		return []domain.Category{}, err
 	}

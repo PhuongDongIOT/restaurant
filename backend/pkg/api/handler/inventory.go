@@ -4,6 +4,7 @@ import (
 	services "backend/pkg/usecase/interface"
 	"backend/pkg/utils/models"
 	"backend/pkg/utils/response"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -38,6 +39,8 @@ func NewInventoryHandler(usecase services.InventoryUseCase) *InventoryHandler {
 func (i *InventoryHandler) AddInventory(c *gin.Context) {
 
 	var inventory models.AddInventories
+	log.Println("dsankjdna")
+	log.Println(c.Request.FormValue("category_id"))
 	categoryID, err := strconv.Atoi(c.Request.FormValue("category_id"))
 	if err != nil {
 		errorRes := response.ClientResponse(http.StatusBadRequest, "form file error", nil, err.Error())
@@ -46,6 +49,7 @@ func (i *InventoryHandler) AddInventory(c *gin.Context) {
 	}
 
 	productName := c.Request.FormValue("product_name")
+	description := c.Request.FormValue("description")
 	size := c.Request.FormValue("size")
 	p, err := strconv.Atoi(c.Request.FormValue("price"))
 	if err != nil {
@@ -63,6 +67,7 @@ func (i *InventoryHandler) AddInventory(c *gin.Context) {
 
 	inventory.CategoryID = categoryID
 	inventory.ProductName = productName
+	inventory.Description = description
 	inventory.Size = size
 	inventory.Price = price
 	inventory.Stock = stock
@@ -141,6 +146,31 @@ func (i *InventoryHandler) DeleteInventory(c *gin.Context) {
 	successRes := response.ClientResponse(http.StatusOK, "Successfully deleted the inventory", nil, nil)
 	c.JSON(http.StatusOK, successRes)
 
+}
+
+// @Summary		Show Inventories Details
+// @Description	user can view the details of the product
+// @Tags			User
+// @Accept			json
+// @Produce		    json
+// @Param			id	query	string	true	"id"
+// @Security		Bearer
+// @Success		200	{object}	response.Response{}
+// @Failure		500	{object}	response.Response{}
+// @Router			/admin/inventories/details [get]
+func (i *InventoryHandler) IndividualProducts(c *gin.Context) {
+
+	id := c.Query("id")
+	product, err := i.InventoryUseCase.IndividualProducts(id)
+
+	if err != nil {
+		errorRes := response.ClientResponse(http.StatusBadRequest, "path variables in wrong format", nil, err.Error())
+		c.JSON(http.StatusBadRequest, errorRes)
+		return
+	}
+
+	successRes := response.ClientResponse(http.StatusOK, "Product details retrieved successfully", product, nil)
+	c.JSON(http.StatusOK, successRes)
 }
 
 // @Summary		Show Product Details

@@ -25,6 +25,7 @@ func AdminRoutes(engine *gin.RouterGroup,
 		usermanagement := engine.Group("/users")
 		{
 			usermanagement.GET("", adminHandler.GetUsers)
+			usermanagement.GET("/details", adminHandler.GetCustomerDetails)
 			usermanagement.PUT("/block", adminHandler.BlockUser)
 			usermanagement.PUT("/unblock", adminHandler.UnBlockUser)
 		}
@@ -42,6 +43,7 @@ func AdminRoutes(engine *gin.RouterGroup,
 			inventorymanagement.GET("", inventoryHandler.ListProductsForAdmin)
 			inventorymanagement.POST("", inventoryHandler.AddInventory)
 			inventorymanagement.DELETE("", inventoryHandler.DeleteInventory)
+			inventorymanagement.GET("/details", inventoryHandler.IndividualProducts)
 			inventorymanagement.PUT("/details", inventoryHandler.EditInventoryDetails)
 
 			inventorymanagement.PUT("/:id/stock", inventoryHandler.UpdateInventory)

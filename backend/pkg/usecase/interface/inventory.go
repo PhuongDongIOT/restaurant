@@ -9,6 +9,7 @@ type InventoryUseCase interface {
 	AddInventory(inventory models.AddInventories, image *multipart.FileHeader) (models.InventoryResponse, error)
 	UpdateInventory(ProductID int, Stock int) (models.InventoryResponse, error)
 	DeleteInventory(id string) error
+	IndividualProducts(sku string) (models.Inventories, error)
 
 	ShowIndividualProducts(sku string) (models.Inventories, error)
 	ListProductsForUser(page, userID int) ([]models.Inventories, error)

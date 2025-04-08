@@ -22,6 +22,18 @@ func NewAdminRepository(DB *gorm.DB) interfaces.AdminRepository {
 	}
 }
 
+func (ad *adminRepository) GetCustomerDetails(id int) (models.UserDetailsResponse, error) {
+
+	var details models.UserDetailsResponse
+
+	if err := ad.DB.Raw("select id,name,email,phone from users where id=?", id).Scan(&details).Error; err != nil {
+		return models.UserDetailsResponse{}, errors.New("could not get user details")
+	}
+
+	return details, nil
+
+}
+
 func (ad *adminRepository) LoginHandler(adminDetails models.AdminLogin) (domain.Admin, error) {
 
 	var adminCompareDetails domain.Admin

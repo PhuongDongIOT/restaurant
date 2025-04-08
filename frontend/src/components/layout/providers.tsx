@@ -3,13 +3,14 @@ import React from 'react';
 import ThemeProvider from './ThemeToggle/theme-provider';
 import { SessionProvider, SessionProviderProps } from 'next-auth/react';
 import { ActiveThemeProvider } from '../active-theme';
+
 export default function Providers({
   session,
   activeThemeValue,
   children
 }: {
   session: SessionProviderProps['session'];
-  activeThemeValue: string;
+  activeThemeValue?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -21,7 +22,7 @@ export default function Providers({
         disableTransitionOnChange
         enableColorScheme
       >
-        <ActiveThemeProvider initialTheme={activeThemeValue}>
+        <ActiveThemeProvider initialTheme={activeThemeValue ?? 'light'}>
           <SessionProvider session={session}>{children}</SessionProvider>
         </ActiveThemeProvider>
       </ThemeProvider>

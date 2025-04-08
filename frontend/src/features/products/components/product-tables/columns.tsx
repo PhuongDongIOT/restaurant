@@ -1,28 +1,31 @@
 'use client';
-import { Product } from '@/constants/data';
 import { ColumnDef } from '@tanstack/react-table';
 import Image from 'next/image';
 import { CellAction } from './cell-action';
+import { IProduct } from '@/lib/schemas/product.schema';
 
-export const columns: ColumnDef<Product>[] = [
+export const columns: ColumnDef<IProduct>[] = [
   {
-    accessorKey: 'photo_url',
+    accessorKey: 'image',
     header: 'IMAGE',
     cell: ({ row }) => {
       return (
-        <div className='relative aspect-square'>
-          <Image
-            src={row.getValue('photo_url')}
-            alt={row.getValue('name')}
-            fill
-            className='rounded-lg'
-          />
+        <div className='relative'>
+          <div className='w-16 h-16'>
+            <Image
+              src={row.getValue('image')}
+              alt={row.getValue('image')}
+              width={64}
+              height={16}
+              className='rounded-lg object-contain'
+            />
+          </div>
         </div>
       );
     }
   },
   {
-    accessorKey: 'name',
+    accessorKey: 'product_name',
     header: 'NAME'
   },
   {
@@ -30,16 +33,29 @@ export const columns: ColumnDef<Product>[] = [
     header: 'CATEGORY'
   },
   {
+    accessorKey: 'stock',
+    header: 'STOCK'
+  },
+  {
     accessorKey: 'price',
     header: 'PRICE'
   },
   {
     accessorKey: 'description',
-    header: 'DESCRIPTION'
+    header: 'DESCRIPTION',
+    cell: ({ row }) => {
+      return (
+        <div className='block w-full max-w-md'>
+          <p className='w-full line-clamp-1'>
+            {/* {row.getValue('description')} */}
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis natus cumque accusamus libero fugit ducimus. Error unde eligendi odio deleniti. Quam quo itaque quisquam temporibus perspiciatis sint animi dolore sequi.
+          </p>
+        </div>
+      );
+    }
   },
-
   {
     id: 'actions',
-    cell: ({ row }) => <CellAction data={row.original} />
+    cell: ({ row }) => <CellAction data={row.original as any} />
   }
 ];

@@ -138,7 +138,25 @@ func (ad *AdminHandler) GetUsers(c *gin.Context) {
 	}
 	successRes := response.ClientResponse(http.StatusOK, "Successfully retrieved the users", users, nil)
 	c.JSON(http.StatusOK, successRes)
+}
 
+func (ad *AdminHandler) GetCustomerDetails(c *gin.Context) {
+	idString := c.Query("id")
+	id, err := strconv.Atoi(idString)
+	if err != nil {
+		errorRes := response.ClientResponse(http.StatusBadRequest, "check your id again", nil, err.Error())
+		c.JSON(http.StatusBadRequest, errorRes)
+		return
+	}
+
+	details, err := ad.adminUseCase.GetCustomerDetails(id)
+	if err != nil {
+		errorRes := response.ClientResponse(http.StatusBadRequest, "could not retrieve records", nil, err.Error())
+		c.JSON(http.StatusBadRequest, errorRes)
+		return
+	}
+	successRes := response.ClientResponse(http.StatusOK, "Successfully got all records", details, nil)
+	c.JSON(http.StatusOK, successRes)
 }
 
 // @Summary		ADD NEW PAYMENT METHOD

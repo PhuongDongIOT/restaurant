@@ -9,7 +9,7 @@ import { IconPlus } from '@tabler/icons-react';
 import Link from 'next/link';
 import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
-import ProductListingPage from '@/features/products/components/product-listing';
+import ProductListingPage from '@/features/products/pages/products.page';
 import ProductTableAction from '@/features/products/components/product-tables/product-table-action';
 
 export const metadata = {

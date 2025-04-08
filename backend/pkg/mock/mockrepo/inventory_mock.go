@@ -167,6 +167,21 @@ func (mr *MockInventoryRepositoryMockRecorder) SearchProducts(key interface{}) *
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SearchProducts", reflect.TypeOf((*MockInventoryRepository)(nil).SearchProducts), key)
 }
 
+// IndividualProducts mocks base method.
+func (m *MockInventoryRepository) IndividualProducts(id string) (models.Inventories, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "IndividualProducts", id)
+	ret0, _ := ret[0].(models.Inventories)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// IndividualProducts indicates an expected call of IndividualProducts.
+func (mr *MockInventoryRepositoryMockRecorder) IndividualProducts(id interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "IndividualProducts", reflect.TypeOf((*MockInventoryRepository)(nil).ShowIndividualProducts), id)
+}
+
 // ShowIndividualProducts mocks base method.
 func (m *MockInventoryRepository) ShowIndividualProducts(id string) (models.Inventories, error) {
 	m.ctrl.T.Helper()

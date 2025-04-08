@@ -1,14 +1,10 @@
+import { IColor } from "@/lib/schemas/color.schema";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export type Color = {
-  name: string;
-  code: string;
-};
-
 // Define a type for the slice state
 interface ProductsState {
-  colorSelection: Color;
+  colorSelection: IColor;
   sizeSelection: string;
 }
 
@@ -26,7 +22,7 @@ export const productsSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setColorSelection: (state, action: PayloadAction<Color>) => {
+    setColorSelection: (state, action: PayloadAction<IColor>) => {
       state.colorSelection = action.payload;
     },
     setSizeSelection: (state, action: PayloadAction<string>) => {
