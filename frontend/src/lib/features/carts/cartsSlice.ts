@@ -56,9 +56,10 @@ export const cartsSlice = createSlice({
       // check item in cart
       const isItemInCart = state.cart.items.find(
         (item) =>
-          action.payload.id === item.id &&
-          compareArrays(action.payload.attributes, item.attributes)
+          action.payload.id === item.id/* &&
+          compareArrays(action.payload.attributes, item.attributes)*/
       );
+console.log(isItemInCart);
 
       if (isItemInCart) {
         state.cart = {

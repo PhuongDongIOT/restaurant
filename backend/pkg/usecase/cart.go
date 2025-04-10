@@ -5,6 +5,7 @@ import (
 	services "backend/pkg/usecase/interface"
 	"backend/pkg/utils/models"
 	"errors"
+	"fmt"
 )
 
 type cartUseCase struct {
@@ -30,6 +31,7 @@ func (i *cartUseCase) AddToCart(userID, inventoryID int) error {
 	if err != nil {
 		return err
 	}
+	fmt.Println(inventoryID)
 	//if available then call userRepository
 	if stock <= 0 {
 		return errors.New("out of stock")

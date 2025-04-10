@@ -11,7 +11,7 @@ import ProductCreateForm from "../product-form/product-create.form";
 type ProductDialogProps = {
     children: React.ReactNode;
 }
-export function ProductDialog({ children }: ProductDialogProps) {
+export function ProductCreateDialog({ children }: ProductDialogProps) {
     return (
         <Dialog>
             <DialogTrigger asChild>

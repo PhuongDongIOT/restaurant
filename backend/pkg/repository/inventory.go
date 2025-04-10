@@ -22,7 +22,7 @@ func (i *inventoryRepository) AddInventory(inventory models.AddInventories, url 
 
 	query := `
     INSERT INTO inventories (category_id, product_name, size, stock, price, description, image)
-    VALUES (?, ?, ?, ?, ?, ?);
+    VALUES (?, ?, ?, ?, ?, ?, ?);
     `
 	err := i.DB.Exec(query, inventory.CategoryID, inventory.ProductName, inventory.Size, inventory.Stock, inventory.Price, inventory.Description, url).Error
 	if err != nil {

@@ -16,7 +16,7 @@ export const columns: ColumnDef<IProduct>[] = [
               src={row.getValue('image')}
               alt={row.getValue('image')}
               width={64}
-              height={16}
+              height={64}
               className='rounded-lg object-contain'
             />
           </div>

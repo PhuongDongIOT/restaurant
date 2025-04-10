@@ -11,7 +11,7 @@ import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
 import ProductListingPage from '@/features/products/pages/products.page';
 import ProductTableAction from '@/features/products/components/product-tables/product-table-action';
-import { ProductDialog } from '@/features/products/components/product-dialog/product-dialog';
+import { ProductCreateDialog } from '@/features/products/components/product-dialog/product-create-dialog';
 import { CategoryCreateDialog } from '@/features/categorys/components/category-dialog/category-create.dialog';
 import { categoryService } from '@/lib/services/category.service';
 
@@ -49,13 +49,13 @@ export default async function Page(props: pageProps) {
                 <IconPlus className='mr-2 h-4 w-4' />New Category
               </Button>
             </CategoryCreateDialog>
-            <ProductDialog>
+            <ProductCreateDialog>
               <Button
                 className={cn(buttonVariants(), 'text-xs md:text-sm')}
               >
                 <IconPlus className='mr-2 h-4 w-4' />Product Fast
               </Button>
-            </ProductDialog>
+            </ProductCreateDialog>
             <Link
               href='/dashboard/product/new'
               className={cn(buttonVariants(), 'text-xs md:text-sm')}

@@ -4,6 +4,7 @@ import (
 	services "backend/pkg/usecase/interface"
 	"backend/pkg/utils/models"
 	"backend/pkg/utils/response"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -38,6 +39,8 @@ func (i *CartHandler) AddToCart(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, errorRes)
 		return
 	}
+	str := fmt.Sprintf("%+v", model)
+	fmt.Println(str)
 	if err := i.usecase.AddToCart(model.UserID, model.InventoryID); err != nil {
 		errorRes := response.ClientResponse(http.StatusBadRequest, "Could not add the Cart", nil, err.Error())
 		c.JSON(http.StatusBadRequest, errorRes)

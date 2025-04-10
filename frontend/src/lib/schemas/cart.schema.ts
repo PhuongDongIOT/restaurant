@@ -31,3 +31,17 @@ export type ICartItem = z.infer<typeof CartItemSchema>;
 export type ICart = z.infer<typeof CartSchema>;
 
 export type IRemoveCartItem = z.infer<typeof RemoveCartItemSchema>;
+
+export const AddToCartSchema = z.object({
+    inventory_id: z.number().int().min(1, "inventory phải là số nguyên dương"),
+    user_id: z.number().int().min(1, "id phải là số nguyên dương"),
+});
+
+export type IAddToCart = z.infer<typeof AddToCartSchema>;
+
+export const UpdateCartPayloadSchema = z.object({
+    id: z.number(),
+    inventory: z.number(),
+});
+
+export type IUpdateCart = z.infer<typeof UpdateCartPayloadSchema>;

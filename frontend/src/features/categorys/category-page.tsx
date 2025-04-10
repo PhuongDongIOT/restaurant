@@ -65,7 +65,7 @@ export default function CategoryPage({ products, categories }: CategoryPageProps
                           <Separator className="my-4" />
                           <div className="relative">
                             <ScrollArea>
-                              <div className="grid grid-cols-3 lg:grid-cols-5 gap-4">
+                              <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">
                                 {products.map((product) => (
                                   <ProductCard
                                     key={product.product_name}
@@ -91,7 +91,7 @@ export default function CategoryPage({ products, categories }: CategoryPageProps
                           <Separator className="my-4" />
                           <div className="relative">
                             <ScrollArea>
-                              <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">
+                              <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-8 gap-4">
                                 {products.map((product) => (
                                   <ProductCard
                                     key={product.product_name}

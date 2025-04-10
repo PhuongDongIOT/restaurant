@@ -24,6 +24,17 @@ export function formatBytes(
     }`;
 }
 
-export const compareArrays = (a: any[], b: any[]) => {
+export const compareArrays = (a: any[] = [], b: any[] = []) => {
   return a.toString() === b.toString();
 };
+
+const date = new Date();
+export const formatted = date.toLocaleString("en-US", {
+  weekday: "long",    // Sunday
+  year: "numeric",    // 2023
+  month: "long",      // December
+  day: "2-digit",     // 03
+  hour: "numeric",    // 9
+  minute: "2-digit",  // 00
+  hour12: true        // AM/PM format
+});

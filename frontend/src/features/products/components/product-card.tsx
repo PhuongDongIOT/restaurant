@@ -1,27 +1,26 @@
 "use client";
 
 import Image from "next/image";
-import { PlusCircledIcon } from "@radix-ui/react-icons";
 
 import { cn } from "@/lib/utils";
 import {
   ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuSeparator,
-  ContextMenuSub,
-  ContextMenuSubContent,
-  ContextMenuSubTrigger,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
 import { useModal } from "../../categorys/components/modal-provider";
 import { IProduct } from "@/lib/schemas/product.schema";
 import { useSelectedProduct } from "@/features/products/contexts/selected-product.context";
 import { productUserService } from "@/lib/services/product.service";
-import { useAppDispatch } from "@/lib/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks/redux";
 import { addToCart } from "@/lib/features/carts/cartsSlice";
-import { ICartItem } from "@/lib/schemas/cart.schema";
 import { ShoppingCart } from "lucide-react";
+import { cartService } from "@/lib/services/cart.service";
+import { toast } from "sonner";
+import { createCartPayload, createUpdateCartPayload, mappperCreateCartItem } from "../mappers/product.mapper";
+import { showAddToCartErrorToast, showAddToCartSuccessToast } from "./notifycations/add-to-cart-success.noti";
+import { RootState } from "@/lib/store";
+import { isProductInCart } from "../utils";
+import { useState } from "react";
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: IProduct;
@@ -43,6 +42,19 @@ export function ProductCard({
 
   const { setModal } = useModal();
   const { setSelectedProduct } = useSelectedProduct();
+  const [disabled, setDisabled] = useState(false)
+
+  const notification = (isDisabled: boolean, noti?: any, product_name?: string) => {
+    setDisabled(isDisabled);
+    switch (true) {
+      case !isDisabled && noti:
+        showAddToCartErrorToast(noti)
+        break;
+      case !isDisabled && !!product_name:
+        showAddToCartSuccessToast(product_name);
+        break;
+    }
+  }
 
   const openModalProductOverview = async (id: string) => {
     const { data: product } = await productUserService.details(id);
@@ -51,31 +63,38 @@ export function ProductCard({
   }
 
   const dispatch = useAppDispatch();
+  const { cart } = useAppSelector(
+    (state: RootState) => state.carts
+  );
 
-  const addProductToCart = (product: IProduct) => {
-    const productPrice = parseInt(`${product.price}`) ?? 0
-    const itemCart: ICartItem = {
-      id: product.id,
-      product_name: product.product_name,
-      image: product.image,
-      description: product.description,
-      category_id: product.category_id,
-      quantity: 1,
-      discount: {
-        amount: 0,
-        percentage: 0
-      },
-      price: productPrice,
-      if_present_at_wishlist: false,
+  const addProductToCart = async (product: IProduct, userId = 1) => {
+    notification(true)
+    const itemCart = mappperCreateCartItem(product);
+    const cartPayload = createCartPayload(product.id, userId);
+    const updatecartPayload = createUpdateCartPayload(product.id, userId);
+
+    try {
+      const productInCart = isProductInCart(cart?.items, product.id)
+
+      if (!productInCart) {
+        const { status_code } = await cartService.addToCart(cartPayload);
+      } else {
+        const { status_code } = await cartService.updateQuantityPlus(updatecartPayload);
+      }
+
+      notification(false, "", product.product_name)
+      dispatch(addToCart(itemCart));
+
+    } catch (error) {
+      notification(false, error)
     }
-    dispatch(addToCart(itemCart))
-  }
+  };
 
   return (
     <div className={cn("space-y-3")} {...props}>
       <ContextMenu>
         <ContextMenuTrigger>
-          <div className="overflow-hidden rounded-md relative">
+          <div className="overflow-hidden w-full rounded-md relative">
             <Image
               onClick={() => openModalProductOverview(`${product.id}`)}
               src={product.image}
@@ -83,11 +102,10 @@ export function ProductCard({
               width={width}
               height={height}
               className={cn(
-                "h-auto w-auto object-cover transition-all hover:scale-105",
-                aspectRatio === "portrait" ? "aspect-[3/4]" : "aspect-square",
+                "h-auto w-full object-cover transition-all hover:scale-105"
               )}
             />
-            <div className="absolute bottom-0 right-0 bg-red-500 p-2 z-10 rounded-xl" onClick={() => addProductToCart(product)}>
+            <div className={cn(`absolute bottom-0 right-0 bg-red-500 p-2 z-10 rounded-xl`, { 'opacity-45': disabled })} onClick={() => !disabled && addProductToCart(product)}>
               <ShoppingCart color="white" />
             </div>
           </div>
