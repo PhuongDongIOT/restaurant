@@ -20,6 +20,7 @@ func UserRoutes(engine *gin.RouterGroup,
 
 	engine.POST("/signup", userHandler.UserSignUp)
 	engine.POST("/login", userHandler.LoginHandler)
+	engine.POST("/quickLogin", userHandler.QuickLoginHandler)
 	engine.GET("/forgot-password", userHandler.ForgotPasswordSend)
 	engine.POST("/forgot-password", userHandler.ForgotPasswordVerifyAndChange)
 
@@ -88,7 +89,7 @@ func UserRoutes(engine *gin.RouterGroup,
 
 		cart := engine.Group("/cart")
 		{
-			cart.GET("/", userHandler.GetCart)
+			cart.GET("", userHandler.GetCart)
 			cart.DELETE("/remove", userHandler.RemoveFromCart)
 			cart.PUT("/updateQuantity/plus", userHandler.UpdateQuantityAdd)
 			cart.PUT("/updateQuantity/minus", userHandler.UpdateQuantityLess)

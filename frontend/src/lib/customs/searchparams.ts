@@ -5,6 +5,8 @@ import {
   parseAsString
 } from 'nuqs/server';
 
+
+//search
 export const searchParams = {
   page: parseAsInteger.withDefault(1),
   limit: parseAsInteger.withDefault(10),

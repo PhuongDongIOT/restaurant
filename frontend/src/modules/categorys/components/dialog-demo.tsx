@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/dialog"
 import { useModal } from "./modal-provider"
 import ProductOverview from "./product-overviews";
-import { useSelectedProduct } from "@/features/products/contexts/selected-product.context";
+import { useSelectedProduct } from "@/modules/products/contexts/selected-product.context";
 
 export function DialogDemo() {
     const { modal, setModal } = useModal();

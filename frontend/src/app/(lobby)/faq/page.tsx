@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import FaqPage from '@/features/faq/faq-page';
+import FaqPage from '@/modules/faq/faq-page';
 import FaqDemo from '../_components/faq-demo';
 
 export const metadata: Metadata = {

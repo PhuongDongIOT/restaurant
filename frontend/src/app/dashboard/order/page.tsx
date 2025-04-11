@@ -1,4 +1,4 @@
-import OrderPage from '@/features/order/pages/order.page';
+import OrderPage from '@/modules/order/pages/order.page';
 import { IOrderItem } from '@/lib/schemas/order.schema';
 import { orderService } from '@/lib/services/order.service';
 

@@ -9,10 +9,10 @@ import { IconPlus } from '@tabler/icons-react';
 import Link from 'next/link';
 import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
-import ProductListingPage from '@/features/products/pages/products.page';
-import ProductTableAction from '@/features/products/components/product-tables/product-table-action';
-import { ProductCreateDialog } from '@/features/products/components/product-dialog/product-create-dialog';
-import { CategoryCreateDialog } from '@/features/categorys/components/category-dialog/category-create.dialog';
+import ProductListingPage from '@/modules/products/pages/products.page';
+import ProductTableAction from '@/modules/products/components/product-tables/product-table-action';
+import { ProductCreateDialog } from '@/modules/products/components/product-dialog/product-create-dialog';
+import { CategoryCreateDialog } from '@/modules/categorys/components/category-dialog/category-create.dialog';
 import { categoryService } from '@/lib/services/category.service';
 
 export const metadata = {

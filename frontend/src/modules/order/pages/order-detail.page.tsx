@@ -4,11 +4,11 @@ import { useAppSelector } from '@/lib/hooks/redux';
 import { RootState } from '@/lib/store';
 import { IconMinus, IconPlus } from '@tabler/icons-react';
 import { IconDropdown } from '@/components/icon-svg';
-import { SelectPayment } from '@/features/categorys/payment/components/selected-payment';
-import { SelectDelivery } from '@/features/delivery/components/select-delivery';
+import { SelectPayment } from '@/modules/categorys/payment/components/selected-payment';
+import { SelectDelivery } from '@/modules/delivery/components/select-delivery';
 import { Input } from '@/components/ui/input';
-import { OptionAdress } from '@/features/address/components/option-adress';
-import { OptionPayment } from '@/features/categorys/payment/components/option-payment';
+import { OptionAdress } from '@/modules/address/components/option-adress';
+import { OptionPayment } from '@/modules/categorys/payment/components/option-payment';
 
 export default function OrderDetailPage() {
     const { cart, totalPrice, adjustedTotalPrice } = useAppSelector(

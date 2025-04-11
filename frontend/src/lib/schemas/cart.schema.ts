@@ -45,3 +45,22 @@ export const UpdateCartPayloadSchema = z.object({
 });
 
 export type IUpdateCart = z.infer<typeof UpdateCartPayloadSchema>;
+
+export const CartItemResponseSchema = z.object({
+    product_id: z.number(),
+    product_name: z.string(),
+    image: z.string().url(),
+    category_id: z.number(),
+    quantity: z.number(),
+    stock: z.number(),
+    total_price: z.number(),
+    discounted_price: z.number(),
+});
+
+export const CartResponseSchema = z.object({
+    user_id: z.number(),
+    carts: z.array(CartItemResponseSchema)
+});
+
+export type ICartItemResponse = z.infer<typeof CartItemResponseSchema>;
+export type ICartResponse = z.infer<typeof CartResponseSchema>;

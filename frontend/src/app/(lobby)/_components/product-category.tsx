@@ -1,7 +1,7 @@
 "use client";
 
 import { ScrollArea } from "@radix-ui/react-scroll-area";
-import { ProductCard } from "@/features/products/components/product-card";
+import { ProductCard } from "@/modules/products/components/product-card";
 import { ScrollBar } from "@/components/ui/scroll-area";
 import { IProduct } from "@/lib/schemas/product.schema";
 

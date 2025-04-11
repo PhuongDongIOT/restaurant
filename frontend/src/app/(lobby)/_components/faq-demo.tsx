@@ -1,6 +1,6 @@
 "use client";
 
-import FaqPage from '@/features/faq/faq-page';
+import FaqPage from '@/modules/faq/faq-page';
 
 export default function FaqDemo() {
 

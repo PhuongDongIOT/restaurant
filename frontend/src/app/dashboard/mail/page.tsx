@@ -1,4 +1,4 @@
-import MailPage from "@/features/mail/mail-page";
+import MailPage from "@/modules/mail/mail-page";
 
 export const metadata = {
   title: 'Dashboard : Mail'

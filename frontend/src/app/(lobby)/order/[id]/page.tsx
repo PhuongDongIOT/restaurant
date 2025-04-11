@@ -1,4 +1,4 @@
-import OrderDetailPage from '@/features/order/pages/order-detail.page';
+import OrderDetailPage from '@/modules/order/pages/order-detail.page';
 
 export const metadata = {
   title: 'Dashboard : Product'

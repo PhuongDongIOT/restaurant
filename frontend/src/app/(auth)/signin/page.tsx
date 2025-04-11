@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import SignInViewPage from '@/features/auth/components/sigin-view';
+import SignInViewPage from '@/modules/auth/components/sigin-view';
 
 export const metadata: Metadata = {
   title: 'Authentication | Sign In',

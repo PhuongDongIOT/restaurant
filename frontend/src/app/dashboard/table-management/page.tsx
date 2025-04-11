@@ -1,5 +1,5 @@
 import { SearchParams } from 'nuqs/server';
-import TableManagementPage from '@/features/table-management/table-management-page';
+import TableManagementPage from '@/modules/table-management/table-management-page';
 
 type pageProps = {
   searchParams: Promise<SearchParams>;

@@ -102,7 +102,7 @@ export default function OrderPage({ orders }: OrderPageProps) {
         const res = await fetch("https://api.openai.com/v1/audio/speech", {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${"OPEN_API_KEY"}`,
+            Authorization: `Bearer ${"NEXT_PUBLIC_OPEN_API_KEY"}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

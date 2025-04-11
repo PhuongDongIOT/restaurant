@@ -9,8 +9,8 @@ import { IconPlus } from '@tabler/icons-react';
 import Link from 'next/link';
 import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
-import CustomersPage from '@/features/customer/pages/customers.page';
-import { CustomerCreateDialog } from '@/features/customer/components/customer-dialog/customer-create-dialog';
+import CustomersPage from '@/modules/customer/pages/customers.page';
+import { CustomerCreateDialog } from '@/modules/customer/components/customer-dialog/customer-create-dialog';
 
 export const metadata = {
   title: 'Dashboard: Customers'

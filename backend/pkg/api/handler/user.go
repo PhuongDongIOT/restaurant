@@ -110,6 +110,29 @@ func (u *UserHandler) LoginHandler(c *gin.Context) {
 
 }
 
+// @Summary		User Quick Login
+// @Description	user can log in by giving their details
+// @Tags			User
+// @Accept			json
+// @Produce		    json
+// @Param			login  body  models.UserLogin  true	"login"
+// @Success		200	{object}	response.Response{}
+// @Failure		500	{object}	response.Response{}
+// @Router			/users/quickLogin [post]
+func (u *UserHandler) QuickLoginHandler(c *gin.Context) {
+	Email := c.Request.FormValue("email")
+
+	user_details, err := u.userUseCase.QuickLoginHandler(Email)
+	if err != nil {
+		errRes := response.ClientResponse(http.StatusBadRequest, "User could not be logged in", nil, err.Error())
+		c.JSON(http.StatusBadRequest, errRes)
+		return
+	}
+
+	successRes := response.ClientResponse(http.StatusOK, "User successfully logged in", user_details, nil)
+	c.JSON(http.StatusOK, successRes)
+}
+
 // @Summary		Add Address
 // @Description	user can add their addresses
 // @Tags			User

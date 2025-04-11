@@ -21,8 +21,8 @@ type Address struct {
 
 // user details along with embedded token which can be used by the user to access protected routes
 type TokenUsers struct {
-	Users UserDetailsResponse
-	Token string
+	Users UserDetailsResponse `gorm:"-" json:"users"`
+	Token string              `json:"token"`
 }
 
 // user details shown after logging in
@@ -31,6 +31,10 @@ type UserDetailsResponse struct {
 	Name  string `json:"name"`
 	Email string `json:"email"`
 	Phone string `json:"phone"`
+}
+
+type QuickLogin struct {
+	Id int `json:"id"`
 }
 
 type UserLogin struct {
@@ -118,6 +122,6 @@ type Search struct {
 }
 
 type GetCartResponse struct {
-	ID   int
-	Data []GetCart
+	ID   int       `json:"user_id"`
+	Data []GetCart `json:"carts"`
 }

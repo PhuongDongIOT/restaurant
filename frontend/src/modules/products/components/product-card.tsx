@@ -1,7 +1,7 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-
 import { cn } from "@/lib/utils";
 import {
   ContextMenu,
@@ -9,18 +9,16 @@ import {
 } from "@/components/ui/context-menu";
 import { useModal } from "../../categorys/components/modal-provider";
 import { IProduct } from "@/lib/schemas/product.schema";
-import { useSelectedProduct } from "@/features/products/contexts/selected-product.context";
+import { useSelectedProduct } from "@/modules/products/contexts/selected-product.context";
 import { productUserService } from "@/lib/services/product.service";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/redux";
-import { addToCart } from "@/lib/features/carts/cartsSlice";
+import { addToCart } from "@/lib/features/carts/carts.slice";
 import { ShoppingCart } from "lucide-react";
 import { cartService } from "@/lib/services/cart.service";
-import { toast } from "sonner";
 import { createCartPayload, createUpdateCartPayload, mappperCreateCartItem } from "../mappers/product.mapper";
 import { showAddToCartErrorToast, showAddToCartSuccessToast } from "./notifycations/add-to-cart-success.noti";
 import { RootState } from "@/lib/store";
 import { isProductInCart } from "../utils";
-import { useState } from "react";
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: IProduct;
@@ -66,9 +64,13 @@ export function ProductCard({
   const { cart } = useAppSelector(
     (state: RootState) => state.carts
   );
+  const { user } = useAppSelector(
+    (state: RootState) => state.auths
+  );
 
   const addProductToCart = async (product: IProduct, userId = 1) => {
     notification(true)
+    userId = user?.id ?? userId
     const itemCart = mappperCreateCartItem(product);
     const cartPayload = createCartPayload(product.id, userId);
     const updatecartPayload = createUpdateCartPayload(product.id, userId);
@@ -76,10 +78,12 @@ export function ProductCard({
     try {
       const productInCart = isProductInCart(cart?.items, product.id)
 
-      if (!productInCart) {
-        const { status_code } = await cartService.addToCart(cartPayload);
-      } else {
-        const { status_code } = await cartService.updateQuantityPlus(updatecartPayload);
+      if (user?.id) {
+        if (!productInCart) {
+          const { status_code } = await cartService.addToCart(cartPayload);
+        } else {
+          const { status_code } = await cartService.updateQuantityPlus(updatecartPayload);
+        }
       }
 
       notification(false, "", product.product_name)

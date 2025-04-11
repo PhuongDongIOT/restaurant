@@ -39,3 +39,16 @@ export const cartService = {
         return Api.put<IResponseSchema<any>>('users/cart/updateQuantity/minus', {}, options);
     },
 };
+
+export const cartUserService = {
+    details: (id: number, options?: IApiOptions) => {
+        console.log(id);
+        
+        options = {
+            queryParams: {
+                id: id
+            }
+        }
+        return Api.get<IResponseSchema<any>>('users/cart', options);
+    },
+};

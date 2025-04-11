@@ -1,6 +1,7 @@
 import { Api } from '@/lib/cores/api';
 import { IApiOptions } from '../schemas/api.schema';
 import { IResponseSchema } from '../schemas/response.schema';
+import { IAuth } from '../schemas/auth.schema';
 
 const authService = {
     login: (bodyLogin: any, options?: IApiOptions) => {
@@ -17,20 +18,14 @@ const authService = {
             },
         );
     },
-    createSocketToken: () => {
-        return Api.post<IResponseSchema<any>>('/api/v1/auths/token/socket');
+};
+
+export const authUserService = {
+    login: (body: any, options?: IApiOptions) => {
+        return Api.post<IResponseSchema<IAuth>>('users/login', body, options);
     },
-    updatePassword: (params: any, options?: IApiOptions) => {
-        return Api.patch<IResponseSchema<any>>('/api/v1/auths/password', params, options);
-    },
-    forgotPassword: (email: string, options?: IApiOptions) => {
-        return Api.post<IResponseSchema<any>>('/api/v1/auths/forgot-password', { email }, options);
-    },
-    validateForgotKey: (params: any, options?: IApiOptions) => {
-        return Api.post<IResponseSchema<any>>('/api/v1/auths/validate-forgot-key', params, options);
-    },
-    resetPassword: (params: any, options?: IApiOptions) => {
-        return Api.post<IResponseSchema<any>>('/api/v1/auths/reset-password', params, options);
+    quickLogin: (body: any, options?: IApiOptions) => {
+        return Api.post<IResponseSchema<IAuth>>('users/quickLogin', body, options);
     },
 };
 

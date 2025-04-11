@@ -18,6 +18,16 @@ type MockUserUseCase struct {
 	recorder *MockUserUseCaseMockRecorder
 }
 
+// QuickLoginHandler implements interfaces.UserUseCase.
+func (m *MockUserUseCase) QuickLoginHandler(email string) (models.TokenUsers, error) {
+	panic("unimplemented")
+}
+
+// LoginQuickHandler implements interfaces.UserUseCase.
+func (m *MockUserUseCase) LoginQuickHandler(user models.QuickLogin) (models.TokenUsers, error) {
+	panic("unimplemented")
+}
+
 // MockUserUseCaseMockRecorder is the mock recorder for MockUserUseCase.
 type MockUserUseCaseMockRecorder struct {
 	mock *MockUserUseCase

@@ -1,7 +1,7 @@
 import FormCardSkeleton from '@/components/form-card-skeleton';
 import PageContainer from '@/components/layout/page-container';
 import { Suspense } from 'react';
-import ProductUpdatePage from '@/features/products/pages/product-detail.page';
+import ProductUpdatePage from '@/modules/products/pages/product-detail.page';
 import { productService } from '@/lib/services/product.service';
 
 export const metadata = {

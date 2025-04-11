@@ -1,4 +1,4 @@
-import ProductOverview from '@/features/categorys/components/product-overviews';
+import ProductOverview from '@/modules/categorys/components/product-overviews';
 import { productUserService } from '@/lib/services/product.service';
 import { Metadata } from 'next';
 

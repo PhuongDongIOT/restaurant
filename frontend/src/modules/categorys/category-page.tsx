@@ -13,6 +13,8 @@ import { SidebarComponent } from "./components/sidebar-component";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { IProduct } from "@/lib/schemas/product.schema";
 import { ICategory } from "@/lib/schemas/category.schema";
+import { IAuth } from "@/lib/schemas/auth.schema";
+import AuthHiddenComponent from "../auth/components/auth-hidden-component";
 
 export const metadata: Metadata = {
   title: "Music App",
@@ -22,13 +24,15 @@ export const metadata: Metadata = {
 type CategoryPageProps = {
   products: IProduct[];
   categories: ICategory[];
+  auth: IAuth | null;
 }
-export default function CategoryPage({ products, categories }: CategoryPageProps) {
+export default function CategoryPage({ products, categories, auth }: CategoryPageProps) {
 
   return (
     <>
       <div className="block">
         <div className="border-t">
+          {auth ? <AuthHiddenComponent auth={auth}/> : null}
           <div className="bg-background w-full">
             <SidebarProvider className="flex">
               <SidebarComponent categories={categories} />

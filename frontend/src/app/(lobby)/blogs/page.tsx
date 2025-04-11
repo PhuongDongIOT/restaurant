@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { BlogPage } from '@/features/blog/blog-page';
+import { BlogPage } from '@/modules/blog/blog-page';
 
 export const metadata: Metadata = {
   title: 'Authentication | Sign In',

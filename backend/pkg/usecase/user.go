@@ -137,6 +137,49 @@ func (u *userUseCase) LoginHandler(user models.UserLogin) (models.TokenUsers, er
 
 }
 
+func (u *userUseCase) QuickLoginHandler(email string) (models.TokenUsers, error) {
+
+	// checking if a username exist with this email address
+	ok := u.userRepo.CheckUserAvailability(email)
+	if !ok {
+		return models.TokenUsers{}, errors.New("the user does not exist")
+	}
+
+	isBlocked, err := u.userRepo.UserBlockStatus(email)
+	if err != nil {
+		return models.TokenUsers{}, errors.New(InternalError)
+	}
+
+	if isBlocked {
+		return models.TokenUsers{}, errors.New("user is blocked by admin")
+	}
+	var user models.UserLogin
+	user.Email = email
+	// Get the user details in order to check the password, in this case ( The same function can be reused in future )
+	user_details, err := u.userRepo.FindUserByEmail(user)
+	if err != nil {
+		return models.TokenUsers{}, errors.New(InternalError)
+	}
+
+	var userDetails models.UserDetailsResponse
+
+	userDetails.Id = int(user_details.Id)
+	userDetails.Name = user_details.Name
+	userDetails.Email = user_details.Email
+	userDetails.Phone = user_details.Phone
+
+	tokenString, err := u.helper.GenerateTokenClients(userDetails)
+	if err != nil {
+		return models.TokenUsers{}, errors.New("could not create token")
+	}
+
+	return models.TokenUsers{
+		Users: userDetails,
+		Token: tokenString,
+	}, nil
+
+}
+
 func (i *userUseCase) AddAddress(id int, address models.AddAddress) error {
 
 	rslt := i.userRepo.CheckIfFirstAddress(id)

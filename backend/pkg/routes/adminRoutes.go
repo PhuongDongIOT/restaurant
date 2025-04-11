@@ -14,7 +14,8 @@ func AdminRoutes(engine *gin.RouterGroup,
 	categoryHandler *handler.CategoryHandler,
 	orderHandler *handler.OrderHandler,
 	couponHandler *handler.CouponHandler,
-	offerHandler *handler.OfferHandler) {
+	offerHandler *handler.OfferHandler,
+	stationHandler *handler.StationHandler) {
 
 	engine.POST("/adminlogin", adminHandler.LoginHandler)
 	// api := router.Group("/admin_panel", middleware.AuthorizationMiddleware)
@@ -56,6 +57,12 @@ func AdminRoutes(engine *gin.RouterGroup,
 			payment.POST("", adminHandler.NewPaymentMethod)
 			payment.GET("", adminHandler.ListPaymentMethods)
 			payment.DELETE("", adminHandler.DeletePaymentMethod)
+		}
+
+		stations := engine.Group("/stations")
+		{
+			stations.POST("", stationHandler.AddStation)
+			stations.PUT("/changeUser/:id", stationHandler.ChangeUserStation)
 		}
 
 		orders := engine.Group("/orders")

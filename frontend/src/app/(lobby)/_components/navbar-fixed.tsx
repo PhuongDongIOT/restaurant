@@ -2,7 +2,7 @@
 
 import { Home, User, Briefcase } from 'lucide-react'
 import { NavBar } from "@/components/tubelight-navbar"
-import { useModalCart } from '@/features/categorys/components/modal-cart-provider';
+import { useModalCart } from '@/modules/categorys/components/modal-cart-provider';
 
 export function NavBarFixed() {
   const { setModalCart } = useModalCart();

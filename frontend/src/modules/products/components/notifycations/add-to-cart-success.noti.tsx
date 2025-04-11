@@ -5,6 +5,7 @@ export const showAddToCartSuccessToast = (productName: string) => {
         description: `You've successfully added "${productName}" to your cart.`,
     });
 };
+
 export const showAddToCartErrorToast = (noti: string) => {
     console.error("Error adding product to cart:", noti);
     toast("Error", {
