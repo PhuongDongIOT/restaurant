@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
 import ProductListingPage from '@/modules/products/pages/products.page';
-import ProductTableAction from '@/modules/products/components/product-tables/product-table-action';
+// import ProductTableAction from '@/modules/products/components/product-tables/product-table-action';
 
 export const metadata = {
   title: 'Dashboard: Products'
@@ -44,7 +44,7 @@ export default async function Page(props: pageProps) {
           </Link>
         </div>
         <Separator />
-        <ProductTableAction />
+        {/* <ProductTableAction /> */}
         <Suspense
           key={key}
           fallback={<DataTableSkeleton columnCount={5} rowCount={10} />}
