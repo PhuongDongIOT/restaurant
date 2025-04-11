@@ -5,7 +5,7 @@ import authService from '@/lib/services/auth.service';
 import { stringify } from 'qs';
 import { IApiOptions } from '../schemas/api.schema';
 
-export const WEB_API_URL = process.env.NEXT_PUBLIC_WEB_API_URL; // Store this as a constant
+export const WEB_API_URL = process.env.WEB_API_URL ?? process.env.NEXT_PUBLIC_WEB_API_URL; // Store this as a constant
 
 let isRefreshingToken = false;
 
