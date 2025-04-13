@@ -3,6 +3,7 @@ import { Hero } from './_components/hero';
 import { ProductCategory } from './_components/product-category';
 import { ProductGallery, ProductGalleryProps } from './_components/product-gallery';
 import { productUserService } from '@/lib/services/product.service';
+import { bannerService } from '@/lib/services/banner.service';
 
 export const metadata: Metadata = {
   title: 'Authentication | Sign In',
@@ -22,15 +23,17 @@ export default async function Page() {
     }
   })
 
-  const initPGOne = { ...initProductGallery, products }
+  const { data } = await bannerService.filters();
+
+  const initPGOne = { ...initProductGallery, products: [...products, ...products, ...products, ...products, ...products] }
 
   return (
     <>
-      <Hero />
-      <div className='py-8 flex flex-col gap-12 container mx-auto max-w-6px'>
-        <ProductGallery {...initPGOne} />
-        <ProductGallery {...initPGOne} />
+      <Hero items={data} />
+      <div className='py-8 flex flex-col gap-12 mx-auto max-w-6xl'>
         <ProductCategory {...initPGOne} />
+        <ProductGallery {...initPGOne} />
+        <ProductGallery {...initPGOne} />
       </div>
     </>
   );

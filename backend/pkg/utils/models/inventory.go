@@ -1,8 +1,8 @@
 package models
 
 type InventoryResponse struct {
-	ProductID int
-	Stock     int
+	ProductID int `json:"product_id"`
+	Stock     int `json:"stock"`
 }
 
 type InventoryUpdate struct {
@@ -47,8 +47,8 @@ type EditInventoryDetails struct {
 }
 
 type Banner struct {
-	CategoryID         int
-	CategoryName       string
-	DiscountPercentage int
-	Images             []string `gorm:"-"`
+	CategoryID         int      `json:"category_id"`
+	CategoryName       string   `json:"category_name"`
+	DiscountPercentage int      `json:"discount_percentage"`
+	Images             []string `gorm:"-" json:"images"`
 }

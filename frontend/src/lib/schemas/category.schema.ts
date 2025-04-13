@@ -15,3 +15,12 @@ export const InsertCategorySchema = z.object({
 });
 
 export type IInsertCategory = z.infer<typeof InsertCategorySchema>;
+
+export const CategoryBannerSchema = z.object({
+    category_id: z.string(),
+    category_name: z.string(),
+    discount_percentage: z.string(),
+    images: z.array(z.string()),
+});
+
+export type ICategoryBanner = z.infer<typeof CategoryBannerSchema>;

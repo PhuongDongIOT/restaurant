@@ -47,8 +47,8 @@ export function ProductGallery({
 
     return (
         <section className="w-full">
-            <div className="flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl">
-                <div className="mb-4 flex items-end justify-between md:mb-14 lg:mb-16">
+            <div className="flex w-full items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl">
+                <div className="mb-4 w-full flex items-end justify-between md:mb-14 lg:mb-16">
                     <div className="flex flex-col gap-4">
                         <h2 className="text-3xl font-medium md:text-4xl lg:text-5xl line-clamp-1">
                             {title}
