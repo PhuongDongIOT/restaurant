@@ -1,6 +1,6 @@
 'use client';
 
-import { useThemeConfig } from '@/components/active-theme';
+import { useThemeConfig } from '@/components/molecules/active-theme';
 import { Label } from '@/components/ui/label';
 import {
   Select,

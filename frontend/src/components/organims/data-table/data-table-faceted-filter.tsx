@@ -1,4 +1,3 @@
-import type { Option } from "@/types"
 import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons"
 import type { Column } from "@tanstack/react-table"
 
@@ -20,6 +19,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
+
+export interface Option {
+  label: string
+  value: string
+  icon?: React.ComponentType<{ className?: string }>
+  withCount?: boolean
+}
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>

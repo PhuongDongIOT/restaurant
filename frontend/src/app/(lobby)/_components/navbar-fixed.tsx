@@ -1,7 +1,7 @@
 "use client";
 
 import { Home, User, Briefcase } from 'lucide-react'
-import { NavBar } from "@/components/tubelight-navbar"
+import { NavBar } from "@/components/organims/tubelight-navbar"
 import { useModalCart } from '@/modules/categorys/components/modal-cart-provider';
 
 export function NavBarFixed() {

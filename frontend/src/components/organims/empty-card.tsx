@@ -11,7 +11,7 @@ interface EmptyCardProps extends React.ComponentPropsWithoutRef<typeof Card> {
 export function EmptyCard({
   title,
   description,
-  icon = "placeholder",
+  icon = "moon",
   children,
   className,
   ...props

@@ -44,8 +44,8 @@ import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import * as React from 'react';
-import { Icons } from '../icons';
-import { OrgSwitcher } from '../org-switcher';
+import { Icons } from '../atoms/icons';
+import { OrgSwitcher } from '../organims/org-switcher';
 import { useMediaQuery } from '@/lib/hooks/use-media-query';
 
 export const company = {

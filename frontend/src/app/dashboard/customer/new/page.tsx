@@ -1,4 +1,4 @@
-import FormCardSkeleton from '@/components/form-card-skeleton';
+import FormCardSkeleton from '@/components/molecules/form-card-skeleton';
 import PageContainer from '@/components/layout/page-container';
 import { Suspense } from 'react';
 import CustomerPage from '@/modules/customer/pages/customer.page';

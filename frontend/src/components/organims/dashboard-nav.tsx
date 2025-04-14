@@ -1,7 +1,6 @@
 'use client';
 
 import { Icons } from '@/components/atoms/icons';
-import { useSidebar } from '@/hooks/useSidebar';
 import { cn } from '@/lib/utils';
 import { NavItem } from '@/types';
 import Link from 'next/link';
@@ -13,6 +12,7 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '../ui/tooltip';
+import { useSidebar } from '../ui/sidebar';
 
 interface DashboardNavProps {
   items: NavItem[];
@@ -26,7 +26,6 @@ export function DashboardNav({
   isMobileNav = false
 }: DashboardNavProps) {
   const path = usePathname();
-  const { isMinimized } = useSidebar();
 
   if (!items?.length) {
     return null;
@@ -53,19 +52,13 @@ export function DashboardNav({
                     }}
                   >
                     <Icon className={`ml-3 size-5 flex-none`} />
-
-                    {isMobileNav || (!isMinimized && !isMobileNav) ? (
-                      <span className="mr-2 truncate">{item.title}</span>
-                    ) : (
-                      ''
-                    )}
+                    <span className="mr-2 truncate">{item.title}</span>
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent
                   align="center"
                   side="right"
                   sideOffset={8}
-                  className={!isMinimized ? 'hidden' : 'inline-block'}
                 >
                   {item.title}
                 </TooltipContent>

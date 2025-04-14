@@ -25,7 +25,7 @@ interface FacetedFilterProps {
   title?: string
   filterValues: string[]
   setFilterValues: React.Dispatch<React.SetStateAction<string[]>>
-  options: Option[]
+  options: any[]
 }
 
 export function FacetedFilter({

@@ -3,8 +3,6 @@ import Link from 'next/link';
 import { useAppSelector } from '@/lib/hooks/redux';
 import { RootState } from '@/lib/store';
 import { IconMinus, IconPlus } from '@tabler/icons-react';
-import { IconDropdown } from '@/components/icon-svg';
-import { SelectPayment } from '@/modules/categorys/payment/components/selected-payment';
 import { SelectDelivery } from '@/modules/delivery/components/select-delivery';
 import { Input } from '@/components/ui/input';
 import { OptionAdress } from '@/modules/address/components/option-adress';
