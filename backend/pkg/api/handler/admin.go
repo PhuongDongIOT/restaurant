@@ -2,6 +2,7 @@ package handler
 
 import (
 	"errors"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
@@ -37,12 +38,16 @@ func NewAdminHandler(usecase services.AdminUseCase) *AdminHandler {
 func (ad *AdminHandler) LoginHandler(c *gin.Context) { // login handler for the admin
 
 	// var adminDetails models.AdminLogin
+
+	log.Printf("Thông báo log với định dạng")
 	var adminDetails models.AdminLogin
 	if err := c.BindJSON(&adminDetails); err != nil {
 		errRes := response.ClientResponse(http.StatusBadRequest, "details not in correct format", nil, err.Error())
 		c.JSON(http.StatusBadRequest, errRes)
 		return
 	}
+
+	log.Printf("Thông báo log với định dạng: %s", adminDetails)
 
 	admin, err := ad.adminUseCase.LoginHandler(adminDetails)
 	if err != nil {

@@ -1,4 +1,4 @@
-import { IRegisterUser } from "../schemas/user.schema";
+import { IRegisterUser, ISignInUser } from "../schemas/user.schema";
 
 export const defaultValuesUser: IRegisterUser = {
     name: "",
@@ -6,4 +6,9 @@ export const defaultValuesUser: IRegisterUser = {
     phone: "",
     password: "",
     confirmpassword: "",
+};
+
+export const defaultValuesSignInUser: ISignInUser = {
+    email: "",
+    password: "",
 };

@@ -24,3 +24,11 @@ export const RegisterSchema = z
   });
 
 export type IRegisterUser = z.infer<typeof RegisterSchema>;
+
+export const SignInSchema = z
+  .object({
+    email: z.string().email("Invalid email"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+  });
+
+export type ISignInUser = z.infer<typeof SignInSchema>;

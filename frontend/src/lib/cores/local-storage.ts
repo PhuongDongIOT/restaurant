@@ -20,10 +20,10 @@ class LocalStorageService {
         }
     }
 
-    get<T>(key: string): T | null {
+    get<T>(key: string, isParse: boolean = false): T | null {
         try {
             const item = localStorage.getItem(this.getKey(key));
-            return item ? (JSON.parse(item) as T) : null;
+            return item ? (isParse ? JSON.parse(item) : item) as T  : null;
         } catch (error) {
             console.error("Error reading from localStorage", error);
             return null;

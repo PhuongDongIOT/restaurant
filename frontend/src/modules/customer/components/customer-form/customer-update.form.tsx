@@ -17,7 +17,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { productService } from '@/lib/services/product.service';
 import { IUser, UserSchema } from '@/lib/schemas/user.schema';
-import { defaultValuesUser } from '@/lib/initials/user.init';
 
 export default function CustomerUpdateForm({
     customer,

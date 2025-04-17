@@ -2,19 +2,13 @@
 
 import Link from "next/link"
 import {
-  ChevronLeft,
-  ChevronRight,
-  Copy,
-  CreditCard,
   Home,
   LineChart,
-  MoreVertical,
   Package,
   Package2,
   PanelLeft,
   Search,
   ShoppingCart,
-  Truck,
   Users2,
 } from "lucide-react"
 
@@ -36,23 +30,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-} from "@/components/ui/pagination"
 import { Progress } from "@/components/ui/progress"
-import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {
   Table,
@@ -67,6 +45,7 @@ import { TaxonomyTab } from "../components/taxonomy-tab"
 import { OrderDetailCard } from "../components/order-detail-card"
 import { useEffect, useState } from "react"
 import { orderUserService } from "@/lib/services/order.service"
+import { Input } from "@/components/ui/input"
 
 export const description =
   "An orders dashboard with a sidebar navigation. The sidebar has icon navigation. The content area has a breadcrumb and search in the header. The main area has a list of recent orders with a filter and export button. The main area also has a detailed view of a single order with order details, shipping information, billing information, customer information, and payment information."

@@ -1,20 +1,15 @@
 import { Metadata } from "next";
-// import Image from "next/image";
-// import { PlusCircledIcon } from "@radix-ui/react-icons";
-
-// import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { ProductCard } from "../products/components/product-card";
-// import { PodcastEmptyPlaceholder } from "./components/podcast-empty-placeholder";
 import { SidebarComponent } from "./components/sidebar-component";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { IProduct } from "@/lib/schemas/product.schema";
 import { ICategory } from "@/lib/schemas/category.schema";
 import { IAuth } from "@/lib/schemas/auth.schema";
-import AuthHiddenComponent from "../auth/components/auth-hidden-component";
+import { useResetAuthState } from "../authentication/hook/use-reset-auth-state";
 
 export const metadata: Metadata = {
   title: "Music App",
@@ -28,11 +23,12 @@ type CategoryPageProps = {
 }
 export default function CategoryPage({ products, categories, auth }: CategoryPageProps) {
 
+  const isReset = useResetAuthState(auth);
+
   return (
     <>
       <div className="block">
         <div className="border-t">
-          {auth ? <AuthHiddenComponent auth={auth}/> : null}
           <div className="bg-background w-full">
             <SidebarProvider className="flex">
               <SidebarComponent categories={categories} />

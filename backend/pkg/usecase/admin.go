@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"errors"
+	"log"
 
 	domain "backend/pkg/domain"
 	helper_interface "backend/pkg/helper/interface"
@@ -43,7 +44,9 @@ func (ad *adminUseCase) LoginHandler(adminDetails models.AdminLogin) (domain.Tok
 	if err != nil {
 		return domain.TokenAdmin{}, err
 	}
-
+	log.Println("Đây là một thông báo log đơn giản.")
+	log.Printf("Thông báo log với định dạng: %s", adminCompareDetails.Password)
+	log.Printf("Thông báo log với định dạng: %s", adminDetails.Password)
 	// compare password from database and that provided from admins
 	err = bcrypt.CompareHashAndPassword([]byte(adminCompareDetails.Password), []byte(adminDetails.Password))
 	if err != nil {

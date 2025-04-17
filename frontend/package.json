@@ -96,7 +96,6 @@
     "react-day-picker": "^9.4.3",
     "react-dom": "19.0.0",
     "react-dropzone": "^14.3.5",
-    "react-hook-form": "^7.54.1",
     "react-redux": "^9.2.0",
     "react-resizable-panels": "^2.1.7",
     "react-responsive": "^10.0.0",
@@ -129,6 +128,7 @@
     "mapbox-gl": "^3.11.0",
     "prettier": "3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.11",
+    "react-hook-form": "^7.55.0",
     "tw-animate-css": "^1.2.5"
   },
   "overrides": {

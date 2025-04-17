@@ -4,14 +4,14 @@ import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import { IconStar } from '@tabler/icons-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import UserAuthForm from './user-auth-form';
+import UserAuthForm from './components/user-auth-form';
 
 export const metadata: Metadata = {
   title: 'Authentication',
   description: 'Authentication forms built using the components.'
 };
 
-export default function SignInViewPage({ stars }: { stars: number }) {
+export default function SignUpPage({ stars }: { stars: number }) {
   return (
     <div className='relative h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0'>
       <Link
@@ -62,7 +62,7 @@ export default function SignInViewPage({ stars }: { stars: number }) {
               'group inline-flex hover:text-yellow-200'
             )}
             target='_blank'
-            href={'https://github.com/kiranism/next-shadcn-dashboard-starter'}
+            href='https://github.com/kiranism/next-shadcn-dashboard-starter'
           >
             <div className='flex items-center'>
               <GitHubLogoIcon className='size-4' />

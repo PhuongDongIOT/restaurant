@@ -4,19 +4,17 @@ import { IResponseSchema } from '../schemas/response.schema';
 import { IAuth } from '../schemas/auth.schema';
 
 const authService = {
-    login: (bodyLogin: any, options?: IApiOptions) => {
-        return Api.post<IResponseSchema<any>>('/api/auth/login', { ...bodyLogin }, options);
+    signin: (body: any, options?: IApiOptions) => {
+        options = {
+            headers: {
+                "Content-Type": "application/json"
+            }, ...options
+        }
+        body = JSON.stringify(body);
+        return Api.post<IResponseSchema<IAuth>>('admin/adminlogin', body, options);
     },
     refreshToken: (accessToken: string, refreshToken: string) => {
-        return Api.post<IResponseSchema<any>>(
-            '/api/v1/auths/token/refresh',
-            { accessToken, refreshToken },
-            {
-                replaceHeaders: {
-                    'Content-Type': 'application/json',
-                },
-            },
-        );
+        return null;
     },
 };
 

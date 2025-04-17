@@ -1,25 +1,20 @@
-'use client'
+"use client"
 
-import { useEffect } from "react";
 import { login } from "@/lib/features/auths/auth.slice";
+import { addToCart } from "@/lib/features/carts/carts.slice";
 import { useAppDispatch } from "@/lib/hooks/redux";
 import { IAuth } from "@/lib/schemas/auth.schema";
-import { cartUserService } from "@/lib/services/cart.service";
-import { addToCart } from "@/lib/features/carts/carts.slice";
 import { ICartItem, ICartItemResponse } from "@/lib/schemas/cart.schema";
+import { cartUserService } from "@/lib/services/cart.service";
 import { mapCartItemResponseToCartItem } from "@/modules/cart/utils";
+import { useEffect } from "react";
 
-type AuthHiddenComponentProps = {
-    auth: IAuth;
-}
-export default function AuthHiddenComponent({ auth }: AuthHiddenComponentProps) {
-
+export function useResetAuthState(auth: IAuth | null) {
     const dispatch = useAppDispatch();
     useEffect(() => {
-        const initSetCart = async () => {
+        const initSetCart = async (auth: IAuth) => {
             const { data } = await cartUserService.details(auth.users.id)
-            console.log(data);
-            
+
             const items: ICartItemResponse[] = data.carts ?? []
             items.map((item) => {
                 const cartItem: ICartItem = mapCartItemResponseToCartItem(item)
@@ -28,8 +23,9 @@ export default function AuthHiddenComponent({ auth }: AuthHiddenComponentProps) 
         }
         if (auth) {
             dispatch(login(auth));
-            if (auth.users.id) initSetCart()
+            if (auth.users.id) initSetCart(auth)
         }
     }, [])
-    return (<></>);
+
+    return {};
 }
