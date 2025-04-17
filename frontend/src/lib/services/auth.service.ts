@@ -13,8 +13,12 @@ const authService = {
         body = JSON.stringify(body);
         return Api.post<IResponseSchema<IAuth>>('admin/adminlogin', body, options);
     },
-    refreshToken: (accessToken: string, refreshToken: string) => {
-        return null;
+    refreshToken: (accessToken: string, refreshToken: string): any => {
+         let body = {
+            accessToken,
+            refreshToken
+         }
+        return Api.post<IResponseSchema<any>>('admin/refreshToken', body);
     },
 };
 
