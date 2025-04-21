@@ -1,18 +1,6 @@
-FROM node:16-alpine
-
-WORKDIR /usr/blog
-
-RUN apk add --update --no-cache openssl1.1-compat
-
-COPY package.json ./
-COPY pnpm-lock.yaml ./
-
-
-
-RUN npm install pnpm -g; \
-    pnpm install
-
-COPY . ./
-
-
-CMD ["npm","run","start"]
+FROM golang:1.17
+WORKDIR /blog
+COPY . .
+RUN go mod download
+RUN go install -mod=mod github.com/githubnemo/CompileDaemon
+ENTRYPOINT CompileDaemon --build="go build -o app ./cmd/server" -polling=true --command=./app

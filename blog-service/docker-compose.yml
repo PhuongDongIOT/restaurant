@@ -1,67 +1,57 @@
-version: '3.8'
+version: "3"
 
 services:
-
-  redis:
-    image: redis
-    expose:
-      - 6379
-    profiles:
-      - product
-
-  app:
+  blog_app:
+    container_name: go_blog_app
     build:
       context: .
       dockerfile: Dockerfile
+    env_file:
+      - ./.env
+    ports:
+      - 3001:3001
     depends_on:
-      - redis
-      - mysqldb
-    env_file:
-      - .env
-    ports:
-      - "${PORT}:${PORT}"
-    environment:
-      DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysqldb:3306/${MYSQL_DATABASE}"
-      REDIS_URL: redis
+      blog_db:
+        condition: service_healthy
     volumes:
-      - ./my-uploads:/usr/blog/uploads
-    profiles:
-      - product
+      - ./:/blog
+    networks:
+      - go-blog-net
 
-  mysqldb:
-    image: mysql:5.7
-    env_file:
-      - .env
-    ports:
-      - "${MYSQL_PORT}:3306"
-    expose:
-      - 3306
+  blog_db:
+    image: postgres:13
+    container_name: go_blog_app_db
     environment:
-      MYSQL_DATABASE: "${MYSQL_DATABASE}"
-      MYSQL_USER: "${MYSQL_USER}"
-      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
-      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      SERVICE_TAGS: prod
-      SERVICE_NAME: mysqldb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=goblog
     volumes:
-      - ./db-data:/var/lib/mysql
-    profiles:
-      - product
+      - goblog_postgres:/var/lib/postgresql/data
+    networks:
+      - go-blog-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-  mysqldb-test:
-    image: mysql:5.7
-    ports:
-      - '3308:3306'
+  blog_pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
     environment:
-      MYSQL_DATABASE: blog
-      MYSQL_USER: prisma
-      MYSQL_PASSWORD: prisma
-      MYSQL_ROOT_PASSWORD: prisma
-      SERVICE_TAGS: prod
-      SERVICE_NAME: mysqldb
-    profiles:
-      - test
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+    depends_on:
+      blog_db:
+        condition: service_healthy
+    networks:
+      - go-blog-net
 
 volumes:
-  mysql-data:
-  my-uploads:
+  goblog_postgres:
+
+networks:
+  go-blog-net:
+    driver: bridge

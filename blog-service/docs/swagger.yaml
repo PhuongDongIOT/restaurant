@@ -1,0 +1,384 @@
+basePath: /api/v1
+definitions:
+  dto.Category:
+    properties:
+      name:
+        maxLength: 100
+        type: string
+    required:
+    - name
+    type: object
+  dto.Comment:
+    properties:
+      body:
+        maxLength: 100
+        type: string
+    required:
+    - body
+    type: object
+  dto.Login:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  dto.Post:
+    properties:
+      category:
+        type: integer
+      description:
+        type: string
+      title:
+        type: string
+    required:
+    - category
+    - description
+    - title
+    type: object
+  dto.Token:
+    properties:
+      token:
+        type: string
+    required:
+    - token
+    type: object
+  dto.User:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        minLength: 6
+        type: string
+    required:
+    - email
+    - name
+    - password
+    type: object
+  serializer.CategoryResponse:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  serializer.CommentResponse:
+    properties:
+      body:
+        type: string
+      id:
+        type: integer
+    type: object
+  serializer.PostResponse:
+    properties:
+      category:
+        $ref: '#/definitions/serializer.CategoryResponse'
+      comments:
+        items:
+          $ref: '#/definitions/serializer.CommentResponse'
+        type: array
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      image:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+host: localhost:3001
+info:
+  contact:
+    email: abdurraufraihan@gmail.com
+    name: Abdur Rauf Raihan
+    url: https://linkedin.com/abdurraufraihan
+  description: A Blog API in Go using Gin framework.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Gin Blog Api
+  version: "1.0"
+paths:
+  /categories:
+    get:
+      description: Responds with the list of all categories as JSON.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serializer.CategoryResponse'
+      summary: Get categories list
+      tags:
+      - categories
+    post:
+      description: Responds with category as JSON.
+      parameters:
+      - description: Category dto
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Category'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/serializer.CategoryResponse'
+      summary: Insert category
+      tags:
+      - categories
+  /categories/{id}:
+    delete:
+      description: Responds with category as JSON.
+      parameters:
+      - description: delete category by id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+      summary: Delete category
+      tags:
+      - categories
+    put:
+      description: Responds with category as JSON.
+      parameters:
+      - description: update category by id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Category dto
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Category'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serializer.CategoryResponse'
+      summary: Update category
+      tags:
+      - categories
+  /login:
+    post:
+      description: Responds with token pair as JSON.
+      parameters:
+      - description: Login dto
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: User login
+      tags:
+      - auth
+  /posts:
+    get:
+      description: Responds with the list of all posts as JSON.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serializer.PostResponse'
+      summary: Get posts list
+      tags:
+      - posts
+    post:
+      description: Responds with post as JSON.
+      parameters:
+      - description: Post dto
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Post'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/serializer.PostResponse'
+      summary: Insert post
+      tags:
+      - posts
+  /posts/{id}:
+    delete:
+      description: Responds with post as JSON.
+      parameters:
+      - description: delete post by id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+      summary: Delete post
+      tags:
+      - posts
+    get:
+      description: Responds with post as JSON.
+      parameters:
+      - description: search post by id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serializer.PostResponse'
+      summary: Get post
+      tags:
+      - posts
+    put:
+      description: Responds with post as JSON.
+      parameters:
+      - description: update post by id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Post dto
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Post'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serializer.PostResponse'
+      summary: Update post
+      tags:
+      - posts
+  /posts/{postId}/comments:
+    get:
+      description: Responds with the list of all comments by postId as JSON.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serializer.CommentResponse'
+      summary: Get comments list by postId
+      tags:
+      - comments
+    post:
+      description: Responds with comment as JSON.
+      parameters:
+      - description: Insert comment by postId
+        in: path
+        name: postId
+        required: true
+        type: integer
+      - description: Comment dto
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Comment'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/serializer.CommentResponse'
+      summary: Insert comment
+      tags:
+      - comments
+  /signup:
+    post:
+      description: Responds with user data as JSON.
+      parameters:
+      - description: User dto
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: User register
+      tags:
+      - auth
+  /token/refresh:
+    post:
+      description: Responds with token pair as JSON.
+      parameters:
+      - description: Token dto
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Token'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Refresh user token
+      tags:
+      - auth
+  /token/verify:
+    post:
+      description: Responds with is_valid status as JSON.
+      parameters:
+      - description: Token dto
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/dto.Token'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Verify user token
+      tags:
+      - auth
+swagger: "2.0"

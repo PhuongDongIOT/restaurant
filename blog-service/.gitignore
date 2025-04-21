@@ -1,42 +1,22 @@
-# compiled output
-/dist
-/node_modules
-.vscode
-# Logs
-logs
-*.log
-npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
 
-# OS
-.DS_Store
+# Test binary, built with `go test -c`
+*.test
 
-uploads/*
-package-lock.json
-# Tests
-/coverage
-/.nyc_output
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
 
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# Dependency directories (remove the comment below to include it)
+# vendor/
+/media
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+#build files
+/app
 
-db-data
-my-uploads
+#env files
 .env
-src/schema.gql

@@ -1,0 +1,204 @@
+definitions:
+  dto.GeneralErrorResponse:
+    properties:
+      error:
+        type: string
+      meta:
+        additionalProperties: {}
+        type: object
+    type: object
+  dto.ListPicturesResponse:
+    properties:
+      count:
+        type: integer
+      pictures:
+        items:
+          $ref: '#/definitions/dto.PictureResponse'
+        type: array
+      total_pages:
+        type: integer
+    type: object
+  dto.PictureResponse:
+    properties:
+      content_type:
+        type: string
+      created_on:
+        type: string
+      height:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+      size:
+        type: string
+      updated_on:
+        type: string
+      url:
+        type: string
+      width:
+        type: integer
+    type: object
+  dto.SinglePictureResponse:
+    properties:
+      data:
+        $ref: '#/definitions/dto.PictureResponse'
+    type: object
+  dto.StringResponse:
+    properties:
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /:
+    get:
+      description: List of pictures along with its metadata
+      parameters:
+      - description: page number starting from 1
+        format: number
+        in: query
+        name: page
+        type: number
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ListPicturesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.GeneralErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.GeneralErrorResponse'
+      summary: list of pictures
+    post:
+      consumes:
+      - multipart/form-data
+      description: Given a image file, save it & get its computed metadata
+      parameters:
+      - description: upload image file
+        in: formData
+        name: image
+        required: true
+        type: file
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.SinglePictureResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.GeneralErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.GeneralErrorResponse'
+      summary: save an image
+  /picture/{id}:
+    delete:
+      description: Delete a specified image along with its metadata by its ID
+      parameters:
+      - description: Image Id
+        in: path
+        name: id
+        required: true
+        type: number
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/dto.StringResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.GeneralErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.GeneralErrorResponse'
+      summary: delete a single image
+    get:
+      description: Get a specified image with its metadata by its ID
+      parameters:
+      - description: Image Id
+        in: path
+        name: id
+        required: true
+        type: number
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.SinglePictureResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.GeneralErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.GeneralErrorResponse'
+      summary: get a single image data
+    put:
+      consumes:
+      - multipart/form-data
+      description: Given a image file and an id, update the record & get its computed
+        metadata
+      parameters:
+      - description: Image Id
+        in: path
+        name: id
+        required: true
+        type: number
+      - description: upload image file
+        in: formData
+        name: image
+        required: true
+        type: file
+      responses:
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/dto.SinglePictureResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.GeneralErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.GeneralErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.GeneralErrorResponse'
+      summary: update an image
+  /picture/{id}/image:
+    get:
+      description: Get a specified image file by its ID
+      parameters:
+      - description: Image Id
+        in: path
+        name: id
+        required: true
+        type: number
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: file
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.GeneralErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.GeneralErrorResponse'
+      summary: get a image
+swagger: "2.0"
