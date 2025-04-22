@@ -9,7 +9,7 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/s
 import { IProduct } from "@/lib/schemas/product.schema";
 import { ICategory } from "@/lib/schemas/category.schema";
 import { IAuth } from "@/lib/schemas/auth.schema";
-import { useResetAuthState } from "../authentication/hook/use-reset-auth-state";
+import { ResetAuthState } from "../authentication/components/reset-auth-state";
 
 export const metadata: Metadata = {
   title: "Music App",
@@ -23,12 +23,11 @@ type CategoryPageProps = {
 }
 export default function CategoryPage({ products, categories, auth }: CategoryPageProps) {
 
-  const isReset = useResetAuthState(auth);
-
   return (
     <>
       <div className="block">
         <div className="border-t">
+          <ResetAuthState auth={auth} />
           <div className="bg-background w-full">
             <SidebarProvider className="flex">
               <SidebarComponent categories={categories} />

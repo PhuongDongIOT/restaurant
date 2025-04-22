@@ -9,7 +9,10 @@ import { cartUserService } from "@/lib/services/cart.service";
 import { mapCartItemResponseToCartItem } from "@/modules/cart/utils";
 import { useEffect } from "react";
 
-export function useResetAuthState(auth: IAuth | null) {
+type ResetAuthStateProps = {
+    auth: IAuth | null
+}
+export function ResetAuthState({ auth }: ResetAuthStateProps) {
     const dispatch = useAppDispatch();
     useEffect(() => {
         const initSetCart = async (auth: IAuth) => {
@@ -27,5 +30,5 @@ export function useResetAuthState(auth: IAuth | null) {
         }
     }, [])
 
-    return {};
+    return null;
 }
