@@ -20,7 +20,7 @@ export function NavigationMenuMain() {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+            <NavigationMenuTrigger>Chào Mừng</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">
@@ -30,20 +30,21 @@ export function NavigationMenuMain() {
                       href="/"
                     >
                       <div className="mb-2 mt-4 text-lg font-medium">
-                        shadcn/ui
+                        Bánh cuốn hoàng vũ
                       </div>
                       <p className="text-sm leading-tight text-muted-foreground">
-                        Beautifully designed components built with Radix UI and
+
+                        Các thành phần được thiết kế đẹp mắt được xây dựng bằng Radix UI và
                         Tailwind CSS.
                       </p>
                     </Link>
                   </NavigationMenuLink>
                 </li>
                 <ListItem href="/docs" title="Introduction">
-                  Re-usable components built using Radix UI and Tailwind CSS.
+                  Các thành phần có thể tái sử dụng được xây dựng bằng Radix UI và Tailwind CSS.
                 </ListItem>
                 <ListItem href="/docs/installation" title="Installation">
-                  How to install dependencies and structure your app.
+                  Cách cài đặt các phần phụ thuộc và cấu trúc ứng dụng của bạn.
                 </ListItem>
               </ul>
             </NavigationMenuContent>
@@ -51,21 +52,21 @@ export function NavigationMenuMain() {
           <NavigationMenuItem>
             <Link href="/categories" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Categories
+                Danh mục
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/blogs" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Blogs
+                Tin tức
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/faq" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Frequently Asked Questions
+                Câu hỏi thường gặp
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>

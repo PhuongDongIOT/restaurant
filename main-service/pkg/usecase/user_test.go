@@ -4,11 +4,11 @@ import (
 	"errors"
 	"testing"
 
-	"backend/pkg/config"
-	"backend/pkg/domain"
-	"backend/pkg/mock/mockhelper"
-	"backend/pkg/mock/mockrepo"
-	"backend/pkg/utils/models"
+	"main-service/pkg/config"
+	"main-service/pkg/domain"
+	"main-service/pkg/mock/mockhelper"
+	"main-service/pkg/mock/mockrepo"
+	"main-service/pkg/utils/models"
 
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"

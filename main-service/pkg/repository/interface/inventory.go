@@ -1,11 +1,11 @@
 package interfaces
 
 import (
-	"backend/pkg/utils/models"
+	"main-service/pkg/utils/models"
 )
 
 type InventoryRepository interface {
-	AddInventory(inventory models.AddInventories, url string) (models.InventoryResponse, error)
+	AddInventory(inventory models.AddInventories) (models.InventoryResponse, error)
 	CheckInventory(pid int) (bool, error)
 	UpdateInventory(pid int, stock int) (models.InventoryResponse, error)
 	DeleteInventory(id string) error
@@ -16,6 +16,9 @@ type InventoryRepository interface {
 	CheckStock(inventory_id int) (int, error)
 	CheckPrice(inventory_id int) (float64, error)
 	SearchProducts(key string) ([]models.Inventories, error)
-	UpdateProductImage(int, string) error
+	UpdateProductImage(id int, file string) error
 	EditInventoryDetails(id int, model models.EditInventoryDetails) error
+	// AddTagsToInventory(id int, tagNames []string) error
+	// RemoveTagsFromInventory(id int, tagNames []string) error
+	// GetTagsOfInventory(id int) ([]models.Tag, error)
 }

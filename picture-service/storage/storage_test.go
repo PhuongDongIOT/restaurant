@@ -4,7 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/VinayakBagaria/photogram/utils"
+	"picture-service/photogram/utils"
+
 	"github.com/stretchr/testify/assert"
 )
 

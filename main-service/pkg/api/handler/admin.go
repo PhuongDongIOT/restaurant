@@ -7,10 +7,10 @@ import (
 	"strconv"
 	"time"
 
-	"backend/pkg/helper"
-	services "backend/pkg/usecase/interface"
-	models "backend/pkg/utils/models"
-	response "backend/pkg/utils/response"
+	"main-service/pkg/helper"
+	services "main-service/pkg/usecase/interface"
+	models "main-service/pkg/utils/models"
+	response "main-service/pkg/utils/response"
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"

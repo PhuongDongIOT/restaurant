@@ -1,10 +1,10 @@
 package repository
 
 import (
-	"backend/pkg/domain"
-	interfaces "backend/pkg/repository/interface"
-	"backend/pkg/utils/models"
 	"errors"
+	"main-service/pkg/domain"
+	interfaces "main-service/pkg/repository/interface"
+	"main-service/pkg/utils/models"
 	"strconv"
 
 	"gorm.io/gorm"

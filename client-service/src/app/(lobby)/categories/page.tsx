@@ -8,15 +8,15 @@ import { IAuth } from '@/lib/schemas/auth.schema';
 import { loadCategoriesSearchParams } from '@/lib/customs/searchServerSideParams';
 
 export const metadata: Metadata = {
-  title: 'Authentication | Sign In',
-  description: 'Sign In page for authentication.'
+  title: 'Danh mục sản phẩm',
+  description: `Khám phá danh mục sản phẩm đa dạng, được tuyển chọn kỹ lưỡng để đáp ứng mọi nhu cầu của bạn.
+Từ các sản phẩm công nghệ tiên tiến đến những vật dụng thiết yếu hằng ngày – tất cả đều có tại đây!`,
 };
 
 type PageProps = {
-  searchParams: Promise<SearchParams> // Next.js 15+: async searchParams prop
+  searchParams: Promise<SearchParams>;
 }
 export default async function Page({ searchParams }: PageProps) {
-
   const { encryption } = await loadCategoriesSearchParams(searchParams)
   let auth: IAuth | null = null
   if (encryption) {

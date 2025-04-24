@@ -4,11 +4,11 @@ import (
 	"errors"
 	"fmt"
 
-	"backend/pkg/config"
-	"backend/pkg/domain"
-	helper_interface "backend/pkg/helper/interface"
-	interfaces "backend/pkg/repository/interface"
-	"backend/pkg/utils/models"
+	"main-service/pkg/config"
+	"main-service/pkg/domain"
+	helper_interface "main-service/pkg/helper/interface"
+	interfaces "main-service/pkg/repository/interface"
+	"main-service/pkg/utils/models"
 )
 
 type userUseCase struct {

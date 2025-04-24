@@ -129,7 +129,7 @@ export function FileUploader(props: FileUploaderProps) {
           preview: URL.createObjectURL(file)
         })
       );
-
+      
       const updatedFiles = files ? [...files, ...newFiles] : newFiles;
 
       setFiles(updatedFiles);
@@ -216,7 +216,7 @@ export function FileUploader(props: FileUploaderProps) {
                   />
                 </div>
                 <p className='text-muted-foreground font-medium'>
-                  Drop the files here
+                  Thả các tập tin ở đây
                 </p>
               </div>
             ) : (
@@ -229,10 +229,10 @@ export function FileUploader(props: FileUploaderProps) {
                 </div>
                 <div className='space-y-px'>
                   <p className='text-muted-foreground font-medium'>
-                    Drag {`'n'`} drop files here, or click to select files
+                    Kéo {`'n'`} thả các tập tin vào đây hoặc nhấp để chọn các tập tin
                   </p>
                   <p className='text-muted-foreground/70 text-sm'>
-                    You can upload
+                    Bạn có thể tải lên
                     {maxFiles > 1
                       ? ` ${maxFiles === Infinity ? 'multiple' : maxFiles}
                       files (up to ${formatBytes(maxSize)} each)`

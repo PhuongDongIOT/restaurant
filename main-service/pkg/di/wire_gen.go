@@ -7,13 +7,13 @@
 package di
 
 import (
-	"backend/pkg/api"
-	"backend/pkg/api/handler"
-	"backend/pkg/config"
-	"backend/pkg/db"
-	"backend/pkg/helper"
-	"backend/pkg/repository"
-	"backend/pkg/usecase"
+	"main-service/pkg/api"
+	"main-service/pkg/api/handler"
+	"main-service/pkg/config"
+	"main-service/pkg/db"
+	"main-service/pkg/helper"
+	"main-service/pkg/repository"
+	"main-service/pkg/usecase"
 )
 
 // Injectors from wire.go:
@@ -80,8 +80,12 @@ func InitializeAPI(cfg config.Config) (*http.ServerHTTP, error) {
 	stationRepository := repository.NewStationRepository(gormDB)
 	stationUseCase := usecase.NewStationUseCase(stationRepository)
 	stationHandler := handler.NewStationHandler(stationUseCase)
+
+	tagRepository := repository.NewTagRepository(gormDB)
+	tagUseCase := usecase.NewTagUseCase(tagRepository)
+	tagHandler := handler.NewTagHandler(tagUseCase)
 	
-	serverHTTP := http.NewServerHTTP(userHandler,adminHandler,categoryHandler,inventoryHandler,otpHandler,orderHandler,cartHandler,couponHandler,paymentHandler,offerHandler,wishlistHandler, stationHandler)
+	serverHTTP := http.NewServerHTTP(userHandler,adminHandler,categoryHandler,inventoryHandler,otpHandler,orderHandler,cartHandler,couponHandler,paymentHandler,offerHandler,wishlistHandler, stationHandler, tagHandler)
 
 
 

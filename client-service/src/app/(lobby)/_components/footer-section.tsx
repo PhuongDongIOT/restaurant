@@ -4,8 +4,8 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
-import { Textarea } from "@/components/ui/textarea"
+// import { Switch } from "@/components/ui/switch"
+// import { Textarea } from "@/components/ui/textarea"
 import {
     Tooltip,
     TooltipContent,
@@ -30,9 +30,9 @@ function FooterSection() {
             <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
                 <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
                     <div className="relative">
-                        <h2 className="mb-4 text-3xl font-bold tracking-tight">Stay Connected</h2>
+                        <h2 className="mb-4 text-3xl font-bold tracking-tight">Luôn kết nối</h2>
                         <p className="mb-6 text-muted-foreground">
-                            Join our newsletter for the latest updates and exclusive offers.
+                            Tham gia bản tin của chúng tôi để nhận thông tin cập nhật mới nhất và các ưu đãi độc quyền.
                         </p>
                         <form className="relative">
                             <Input
@@ -55,33 +55,33 @@ function FooterSection() {
                         <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
                         <nav className="space-y-2 text-sm">
                             <a href="#" className="block transition-colors hover:text-primary">
-                                Home
+                                Trang chủ
                             </a>
                             <a href="#" className="block transition-colors hover:text-primary">
-                                About Us
+                                Về chúng tôi
                             </a>
                             <a href="#" className="block transition-colors hover:text-primary">
-                                Services
+                                Dịch vụ
                             </a>
                             <a href="#" className="block transition-colors hover:text-primary">
-                                Products
+                                Danh sách sản phẩm
                             </a>
                             <a href="#" className="block transition-colors hover:text-primary">
-                                Contact
+                                Liên hệ
                             </a>
                         </nav>
                     </div>
                     <div>
-                        <h3 className="mb-4 text-lg font-semibold">Contact Us</h3>
+                        <h3 className="mb-4 text-lg font-semibold">Liên hệ với chúng tôi</h3>
                         <address className="space-y-2 text-sm not-italic">
-                            <p>123 Innovation Street</p>
-                            <p>Tech City, TC 12345</p>
-                            <p>Phone: (123) 456-7890</p>
-                            <p>Email: hello@example.com</p>
+                            <p>123 Xxxx xxxx</p>
+                            <p>Xxxx City, Xx xxxx</p>
+                            <p>Xxxx: (xxx) xxx-xxxx</p>
+                            <p>Email: xxxx@example.com</p>
                         </address>
                     </div>
                     <div className="relative">
-                        <h3 className="mb-4 text-lg font-semibold">Follow Us</h3>
+                        <h3 className="mb-4 text-lg font-semibold">Theo dõi chúng tôi</h3>
                         <div className="mb-6 flex space-x-4">
                             <TooltipProvider>
                                 <Tooltip>
@@ -92,7 +92,7 @@ function FooterSection() {
                                         </Button>
                                     </TooltipTrigger>
                                     <TooltipContent>
-                                        <p>Follow us on Facebook</p>
+                                        <p>Theo dõi chúng tôi on Facebook</p>
                                     </TooltipContent>
                                 </Tooltip>
                             </TooltipProvider>
@@ -105,7 +105,7 @@ function FooterSection() {
                                         </Button>
                                     </TooltipTrigger>
                                     <TooltipContent>
-                                        <p>Follow us on Twitter</p>
+                                        <p>Theo dõi chúng tôi on Twitter</p>
                                     </TooltipContent>
                                 </Tooltip>
                             </TooltipProvider>
@@ -118,7 +118,7 @@ function FooterSection() {
                                         </Button>
                                     </TooltipTrigger>
                                     <TooltipContent>
-                                        <p>Follow us on Instagram</p>
+                                        <p>Theo dõi chúng tôi on Instagram</p>
                                     </TooltipContent>
                                 </Tooltip>
                             </TooltipProvider>
@@ -152,17 +152,17 @@ function FooterSection() {
                 </div>
                 <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row">
                     <p className="text-sm text-muted-foreground">
-                        © 2024 Your Company. All rights reserved.
+                        © 2025 Dev Coffee. All rights reserved.
                     </p>
                     <nav className="flex gap-4 text-sm">
                         <a href="#" className="transition-colors hover:text-primary">
-                            Privacy Policy
+                            Chính sách bảo mật
                         </a>
                         <a href="#" className="transition-colors hover:text-primary">
-                            Terms of Service
+                            Điều khoản dịch vụ
                         </a>
                         <a href="#" className="transition-colors hover:text-primary">
-                            Cookie Settings
+                            Cài đặt cookie  
                         </a>
                     </nav>
                 </div>

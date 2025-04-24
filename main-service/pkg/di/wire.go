@@ -4,12 +4,12 @@
 package di
 
 import (
-	http "backend/pkg/api"
-	handler "backend/pkg/api/handler"
-	config "backend/pkg/config"
-	db "backend/pkg/db"
-	repository "backend/pkg/repository"
-	usecase "backend/pkg/usecase"
+	http "main-service/pkg/api"
+	handler "main-service/pkg/api/handler"
+	config "main-service/pkg/config"
+	db "main-service/pkg/db"
+	repository "main-service/pkg/repository"
+	usecase "main-service/pkg/usecase"
 
 	"github.com/google/wire"
 )

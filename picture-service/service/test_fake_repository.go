@@ -4,8 +4,8 @@ import (
 	"errors"
 	"time"
 
-	"github.com/VinayakBagaria/photogram/db"
-	"github.com/VinayakBagaria/photogram/dto"
+	"picture-service/photogram/db"
+	"picture-service/photogram/dto"
 )
 
 type fakeRepository struct {

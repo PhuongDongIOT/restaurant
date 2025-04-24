@@ -1,12 +1,11 @@
 package interfaces
 
 import (
-	"backend/pkg/utils/models"
-	"mime/multipart"
+	"main-service/pkg/utils/models"
 )
 
 type InventoryUseCase interface {
-	AddInventory(inventory models.AddInventories, image *multipart.FileHeader) (models.InventoryResponse, error)
+	AddInventory(inventory models.AddInventories) (models.InventoryResponse, error)
 	UpdateInventory(ProductID int, Stock int) (models.InventoryResponse, error)
 	DeleteInventory(id string) error
 	IndividualProducts(sku string) (models.Inventories, error)
@@ -17,6 +16,6 @@ type InventoryUseCase interface {
 
 	SearchProducts(key string) ([]models.Inventories, error)
 
-	UpdateProductImage(id int, file *multipart.FileHeader) error
+	UpdateProductImage(id int, file string) error
 	EditInventoryDetails(int, models.EditInventoryDetails) error
 }

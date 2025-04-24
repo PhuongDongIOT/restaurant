@@ -1,12 +1,12 @@
 package usecase
 
 import (
-	"backend/pkg/domain"
-	interfaces "backend/pkg/repository/interface"
-	services "backend/pkg/usecase/interface"
-	"backend/pkg/utils/models"
 	"errors"
 	"fmt"
+	"main-service/pkg/domain"
+	interfaces "main-service/pkg/repository/interface"
+	services "main-service/pkg/usecase/interface"
+	"main-service/pkg/utils/models"
 )
 
 type categoryUseCase struct {

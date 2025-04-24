@@ -29,50 +29,50 @@ const image = "https://awsbutket2468.s3.ap-northeast-1.amazonaws.com/baby%20tree
 
 const data = [
     {
-        id: "shadcn-ui",
-        title: "shadcn/ui: Building a Modern Component Library",
+        id: "Bánh cuốn",
+        title: "Xây dựng một thư viện thành phần hiện đại",
         description:
-            "Explore how shadcn/ui revolutionized React component libraries by providing a unique approach to component distribution and customization, making it easier for developers to build beautiful, accessible applications.",
+            "Phương pháp tiếp cận độc đáo cho việc phân phối và tùy chỉnh thành phần, giúp các nhà phát triển dễ dàng xây dựng các ứng dụng đẹp mắt và dễ truy cập hơn.",
         href: "https://ui.shadcn.com",
         image: image,
     },
     {
-        id: "shadcn-ui",
-        title: "shadcn/ui: Building a Modern Component Library",
+        id: "Bánh cuốn",
+        title: "Xây dựng một thư viện thành phần hiện đại",
         description:
-            "Explore how shadcn/ui revolutionized React component libraries by providing a unique approach to component distribution and customization, making it easier for developers to build beautiful, accessible applications.",
+            "Phương pháp tiếp cận độc đáo cho việc phân phối và tùy chỉnh thành phần, giúp các nhà phát triển dễ dàng xây dựng các ứng dụng đẹp mắt và dễ truy cập hơn.",
         href: "https://ui.shadcn.com",
         image: image,
     },
     {
-        id: "shadcn-ui",
-        title: "shadcn/ui: Building a Modern Component Library",
+        id: "Bánh cuốn",
+        title: "Xây dựng một thư viện thành phần hiện đại",
         description:
-            "Explore how shadcn/ui revolutionized React component libraries by providing a unique approach to component distribution and customization, making it easier for developers to build beautiful, accessible applications.",
+            "Phương pháp tiếp cận độc đáo cho việc phân phối và tùy chỉnh thành phần, giúp các nhà phát triển dễ dàng xây dựng các ứng dụng đẹp mắt và dễ truy cập hơn.",
         href: "https://ui.shadcn.com",
         image: image,
     },
     {
-        id: "shadcn-ui",
-        title: "shadcn/ui: Building a Modern Component Library",
+        id: "Bánh cuốn",
+        title: "Xây dựng một thư viện thành phần hiện đại",
         description:
-            "Explore how shadcn/ui revolutionized React component libraries by providing a unique approach to component distribution and customization, making it easier for developers to build beautiful, accessible applications.",
+            "Phương pháp tiếp cận độc đáo cho việc phân phối và tùy chỉnh thành phần, giúp các nhà phát triển dễ dàng xây dựng các ứng dụng đẹp mắt và dễ truy cập hơn.",
         href: "https://ui.shadcn.com",
         image: image,
     },
     {
-        id: "shadcn-ui",
-        title: "shadcn/ui: Building a Modern Component Library",
+        id: "Bánh cuốn",
+        title: "Xây dựng một thư viện thành phần hiện đại",
         description:
-            "Explore how shadcn/ui revolutionized React component libraries by providing a unique approach to component distribution and customization, making it easier for developers to build beautiful, accessible applications.",
+            "Phương pháp tiếp cận độc đáo cho việc phân phối và tùy chỉnh thành phần, giúp các nhà phát triển dễ dàng xây dựng các ứng dụng đẹp mắt và dễ truy cập hơn.",
         href: "https://ui.shadcn.com",
         image: image,
     },
     {
-        id: "shadcn-ui",
-        title: "shadcn/ui: Building a Modern Component Library",
+        id: "Bánh cuốn",
+        title: "Xây dựng một thư viện thành phần hiện đại",
         description:
-            "Explore how shadcn/ui revolutionized React component libraries by providing a unique approach to component distribution and customization, making it easier for developers to build beautiful, accessible applications.",
+            "Phương pháp tiếp cận độc đáo cho việc phân phối và tùy chỉnh thành phần, giúp các nhà phát triển dễ dàng xây dựng các ứng dụng đẹp mắt và dễ truy cập hơn.",
         href: "https://ui.shadcn.com",
         image: image,
     },

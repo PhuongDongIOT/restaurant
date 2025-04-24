@@ -24,7 +24,7 @@ export default function SpotlightNews() {
             <CardContent className="p-0">
                 <div>
                     <Badge variant="outline" className="px-3 py-1 text-blue-600 border-blue-500">
-                        News
+                        Tin Tức
                     </Badge>
                     <Separator className="my-3" />
                 </div>

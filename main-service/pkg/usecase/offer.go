@@ -1,9 +1,9 @@
 package usecase
 
 import (
-	domain "backend/pkg/domain"
-	interfaces "backend/pkg/repository/interface"
-	"backend/pkg/utils/models"
+	domain "main-service/pkg/domain"
+	interfaces "main-service/pkg/repository/interface"
+	"main-service/pkg/utils/models"
 )
 
 type offerUseCase struct {

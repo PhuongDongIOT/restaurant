@@ -1,6 +1,6 @@
 package interfaces
 
-import "backend/pkg/utils/models"
+import "main-service/pkg/utils/models"
 
 type WishlistRepository interface {
 	AddToWishlist(user_id, inventory_id int) error

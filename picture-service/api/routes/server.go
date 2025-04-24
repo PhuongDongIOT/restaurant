@@ -3,7 +3,7 @@ package routes
 import (
 	"net/http"
 
-	"github.com/VinayakBagaria/photogram/api/resthandlers"
+	"picture-service/photogram/api/resthandlers"
 )
 
 func NewServerRouteList(handlers resthandlers.ServerHandler) []*Route {

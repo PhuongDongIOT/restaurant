@@ -6,8 +6,8 @@ import { productUserService } from '@/lib/services/product.service';
 import { bannerService } from '@/lib/services/banner.service';
 
 export const metadata: Metadata = {
-  title: 'Authentication | Sign In',
-  description: 'Sign In page for authentication.'
+  title: 'Bánh Cuốn Hoàng Vũ | Ngon Chuẩn Vị Nhà Làm',
+  description: 'Khám phá hương vị bánh cuốn truyền thống tại Bánh Cuốn Hoàng Vũ – mỏng mịn, nóng hổi, chuẩn vị quê nhà.'
 };
 
 const initProductGallery: ProductGalleryProps = {
@@ -25,7 +25,7 @@ export default async function Page() {
 
   const { data } = await bannerService.filters();
 
-  const initPGOne = { ...initProductGallery, products: [...products, ...products, ...products, ...products, ...products] }
+  const initPGOne = { ...initProductGallery, products: products ?? [] }
 
   return (
     <>

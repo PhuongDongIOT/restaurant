@@ -1,10 +1,10 @@
 package helper
 
 import (
-	cfg "backend/pkg/config"
-	"backend/pkg/utils/models"
 	"context"
 	"fmt"
+	cfg "main-service/pkg/config"
+	"main-service/pkg/utils/models"
 	"mime/multipart"
 	"time"
 

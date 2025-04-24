@@ -9,9 +9,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"backend/pkg/domain"
-	"backend/pkg/mock/mockusecase"
-	"backend/pkg/utils/models"
+	"main-service/pkg/domain"
+	"main-service/pkg/mock/mockusecase"
+	"main-service/pkg/utils/models"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"

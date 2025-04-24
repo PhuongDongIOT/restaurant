@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	services "backend/pkg/usecase/interface"
-	models "backend/pkg/utils/models"
-	"backend/pkg/utils/response"
+	services "main-service/pkg/usecase/interface"
+	models "main-service/pkg/utils/models"
+	"main-service/pkg/utils/response"
 
 	"github.com/gin-gonic/gin"
 )

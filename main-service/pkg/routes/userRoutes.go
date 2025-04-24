@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"backend/pkg/api/handler"
-	"backend/pkg/api/middleware"
+	"main-service/pkg/api/handler"
+	"main-service/pkg/api/middleware"
 
 	"github.com/gin-gonic/gin"
 )

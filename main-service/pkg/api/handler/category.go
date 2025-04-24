@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"backend/pkg/domain"
-	services "backend/pkg/usecase/interface"
-	"backend/pkg/utils/models"
-	"backend/pkg/utils/response"
+	"main-service/pkg/domain"
+	services "main-service/pkg/usecase/interface"
+	"main-service/pkg/utils/models"
+	"main-service/pkg/utils/response"
 	"net/http"
 	"strconv"
 

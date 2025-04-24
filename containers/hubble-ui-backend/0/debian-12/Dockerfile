@@ -10,7 +10,7 @@ LABEL com.vmware.cp.artifact.flavor="sha256:c50c90cfd9d12b445b011e6ad529f1ad3dae
       org.opencontainers.image.base.name="docker.io/bitnami/minideb:bookworm" \
       org.opencontainers.image.created="2025-04-07T13:17:05Z" \
       org.opencontainers.image.description="Application packaged by Broadcom, Inc." \
-      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/hubble-ui-backend/README.md" \
+      org.opencontainers.image.documentation="https://github.com/bitnami/containers/tree/main/bitnami/hubble-ui-main-service/README.md" \
       org.opencontainers.image.ref.name="0.13.2-debian-12-r8" \
       org.opencontainers.image.source="https://github.com/bitnami/containers/tree/main/bitnami/hubble-ui-backend" \
       org.opencontainers.image.title="hubble-ui-backend" \
@@ -48,11 +48,11 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 
 ENV APP_VERSION="0.13.2" \
     BITNAMI_APP_NAME="hubble-ui-backend" \
-    PATH="/opt/bitnami/common/bin:/opt/bitnami/hubble-ui-backend/bin:$PATH"
+    PATH="/opt/bitnami/common/bin:/opt/bitnami/hubble-ui-main-service/bin:$PATH"
 
 EXPOSE 8090
 
 WORKDIR /opt/bitnami/hubble-ui-backend
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/hubble-ui-backend/bin/backend" ]
+ENTRYPOINT [ "/opt/bitnami/hubble-ui-main-service/bin/backend" ]
 CMD [ "help" ]

@@ -27,6 +27,7 @@ type Inventories struct {
 	IfPresentAtWishlist bool    `json:"if_present_at_wishlist"`
 	IfPresentAtCart     bool    `json:"if_present_at_cart"`
 	DiscountedPrice     float64 `json:"discounted_price"`
+	Tags                []Tag   `gorm:"many2many:inventory_tags;"`
 }
 
 type AddInventories struct {
@@ -34,6 +35,7 @@ type AddInventories struct {
 	CategoryID  int     `json:"category_id"`
 	ProductName string  `json:"product_name"`
 	Description string  `json:"description"`
+	Image       string  `json:"image"`
 	Size        string  `json:"size"`
 	Stock       int     `json:"stock"`
 	Price       float64 `json:"price"`
@@ -44,6 +46,7 @@ type EditInventoryDetails struct {
 	Price      float64 `json:"price"`
 	CategoryID int     `json:"category_id"`
 	Size       string  `json:"size"`
+	Image      string  `json:"image"`
 }
 
 type Banner struct {

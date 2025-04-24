@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 
-	"backend/cmd/api/docs"
-	config "backend/pkg/config"
-	di "backend/pkg/di"
+	"main-service/cmd/api/docs"
+	config "main-service/pkg/config"
+	di "main-service/pkg/di"
 
 	"github.com/joho/godotenv"
 )

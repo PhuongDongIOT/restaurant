@@ -1,8 +1,8 @@
 package usecase
 
 import (
-	interfaces "backend/pkg/repository/interface"
-	"backend/pkg/utils/models"
+	interfaces "main-service/pkg/repository/interface"
+	"main-service/pkg/utils/models"
 )
 
 type stationUseCase struct {

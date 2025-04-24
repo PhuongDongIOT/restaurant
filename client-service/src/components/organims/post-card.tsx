@@ -37,9 +37,10 @@ const blogContent = {
     slug: "amazing-tailwindcss-grid-layouts",
     author: "Manu Arora",
     date: "28th March, 2023",
-    title: "Amazing Tailwindcss Grid Layout Examples",
+    title: "Ví dụ tuyệt vời về bố cục lưới Tailwindcss",
     description:
-        "Grids are cool, but Tailwindcss grids are cooler. In this article, we will learn how to create amazing Grid layouts with Tailwindcs grid and React.",
+        `🍱 Grids rất tuyệt – nhưng Grids với TailwindCSS còn tuyệt như một bữa ăn được bày biện tinh tế.
+Nếu coi UI là món ăn thì grid layout chính là chiếc đĩa – nó không chỉ để đựng, mà còn định hình cách trải nghiệm món ăn đó.`,
     image: "/demo/thumbnail.png",
     authorAvatar: "/manu.png",
 };

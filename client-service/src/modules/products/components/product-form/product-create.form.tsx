@@ -26,6 +26,9 @@ import { Textarea } from '@/components/ui/textarea';
 import { defaultValuesProduct } from '@/lib/initials/product.init';
 import { IInsertProduct, InsertProductSchema } from '@/lib/schemas/product.schema';
 import { productService } from '@/lib/services/product.service';
+import { convertToFormData } from '@/lib/customs/convertToFormData';
+import { ApiPicture } from '@/lib/cores/api';
+import { pictureService } from '@/lib/services/picture.service';
 
 export default function ProductCreateForm({
   initialData = defaultValuesProduct,
@@ -41,11 +44,11 @@ export default function ProductCreateForm({
   });
 
   async function onSubmit(values: IInsertProduct) {
-    values.image = values.image[0];
-    const formData = new FormData();
-    for (const key of Object.keys(values) as (keyof typeof values)[]) {
-      formData.append(key, values[key]);
-    }
+    const form = convertToFormData({image: values.image[0]});
+    const {data: picture} = await pictureService.upload(form);
+    values.image = picture.url;
+    
+    const formData = convertToFormData(values);
     const api = await productService.create(formData);
   }
 

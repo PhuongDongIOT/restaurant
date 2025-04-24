@@ -1,9 +1,9 @@
 package handler
 
 import (
-	services "backend/pkg/usecase/interface"
-	"backend/pkg/utils/models"
-	"backend/pkg/utils/response"
+	services "main-service/pkg/usecase/interface"
+	"main-service/pkg/utils/models"
+	"main-service/pkg/utils/response"
 	"net/http"
 	"strconv"
 

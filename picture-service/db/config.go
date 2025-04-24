@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 
-	"github.com/VinayakBagaria/photogram/config"
+	"picture-service/photogram/config"
 )
 
 type Configuration interface {

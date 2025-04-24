@@ -9,6 +9,7 @@ type Inventories struct {
 	Size        string   `json:"size" gorm:"size:5;default:'M';check:size IN ('S', 'M', 'L', 'XL', 'XXL')"`
 	Stock       int      `json:"stock"`
 	Price       float64  `json:"price"`
+	Tags        []Tag    `json:"tags" gorm:"many2many:inventory_tags;"`
 }
 
 type Category struct {

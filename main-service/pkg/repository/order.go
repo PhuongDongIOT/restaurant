@@ -1,9 +1,9 @@
 package repository
 
 import (
-	"backend/pkg/domain"
-	"backend/pkg/utils/models"
 	"errors"
+	"main-service/pkg/domain"
+	"main-service/pkg/utils/models"
 
 	"gorm.io/gorm"
 )

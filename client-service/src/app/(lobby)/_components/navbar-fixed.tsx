@@ -7,9 +7,9 @@ import { useModalCart } from '@/modules/categorys/components/modal-cart-provider
 export function NavBarFixed() {
   const { setModalCart } = useModalCart();
   const navItems = [
-    { name: 'Home', url: '/', icon: Home },
-    { name: 'Category', url: '/categories', icon: User },
-    { name: 'Cart', url: '#', icon: Briefcase, callback: () => setModalCart(true) },
+    { name: 'Trang chủ', url: '/', icon: Home },
+    { name: 'Danh mục', url: '/categories', icon: User },
+    { name: 'Giỏ hàng', url: '#', icon: Briefcase, callback: () => setModalCart(true) },
   ]
 
   return <NavBar items={navItems} />;

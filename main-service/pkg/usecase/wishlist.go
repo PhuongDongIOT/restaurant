@@ -1,9 +1,9 @@
 package usecase
 
 import (
-	interfaces "backend/pkg/repository/interface"
-	"backend/pkg/utils/models"
 	"errors"
+	interfaces "main-service/pkg/repository/interface"
+	"main-service/pkg/utils/models"
 )
 
 type wishlistUseCase struct {

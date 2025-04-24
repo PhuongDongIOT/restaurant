@@ -151,7 +151,7 @@ appsmith_conf_set() {
 is_appsmith_backend_running() {
     # appsmith-backend does not create any PID file
     # We regenerate the PID file for each time we query it to avoid getting outdated
-    pgrep -f "${APPSMITH_BASE_DIR}/backend/server.jar" | head -n 1 > "$APPSMITH_PID_FILE"
+    pgrep -f "${APPSMITH_BASE_DIR}/main-service/server.jar" | head -n 1 > "$APPSMITH_PID_FILE"
 
     pid="$(get_pid_from_file "$APPSMITH_PID_FILE")"
     if [[ -n "$pid" ]]; then
@@ -410,7 +410,7 @@ appsmith_backend_start_bg() {
 
     cd "${APPSMITH_BASE_DIR}/backend" || exit 1
     local -r cmd=("java")
-    local -r args=("-Dserver.port=${APPSMITH_API_PORT}" "-Dappsmith.admin.envfile=${APPSMITH_CONF_FILE}" "-Djava.security.egd=file:/dev/./urandom" "-jar" "${APPSMITH_BASE_DIR}/backend/server.jar")
+    local -r args=("-Dserver.port=${APPSMITH_API_PORT}" "-Dappsmith.admin.envfile=${APPSMITH_CONF_FILE}" "-Djava.security.egd=file:/dev/./urandom" "-jar" "${APPSMITH_BASE_DIR}/main-service/server.jar")
     if am_i_root; then
         run_as_user "$APPSMITH_DAEMON_USER" "${cmd[@]}" "${args[@]}" >"$log_file" 2>&1 &
     else

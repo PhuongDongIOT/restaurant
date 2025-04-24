@@ -1,6 +1,6 @@
 package domain
 
-import "backend/pkg/utils/models"
+import "main-service/pkg/utils/models"
 
 type Admin struct {
 	ID       uint   `json:"id" gorm:"unique;not null"`

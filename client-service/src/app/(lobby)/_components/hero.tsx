@@ -18,8 +18,8 @@ export interface GalleryProps {
 }
 
 const Hero = ({
-    title = "Case Studies",
-    description = "Discover how leading companies and developers are leveraging modern web technologies to build exceptional digital experiences. These case studies showcase real-world applications and success stories.",
+    title = "Nghiên cứu điển hình",
+    description = "Khám phá cách các công ty và nhà phát triển hàng đầu đang tận dụng công nghệ web hiện đại để xây dựng trải nghiệm kỹ thuật số đặc biệt.",
     items = [],
 }: GalleryProps) => {
     const [carouselApi, setCarouselApi] = useState<CarouselApi>();

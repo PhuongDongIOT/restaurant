@@ -7,8 +7,8 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
-	handler "backend/pkg/api/handler"
-	"backend/pkg/routes"
+	handler "main-service/pkg/api/handler"
+	"main-service/pkg/routes"
 
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -29,7 +29,8 @@ func NewServerHTTP(userHandler *handler.UserHandler,
 	paymentHandler *handler.PaymentHandler,
 	offerhandler *handler.OfferHandler,
 	wishlistHandler *handler.WishlistHandler,
-	stationHandler *handler.StationHandler) *ServerHTTP {
+	stationHandler *handler.StationHandler,
+	tagHandler *handler.TagHandler) *ServerHTTP {
 
 	engine := gin.New()
 
@@ -53,7 +54,7 @@ func NewServerHTTP(userHandler *handler.UserHandler,
 	engine.GET("/validate-token", adminHandler.ValidateRefreshTokenAndCreateNewAccess)
 
 	routes.UserRoutes(engine.Group("/users"), userHandler, otpHandler, inventoryHandler, orderHandler, cartHandler, paymentHandler, wishlistHandler, categoryHandler, couponHandler)
-	routes.AdminRoutes(engine.Group("/admin"), adminHandler, inventoryHandler, userHandler, categoryHandler, orderHandler, couponHandler, offerhandler, stationHandler)
+	routes.AdminRoutes(engine.Group("/admin"), adminHandler, inventoryHandler, userHandler, categoryHandler, orderHandler, couponHandler, offerhandler, stationHandler, tagHandler)
 
 	return &ServerHTTP{engine: engine}
 }

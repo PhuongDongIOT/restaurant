@@ -3,11 +3,11 @@ package usecase
 import (
 	"errors"
 
-	config "backend/pkg/config"
-	helper_interfaces "backend/pkg/helper/interface"
-	interfaces "backend/pkg/repository/interface"
-	services "backend/pkg/usecase/interface"
-	"backend/pkg/utils/models"
+	config "main-service/pkg/config"
+	helper_interfaces "main-service/pkg/helper/interface"
+	interfaces "main-service/pkg/repository/interface"
+	services "main-service/pkg/usecase/interface"
+	"main-service/pkg/utils/models"
 
 	"github.com/jinzhu/copier"
 )

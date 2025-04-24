@@ -1,3 +1,4 @@
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
     Dialog,
     DialogContent,
@@ -16,12 +17,14 @@ export function CategoryCreateDialog({ children }: ProductDialogProps) {
             <DialogTrigger asChild>
                 {children}
             </DialogTrigger>
-            <DialogHeader className="hidden">
-                <DialogTitle>Edit profile</DialogTitle> 
-                <DialogDescription>
-                    Make changes to your profile here. Click save when you're done.
-                </DialogDescription>
-            </DialogHeader>
+            <VisuallyHidden>
+                <DialogHeader>
+                    <DialogTitle>Edit profile</DialogTitle>
+                    <DialogDescription>
+                        Make changes to your profile here. Click save when you're done.
+                    </DialogDescription>
+                </DialogHeader>
+            </VisuallyHidden>
             <DialogContent className="w-full sm:min-w-2lg">
                 <CategoryCreateForm pageTitle={"New"} />
             </DialogContent>

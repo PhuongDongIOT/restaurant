@@ -3,7 +3,14 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-
+type ElegantShapeProps = {
+    className?: string;
+    delay?: number;
+    width?: number;
+    height?: number;
+    rotate?: number;
+    gradient?: string;
+}
 function ElegantShape({
     className,
     delay = 0,
@@ -11,14 +18,7 @@ function ElegantShape({
     height = 100,
     rotate = 0,
     gradient = "from-white/[0.08]",
-}: {
-    className?: string;
-    delay?: number;
-    width?: number;
-    height?: number;
-    rotate?: number;
-    gradient?: string;
-}) {
+}: ElegantShapeProps) {
     return (
         <motion.div
             initial={{
@@ -71,7 +71,7 @@ function ElegantShape({
 }
 
 function HeroGeometric({
-    title = "Elevate Your Digital Vision",
+    title = "Nâng cao tầm nhìn kỹ thuật số của bạn",
 }: {
     title?: string;
 }) {
@@ -165,8 +165,8 @@ function HeroGeometric({
                         animate="visible"
                     >
                         <p className="text-base md:text-md text-black mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
-                            Crafting exceptional digital experiences through
-                            innovative design and cutting-edge technology.
+                            Kết hợp giữa mỹ học thiết kế và công nghệ thực phẩm hiện đại,
+                            chúng tôi không chỉ tạo ra sản phẩm – mà là một trải nghiệm ẩm thực kỹ thuật số hóa, từ thị giác đến vị giác.
                         </p>
                     </motion.div>
                 </div>

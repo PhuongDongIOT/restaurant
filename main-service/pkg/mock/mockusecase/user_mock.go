@@ -5,8 +5,8 @@
 package mockusecase
 
 import (
-	domain "backend/pkg/domain"
-	models "backend/pkg/utils/models"
+	domain "main-service/pkg/domain"
+	models "main-service/pkg/utils/models"
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"

@@ -1,6 +1,6 @@
 package interfaces
 
-import "backend/pkg/utils/models"
+import "main-service/pkg/utils/models"
 
 type CartRepository interface {
 	GetCart(id int) ([]models.GetCart, error)

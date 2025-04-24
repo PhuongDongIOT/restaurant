@@ -6,13 +6,14 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/VinayakBagaria/photogram/api/resthandlers"
-	"github.com/VinayakBagaria/photogram/api/routes"
-	"github.com/VinayakBagaria/photogram/config"
-	"github.com/VinayakBagaria/photogram/db"
-	"github.com/VinayakBagaria/photogram/docs"
-	"github.com/VinayakBagaria/photogram/service"
-	"github.com/VinayakBagaria/photogram/storage"
+	"picture-service/photogram/api/resthandlers"
+	"picture-service/photogram/api/routes"
+	"picture-service/photogram/config"
+	"picture-service/photogram/db"
+	"picture-service/photogram/docs"
+	"picture-service/photogram/service"
+	"picture-service/photogram/storage"
+
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -29,6 +30,20 @@ func main() {
 	router.Use(gin.Logger())
 	// Recovery middleware recovers from any panics and writes a 500 if there was one.
 	router.Use(gin.Recovery())
+
+	router.Use(func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(http.StatusNoContent)
+			return
+		}
+
+		c.Next()
+	})
+
 	router.MaxMultipartMemory = 8 << 20 // 8 MiB
 
 	// Set swagger data

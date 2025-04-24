@@ -14,6 +14,7 @@ import ProductTableAction from '@/modules/products/components/product-tables/pro
 import { ProductCreateDialog } from '@/modules/products/components/product-dialog/product-create-dialog';
 import { CategoryCreateDialog } from '@/modules/categorys/components/category-dialog/category-create.dialog';
 import { categoryService } from '@/lib/services/category.service';
+import { productService } from '@/lib/services/product.service';
 
 export const metadata = {
   title: 'Dashboard: Products'
@@ -32,6 +33,22 @@ export default async function Page(props: pageProps) {
   const key = serialize({ ...searchParams });
   const { data: categories } = await categoryService.filters();
 
+    const page = searchParamsCache.get('page');
+    const search = searchParamsCache.get('q');
+    const pageLimit = searchParamsCache.get('limit');
+  
+    const filters = {
+      page,
+      limit: pageLimit,
+      ...(search && { search }),
+      ...(categories && { categories: categories })
+    };
+  
+    const { data: products } = await productService.filters({
+      queryParams: filters
+    });
+  
+
 
   return (
     <PageContainer scrollable={false}>
@@ -46,21 +63,28 @@ export default async function Page(props: pageProps) {
               <Button
                 className='text-xs md:text-sm'
               >
-                <IconPlus className='mr-2 h-4 w-4' />New Category
+                <IconPlus className='mr-2 h-4 w-4' />Thể loại mới
+              </Button>
+            </CategoryCreateDialog>
+            <CategoryCreateDialog>
+              <Button
+                className='text-xs md:text-sm'
+              >
+                <IconPlus className='mr-2 h-4 w-4' />Thẻ mới
               </Button>
             </CategoryCreateDialog>
             <ProductCreateDialog>
               <Button
                 className={cn(buttonVariants(), 'text-xs md:text-sm')}
               >
-                <IconPlus className='mr-2 h-4 w-4' />Product Fast
+                <IconPlus className='mr-2 h-4 w-4' />Sản phẩm nhanh
               </Button>
             </ProductCreateDialog>
             <Link
               href='/dashboard/product/new'
               className={cn(buttonVariants(), 'text-xs md:text-sm')}
             >
-              <IconPlus className='mr-2 h-4 w-4' />New Product
+              <IconPlus className='mr-2 h-4 w-4' />Sản phẩm mới
             </Link>
           </div>
         </div>
@@ -70,7 +94,7 @@ export default async function Page(props: pageProps) {
           key={key}
           fallback={<DataTableSkeleton columnCount={5} rowCount={10} />}
         >
-          <ProductListingPage />
+          <ProductListingPage products={products} />
         </Suspense>
       </div>
     </PageContainer>

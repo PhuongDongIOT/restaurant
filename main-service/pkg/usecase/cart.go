@@ -1,11 +1,11 @@
 package usecase
 
 import (
-	interfaces "backend/pkg/repository/interface"
-	services "backend/pkg/usecase/interface"
-	"backend/pkg/utils/models"
 	"errors"
 	"fmt"
+	interfaces "main-service/pkg/repository/interface"
+	services "main-service/pkg/usecase/interface"
+	"main-service/pkg/utils/models"
 )
 
 type cartUseCase struct {

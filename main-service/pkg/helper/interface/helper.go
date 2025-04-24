@@ -1,7 +1,7 @@
 package interfaces
 
 import (
-	"backend/pkg/utils/models"
+	"main-service/pkg/utils/models"
 	"mime/multipart"
 )
 

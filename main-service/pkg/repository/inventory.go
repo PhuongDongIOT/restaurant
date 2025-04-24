@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"backend/pkg/utils/models"
 	"errors"
+	"main-service/pkg/utils/models"
 	"strconv"
 
 	"gorm.io/gorm"
@@ -18,13 +18,13 @@ func NewInventoryRepository(DB *gorm.DB) *inventoryRepository {
 	}
 }
 
-func (i *inventoryRepository) AddInventory(inventory models.AddInventories, url string) (models.InventoryResponse, error) {
+func (i *inventoryRepository) AddInventory(inventory models.AddInventories) (models.InventoryResponse, error) {
 
 	query := `
     INSERT INTO inventories (category_id, product_name, size, stock, price, description, image)
     VALUES (?, ?, ?, ?, ?, ?, ?);
     `
-	err := i.DB.Exec(query, inventory.CategoryID, inventory.ProductName, inventory.Size, inventory.Stock, inventory.Price, inventory.Description, url).Error
+	err := i.DB.Exec(query, inventory.CategoryID, inventory.ProductName, inventory.Size, inventory.Stock, inventory.Price, inventory.Description, inventory.Image).Error
 	if err != nil {
 		return models.InventoryResponse{}, err
 	}
@@ -148,6 +148,12 @@ func (ad *inventoryRepository) ListProducts(page int) ([]models.Inventories, err
 		return []models.Inventories{}, err
 	}
 
+	for i := range productDetails {
+		if err := ad.DB.Model(&productDetails[i]).Association("Tags").Find(&productDetails[i].Tags); err != nil {
+			return []models.Inventories{}, err
+		}
+	}
+
 	return productDetails, nil
 
 }
@@ -219,3 +225,50 @@ func (i *inventoryRepository) EditInventoryDetails(id int, model models.EditInve
 
 	return nil
 }
+
+func (i *inventoryRepository) AddTagsToInventory(id int, tagNames []string) error {
+	var tags []models.Tag
+
+	for _, tagName := range tagNames {
+		var tag models.Tag
+		err := i.DB.Where("name = ?", tagName).First(&tag).Error
+		if err != nil && err != gorm.ErrRecordNotFound {
+			return err
+		}
+		if err == gorm.ErrRecordNotFound {
+			tag = models.Tag{Name: tagName}
+			if err := i.DB.Create(&tag).Error; err != nil {
+				return err
+			}
+		}
+		tags = append(tags, tag)
+	}
+
+	if err := i.DB.Model(&models.Inventories{ID: uint(id)}).Association("Tags").Append(tags); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// func (i *inventoryRepository) RemoveTagsFromInventory(id int, tagNames []string) error {
+// 	var tags []models.Tag
+
+// 	if err := i.DB.Where("name IN ?", tagNames).Find(&tags).Error; err != nil {
+// 		return err
+// 	}
+
+// 	if err := i.DB.Model(&models.Inventories{ID: uint(id)}).Association("Tags").Delete(tags); err != nil {
+// 		return err
+// 	}
+
+// 	return nil
+// }
+
+// func (i *inventoryRepository) GetTagsOfInventory(inventoryID int) ([]models.Tag, error) {
+// 	var inventory models.Inventories
+// 	if err := i.DB.Preload("Tags").First(&inventory, inventoryID).Error; err != nil {
+// 		return nil, err
+// 	}
+// 	return inventory.Tags, nil
+// }

@@ -7,13 +7,20 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
-	config "backend/pkg/config"
-	domain "backend/pkg/domain"
+	config "main-service/pkg/config"
+	domain "main-service/pkg/domain"
 )
 
 func ConnectDatabase(cfg config.Config) (*gorm.DB, error) {
 	psqlInfo := fmt.Sprintf("host=%s user=%s dbname=%s port=%s password=%s", cfg.DBHost, cfg.DBUser, cfg.DBName, cfg.DBPort, cfg.DBPassword)
 	db, dbErr := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{SkipDefaultTransaction: true})
+
+	if err := db.AutoMigrate(&domain.Tag{}); err != nil {
+		return db, err
+	}
+	if err := db.AutoMigrate(&domain.InventoryTag{}); err != nil {
+		return db, err
+	}
 
 	if err := db.AutoMigrate(&domain.Inventories{}); err != nil {
 		return db, err

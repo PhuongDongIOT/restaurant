@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"backend/pkg/api/handler"
-	"backend/pkg/api/middleware"
+	"main-service/pkg/api/handler"
+	"main-service/pkg/api/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,7 +15,8 @@ func AdminRoutes(engine *gin.RouterGroup,
 	orderHandler *handler.OrderHandler,
 	couponHandler *handler.CouponHandler,
 	offerHandler *handler.OfferHandler,
-	stationHandler *handler.StationHandler) {
+	stationHandler *handler.StationHandler,
+	tagHandler *handler.TagHandler) {
 
 	engine.POST("/adminlogin", adminHandler.LoginHandler)
 	// api := router.Group("/admin_panel", middleware.AuthorizationMiddleware)
@@ -37,6 +38,13 @@ func AdminRoutes(engine *gin.RouterGroup,
 			categorymanagement.POST("", categoryHandler.AddCategory)
 			categorymanagement.PUT("", categoryHandler.UpdateCategory)
 			categorymanagement.DELETE("", categoryHandler.DeleteCategory)
+		}
+
+		tagmanagement := engine.Group("/tag")
+		{
+			tagmanagement.GET("", tagHandler.GetTags)
+			tagmanagement.POST("", tagHandler.AddTag)
+			tagmanagement.DELETE("/:id", tagHandler.DeleteTag)
 		}
 
 		inventorymanagement := engine.Group("/inventories")

@@ -50,7 +50,7 @@ The recommended way to get the Bitnami Hubble UI Backend Docker Image is to pull
 docker pull bitnami/hubble-ui-backend:latest
 ```
 
-To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/hubble-ui-backend/tags/) in the Docker Hub Registry.
+To use a specific version, you can pull a versioned tag. You can view the [list of available versions](https://hub.docker.com/r/bitnami/hubble-ui-main-service/tags/) in the Docker Hub Registry.
 
 ```console
 docker pull bitnami/hubble-ui-backend:[TAG]

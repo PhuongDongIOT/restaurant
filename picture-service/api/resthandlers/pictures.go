@@ -5,9 +5,10 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/VinayakBagaria/photogram/api/restutil"
-	"github.com/VinayakBagaria/photogram/dto"
-	"github.com/VinayakBagaria/photogram/service"
+	"picture-service/photogram/api/restutil"
+	"picture-service/photogram/dto"
+	"picture-service/photogram/service"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -51,8 +52,8 @@ func (h *picturesHandler) CreatePicture(c *gin.Context) {
 		restutil.WriteError(c, createError.StatusCode, createError.Error, createError.Data)
 		return
 	}
-
-	restutil.WriteAsJson(c, http.StatusCreated, dto.SinglePictureResponse{Data: createdPicture})
+	var data = dto.SinglePictureResponse{Data: createdPicture}
+	restutil.WriteAsJson(c, http.StatusCreated, data)
 }
 
 // Update an image

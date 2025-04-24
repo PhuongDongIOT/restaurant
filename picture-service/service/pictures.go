@@ -4,9 +4,9 @@ import (
 	"mime/multipart"
 	"net/http"
 
-	"github.com/VinayakBagaria/photogram/db"
-	"github.com/VinayakBagaria/photogram/dto"
-	"github.com/VinayakBagaria/photogram/storage"
+	"picture-service/photogram/db"
+	"picture-service/photogram/dto"
+	"picture-service/photogram/storage"
 )
 
 type PicturesService interface {

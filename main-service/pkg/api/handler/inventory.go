@@ -1,10 +1,9 @@
 package handler
 
 import (
-	services "backend/pkg/usecase/interface"
-	"backend/pkg/utils/models"
-	"backend/pkg/utils/response"
-	"log"
+	services "main-service/pkg/usecase/interface"
+	"main-service/pkg/utils/models"
+	"main-service/pkg/utils/response"
 	"net/http"
 	"strconv"
 
@@ -39,8 +38,7 @@ func NewInventoryHandler(usecase services.InventoryUseCase) *InventoryHandler {
 func (i *InventoryHandler) AddInventory(c *gin.Context) {
 
 	var inventory models.AddInventories
-	log.Println("dsankjdna")
-	log.Println(c.Request.FormValue("category_id"))
+
 	categoryID, err := strconv.Atoi(c.Request.FormValue("category_id"))
 	if err != nil {
 		errorRes := response.ClientResponse(http.StatusBadRequest, "form file error", nil, err.Error())
@@ -50,6 +48,7 @@ func (i *InventoryHandler) AddInventory(c *gin.Context) {
 
 	productName := c.Request.FormValue("product_name")
 	description := c.Request.FormValue("description")
+	image := c.Request.FormValue("image")
 	size := c.Request.FormValue("size")
 	p, err := strconv.Atoi(c.Request.FormValue("price"))
 	if err != nil {
@@ -67,19 +66,20 @@ func (i *InventoryHandler) AddInventory(c *gin.Context) {
 
 	inventory.CategoryID = categoryID
 	inventory.ProductName = productName
+	inventory.Image = image
 	inventory.Description = description
 	inventory.Size = size
 	inventory.Price = price
 	inventory.Stock = stock
 
-	file, err := c.FormFile("image")
-	if err != nil {
-		errorRes := response.ClientResponse(http.StatusBadRequest, "retrieving image from form error", nil, err.Error())
-		c.JSON(http.StatusBadRequest, errorRes)
-		return
-	}
+	// file, err := c.FormFile("image")
+	// if err != nil {
+	// 	errorRes := response.ClientResponse(http.StatusBadRequest, "retrieving image from form error", nil, err.Error())
+	// 	c.JSON(http.StatusBadRequest, errorRes)
+	// 	return
+	// }
 
-	InventoryResponse, err := i.InventoryUseCase.AddInventory(inventory, file)
+	InventoryResponse, err := i.InventoryUseCase.AddInventory(inventory)
 	if err != nil {
 		errorRes := response.ClientResponse(http.StatusBadRequest, "Could not add the Inventory", nil, err.Error())
 		c.JSON(http.StatusBadRequest, errorRes)
@@ -276,12 +276,7 @@ func (i *InventoryHandler) UpdateProductImage(c *gin.Context) {
 		return
 	}
 
-	file, err := c.FormFile("image")
-	if err != nil {
-		errorRes := response.ClientResponse(http.StatusBadRequest, "retrieving image from form error", nil, err.Error())
-		c.JSON(http.StatusBadRequest, errorRes)
-		return
-	}
+	file := c.Request.FormValue("image")
 
 	err = i.InventoryUseCase.UpdateProductImage(id, file)
 	if err != nil {

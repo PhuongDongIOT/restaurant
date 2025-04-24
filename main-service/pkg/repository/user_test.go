@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"testing"
 
-	"backend/pkg/domain"
-	"backend/pkg/utils/models"
+	"main-service/pkg/domain"
+	"main-service/pkg/utils/models"
 
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/golang/mock/gomock"

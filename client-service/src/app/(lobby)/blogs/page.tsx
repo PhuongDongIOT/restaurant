@@ -11,7 +11,6 @@ import NewsShowcase from "../_components/news-showcase";
 import SpotlightNews from "../_components/spotlight-news";
 
 const image = "https://awsbutket2468.s3.ap-northeast-1.amazonaws.com/baby%20tree_%2006-03-2025%20at%2002-06-39.jpeg";
-
 const postCard = {
     "imageUrl": image,
     "category": "MUA BĐS",
@@ -35,10 +34,10 @@ export default async function IndexPage() {
             </section>
             <Shell className="mx-auto max-w-6xl gap-0">
                 <ContentSection
-                    title="Post"
-                    description="Explore posts from around the world"
+                    title="Bài đăng"
+                    description="Khám phá các bài đăng từ khắp nơi trên thế giới"
                     href="/locations"
-                    linkText="View all posts"
+                    linkText="Tất cả"
                     // className="mt-10 md:mt-14"
                     asChild
                 >
@@ -59,10 +58,10 @@ export default async function IndexPage() {
                     </div>
                 </ContentSection>
                 <ContentSection
-                    title="Post"
-                    description="Explore posts from around the world"
+                    title="Bài đăng"
+                    description="Khám phá các bài đăng từ khắp nơi trên thế giới"
                     href="/locations"
-                    linkText="View all posts"
+                    linkText="Tất cả"
                     className="pt-14 md:pt-10"
                     asChild
                 >

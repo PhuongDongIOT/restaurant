@@ -33,7 +33,7 @@ const FaqPage = React.forwardRef<HTMLElement, FaqPageProps>(
                 )}
                 {...props}
             >
-                <div className="container">
+                <div className="mx-auto container">
                     {/* Header */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}

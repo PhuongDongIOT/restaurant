@@ -1,7 +1,7 @@
 [server]
-    port = "3005"
+    port = "3010"
     imagePath = "./images"
-    host = "http://localhost:3005"
+    host = "http://localhost:3010"
 
 [postgres]
     user = "postgres"

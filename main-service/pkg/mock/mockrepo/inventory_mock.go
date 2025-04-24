@@ -5,7 +5,7 @@
 package mockrepo
 
 import (
-	models "backend/pkg/utils/models"
+	models "main-service/pkg/utils/models"
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
@@ -15,6 +15,21 @@ import (
 type MockInventoryRepository struct {
 	ctrl     *gomock.Controller
 	recorder *MockInventoryRepositoryMockRecorder
+}
+
+// AddTagsToInventory implements interfaces.InventoryRepository.
+func (m *MockInventoryRepository) AddTagsToInventory(id int, tagNames []string) error {
+	panic("unimplemented")
+}
+
+// GetTagsOfInventory implements interfaces.InventoryRepository.
+func (m *MockInventoryRepository) GetTagsOfInventory(id int) ([]models.Tag, error) {
+	panic("unimplemented")
+}
+
+// RemoveTagsFromInventory implements interfaces.InventoryRepository.
+func (m *MockInventoryRepository) RemoveTagsFromInventory(id int, tagNames []string) error {
+	panic("unimplemented")
 }
 
 // MockInventoryRepositoryMockRecorder is the mock recorder for MockInventoryRepository.
@@ -35,9 +50,9 @@ func (m *MockInventoryRepository) EXPECT() *MockInventoryRepositoryMockRecorder 
 }
 
 // AddInventory mocks base method.
-func (m *MockInventoryRepository) AddInventory(inventory models.AddInventories, url string) (models.InventoryResponse, error) {
+func (m *MockInventoryRepository) AddInventory(inventory models.AddInventories) (models.InventoryResponse, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "AddInventory", inventory, url)
+	ret := m.ctrl.Call(m, "AddInventory", inventory)
 	ret0, _ := ret[0].(models.InventoryResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1

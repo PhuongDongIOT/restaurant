@@ -1,6 +1,6 @@
 package interfaces
 
-import "backend/pkg/utils/models"
+import "main-service/pkg/utils/models"
 
 type PaymentUseCase interface {
 	MakePaymentRazorPay(orderID string, userID string) (models.OrderPaymentDetails, error)

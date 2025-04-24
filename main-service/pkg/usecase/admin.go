@@ -4,11 +4,11 @@ import (
 	"errors"
 	"log"
 
-	domain "backend/pkg/domain"
-	helper_interface "backend/pkg/helper/interface"
-	interfaces "backend/pkg/repository/interface"
-	services "backend/pkg/usecase/interface"
-	"backend/pkg/utils/models"
+	domain "main-service/pkg/domain"
+	helper_interface "main-service/pkg/helper/interface"
+	interfaces "main-service/pkg/repository/interface"
+	services "main-service/pkg/usecase/interface"
+	"main-service/pkg/utils/models"
 
 	"github.com/jinzhu/copier"
 	"golang.org/x/crypto/bcrypt"

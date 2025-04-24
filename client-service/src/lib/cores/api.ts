@@ -59,14 +59,14 @@ const refreshTokenIfNeeded = async (): Promise<string> => {
 const handleResponse = async (response: Response): Promise<any> => {
   try {
     const result = await response.json();
-
+    
     if (!response.ok) {  // Use response.ok for HTTP status >= 200 and < 300
-      if (response.status === 401) {
+      if (response?.status === 401) {
         return redirectLogin(); //Already returning, no throw needed
       }
       // Status 403 doesn't need additional handle
       // It would be handled on component
-      throw { httpCode: response.status, ...result };
+      throw { httpCode: response?.status ?? 200, ...result };
     }
     return result;
   } catch (error) {
@@ -122,7 +122,7 @@ const handleQueryParams = (options?: IApiOptions): string => {
 // Generic API functions.  'T' is the expected response type.
 const apiCall = async <T>(urlPath: string, method: string, data?: object, options?: IApiOptions): Promise<T> => {
   const url = `${WEB_API_URL}${urlPath}${handleQueryParams(options)}`;
-  
+
   const fetchOptions: RequestInit = {
     method,
     cache: 'no-cache',
@@ -130,8 +130,6 @@ const apiCall = async <T>(urlPath: string, method: string, data?: object, option
     ...(data ? { body: data as any } : {}),  // Conditionally add body
   };
 
-  console.log(fetchOptions);
-  
   return fetch(url, fetchOptions)
     .then(handleResponse)
     .catch(handleError);
@@ -144,3 +142,57 @@ export const Api = {
   patch: <T>(urlPath: string, data?: object, options?: IApiOptions): Promise<T> => apiCall<T>(urlPath, 'PATCH', data, options),
   delete: <T>(urlPath: string, options?: IApiOptions): Promise<T> => apiCall<T>(urlPath, 'DELETE', undefined, options),
 };
+
+const WEB_API_PICTURE_URL = process.env.WEB_API_PICTURE_URL ? process.env.WEB_API_PICTURE_URL : process.env.NEXT_PUBLIC_WEB_API_PICTURE_URL; 
+
+// Generic API functions.  'T' is the expected response type.
+const apiPictureCall = async <T>(urlPath: string, method: string, data?: object, options?: IApiOptions): Promise<T> => {
+  const url = `${WEB_API_PICTURE_URL}${urlPath}${handleQueryParams(options)}`;
+
+  const fetchOptions: RequestInit = {
+    method,
+    cache: 'no-cache',
+    headers: await handleHeaders(options),
+    ...(data ? { body: data as any } : {}),  // Conditionally add body
+  };
+
+  return fetch(url, fetchOptions)
+    .then(handleResponse)
+    .catch(handleError);
+};
+
+export const ApiPicture = {
+  get: <T>(urlPath: string, options?: IApiOptions): Promise<T> => apiPictureCall<T>(urlPath, 'GET', undefined, options),
+  post: <T>(urlPath: string, data?: object, options?: IApiOptions): Promise<T> => apiPictureCall<T>(urlPath, 'POST', data, options),
+  put: <T>(urlPath: string, data?: object, options?: IApiOptions): Promise<T> => apiPictureCall<T>(urlPath, 'PUT', data, options),
+  patch: <T>(urlPath: string, data?: object, options?: IApiOptions): Promise<T> => apiPictureCall<T>(urlPath, 'PATCH', data, options),
+  delete: <T>(urlPath: string, options?: IApiOptions): Promise<T> => apiPictureCall<T>(urlPath, 'DELETE', undefined, options),
+};
+
+
+const WEB_API_BLOG_URL = process.env.WEB_BLOG_API_URL ? process.env.WEB_BLOG_API_URL : process.env.NEXT_PUBLIC_WEB_API_BLOG_URL; 
+
+// Generic API functions.  'T' is the expected response type.
+const apiBlogCall = async <T>(urlPath: string, method: string, data?: object, options?: IApiOptions): Promise<T> => {
+  const url = `${WEB_API_BLOG_URL}${urlPath}${handleQueryParams(options)}`;
+
+  const fetchOptions: RequestInit = {
+    method,
+    cache: 'no-cache',
+    headers: await handleHeaders(options),
+    ...(data ? { body: data as any } : {}),  // Conditionally add body
+  };
+
+  return fetch(url, fetchOptions)
+    .then(handleResponse)
+    .catch(handleError);
+};
+
+export const ApiBlog = {
+  get: <T>(urlPath: string, options?: IApiOptions): Promise<T> => apiBlogCall<T>(urlPath, 'GET', undefined, options),
+  post: <T>(urlPath: string, data?: object, options?: IApiOptions): Promise<T> => apiBlogCall<T>(urlPath, 'POST', data, options),
+  put: <T>(urlPath: string, data?: object, options?: IApiOptions): Promise<T> => apiBlogCall<T>(urlPath, 'PUT', data, options),
+  patch: <T>(urlPath: string, data?: object, options?: IApiOptions): Promise<T> => apiBlogCall<T>(urlPath, 'PATCH', data, options),
+  delete: <T>(urlPath: string, options?: IApiOptions): Promise<T> => apiBlogCall<T>(urlPath, 'DELETE', undefined, options),
+};
+

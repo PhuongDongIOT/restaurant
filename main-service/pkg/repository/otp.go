@@ -1,8 +1,8 @@
 package repository
 
 import (
-	interfaces "backend/pkg/repository/interface"
-	"backend/pkg/utils/models"
+	interfaces "main-service/pkg/repository/interface"
+	"main-service/pkg/utils/models"
 
 	"gorm.io/gorm"
 )
@@ -36,5 +36,4 @@ func (ot *otpRepository) UserDetailsUsingPhone(phone string) (models.UserDetails
 	}
 
 	return usersDetails, nil
-
 }

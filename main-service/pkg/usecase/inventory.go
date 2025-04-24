@@ -1,12 +1,11 @@
 package usecase
 
 import (
-	helper_interface "backend/pkg/helper/interface"
-	interfaces "backend/pkg/repository/interface"
-	"backend/pkg/utils/models"
 	"errors"
 	"fmt"
-	"mime/multipart"
+	helper_interface "main-service/pkg/helper/interface"
+	interfaces "main-service/pkg/repository/interface"
+	"main-service/pkg/utils/models"
 )
 
 type inventoryUseCase struct {
@@ -25,15 +24,15 @@ func NewInventoryUseCase(repo interfaces.InventoryRepository, offer interfaces.O
 	}
 }
 
-func (i *inventoryUseCase) AddInventory(inventory models.AddInventories, image *multipart.FileHeader) (models.InventoryResponse, error) {
+func (i *inventoryUseCase) AddInventory(inventory models.AddInventories) (models.InventoryResponse, error) {
 
-	url, err := i.helper.AddImageToS3(image)
-	if err != nil {
-		return models.InventoryResponse{}, err
-	}
+	// url, err := i.helper.AddImageToS3(image)
+	// if err != nil {
+	// 	return models.InventoryResponse{}, err
+	// }
 
 	//send the url and save it in database
-	InventoryResponse, err := i.repository.AddInventory(inventory, url)
+	InventoryResponse, err := i.repository.AddInventory(inventory)
 	if err != nil {
 		return models.InventoryResponse{}, err
 	}
@@ -215,15 +214,15 @@ func (i *inventoryUseCase) SearchProducts(key string) ([]models.Inventories, err
 
 }
 
-func (i *inventoryUseCase) UpdateProductImage(id int, file *multipart.FileHeader) error {
+func (i *inventoryUseCase) UpdateProductImage(id int, file string) error {
 
-	url, err := i.helper.AddImageToS3(file)
-	if err != nil {
-		return err
-	}
+	// url, err := i.helper.AddImageToS3(file)
+	// if err != nil {
+	// 	return err
+	// }
 
 	//send the url and save it in database
-	err = i.repository.UpdateProductImage(id, url)
+	err := i.repository.UpdateProductImage(id, file)
 	if err != nil {
 		return err
 	}

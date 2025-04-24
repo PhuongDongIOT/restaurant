@@ -1,4 +1,4 @@
-module github.com/VinayakBagaria/photogram
+module picture-service/photogram
 
 go 1.20
 
