@@ -1,7 +1,8 @@
 package repository
 
 import (
-	"github.com/abdurraufraihan/golang-blog-api/internal/model"
+	"blog-service/internal/model"
+
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )

@@ -1,9 +1,10 @@
 package service
 
 import (
-	"github.com/abdurraufraihan/golang-blog-api/internal/dto"
-	"github.com/abdurraufraihan/golang-blog-api/internal/model"
-	"github.com/abdurraufraihan/golang-blog-api/internal/repository"
+	"blog-service/internal/dto"
+	"blog-service/internal/model"
+	"blog-service/internal/repository"
+
 	"github.com/mashingan/smapping"
 )
 

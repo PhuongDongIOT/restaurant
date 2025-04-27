@@ -3,10 +3,11 @@ package main
 import (
 	"os"
 
-	"github.com/abdurraufraihan/golang-blog-api/adapter"
-	"github.com/abdurraufraihan/golang-blog-api/docs"
-	"github.com/abdurraufraihan/golang-blog-api/internal/route"
-	"github.com/abdurraufraihan/golang-blog-api/pkg/logger"
+	"blog-service/adapter"
+	"blog-service/docs"
+	"blog-service/internal/route"
+	"blog-service/pkg/logger"
+
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -34,6 +35,7 @@ func main() {
 	logger := logger.NewLogger()
 	router := gin.Default()
 	route.RootRoute(db, router, logger)
+
 	docs.SwaggerInfo.BasePath = "/api/v1"
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	port := os.Getenv("APP_PORT")

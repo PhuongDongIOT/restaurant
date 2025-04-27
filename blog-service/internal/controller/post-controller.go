@@ -5,11 +5,12 @@ import (
 	"path/filepath"
 	"strconv"
 
-	"github.com/abdurraufraihan/golang-blog-api/internal/dto"
-	"github.com/abdurraufraihan/golang-blog-api/internal/serializer"
-	"github.com/abdurraufraihan/golang-blog-api/internal/service"
-	"github.com/abdurraufraihan/golang-blog-api/internal/utils"
-	"github.com/abdurraufraihan/golang-blog-api/pkg/logger"
+	"blog-service/internal/dto"
+	"blog-service/internal/serializer"
+	"blog-service/internal/service"
+	"blog-service/internal/utils"
+	"blog-service/pkg/logger"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -91,11 +92,11 @@ func (controller *postController) Insert(context *gin.Context) {
 		controller.logger.Error().Err(err).Msg("")
 		return
 	}
-	if err := uploadPostImage(context, &form); err != nil {
-		context.JSON(http.StatusBadRequest, utils.GetErrorResponse(err.Error()))
-		controller.logger.Error().Err(err).Msg("")
-		return
-	}
+	// if err := uploadPostImage(context, &form); err != nil {
+	// 	context.JSON(http.StatusBadRequest, utils.GetErrorResponse(err.Error()))
+	// 	controller.logger.Error().Err(err).Msg("")
+	// 	return
+	// }
 	post := controller.postService.Insert(form)
 	serializer := serializer.PostSerializer{Post: post}
 	context.JSON(http.StatusCreated, utils.GetResponse(serializer.Response()))

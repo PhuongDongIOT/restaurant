@@ -3,8 +3,9 @@ package adapter
 import (
 	"fmt"
 
-	"github.com/abdurraufraihan/golang-blog-api/config"
-	"github.com/abdurraufraihan/golang-blog-api/internal/model"
+	"blog-service/config"
+	"blog-service/internal/model"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

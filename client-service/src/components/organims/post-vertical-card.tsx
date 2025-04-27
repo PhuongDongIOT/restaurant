@@ -5,27 +5,17 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { IBlogResponse } from "@/lib/schemas/blog.schema";
 
-type PostVerticalCardProps = {
-    imageUrl: string;
-    category: string;
-    date: string;
-    author: string;
-    title: string;
-    description: string;
-    tags: string[];
-    blogUrl: string;
-};
+type PostVerticalCardProps = IBlogResponse;
 
 export default function PostVerticalCard({
-    imageUrl,
+    image,
     category,
-    date,
-    author,
     title,
     description,
-    tags,
-    blogUrl,
+    comments,
+    created_at
 }: PostVerticalCardProps) {
     return (
         <motion.div
@@ -36,33 +26,34 @@ export default function PostVerticalCard({
             <Card className="rounded-xl border-none overflow-hidden shadow-lg bg-white transition-all duration-300 hover:shadow-xl">
                 <CardContent className="p-4">
                     <div className="flex flex-col md:flex-row gap-4">
-                        <div className="relative">
+                        <div className="relative w-xl">
                             <Image
-                                src={imageUrl}
+                                src={image ?? ""}
                                 alt={title}
                                 width={600}
                                 height={300}
                                 className="w-full h-36 rounded-md object-cover transition-transform duration-300 hover:scale-105"
                             />
                             <span className="absolute top-2 left-2 bg-gray-900 text-white text-xs font-semibold px-2 py-1 rounded">
-                                {category}
+                                {category.category}
                             </span>
                         </div>
                         <div>
-                            <p className="text-xs text-gray-500">{date} • {author}</p>
-                            <Link href={blogUrl}>
+                            <p className="text-xs text-gray-500">{created_at} • I</p>
+                            <Link href={"#"}>
                                 <h3 className="text-lg font-semibold mt-1 text-gray-900 hover:text-blue-600 transition-colors duration-300 cursor-pointer">
                                     {title}
                                 </h3>
                             </Link>
                             <p className="text-sm text-gray-600 mt-2 line-clamp-2">
-                                {description}
+                                {/* <div dangerouslySetInnerHTML={{__html: description}}></div> */}
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima culpa voluptas quod molestias, reiciendis et ipsa incidunt blanditiis consequuntur rerum enim cupiditate voluptatem, aspernatur labore error at ducimus nisi! Architecto.
                             </p>
                         </div>
                     </div>
                     <div className="flex flex-col md:flex-row justify-between">
                         <div className="mt-3 flex flex-wrap gap-2">
-                            {tags.map((tag, index) => (
+                            {["Bánh cuốn", "Bánh chả"].map((tag, index) => (
                                 <motion.span
                                     key={index}
                                     whileHover={{ scale: 1.1 }}
@@ -72,7 +63,7 @@ export default function PostVerticalCard({
                                 </motion.span>
                             ))}
                         </div>
-                        <Link href={blogUrl}>
+                        <Link href="#">
                             <Button className="mt-4 w-full bg-blue-600 text-white hover:bg-blue-700 transition-all">
                                 Đọc thêm
                             </Button>

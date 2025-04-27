@@ -1,6 +1,10 @@
 package handler
 
 import (
+	"bytes"
+	"encoding/json"
+	"io/ioutil"
+	"log"
 	services "main-service/pkg/usecase/interface"
 	"main-service/pkg/utils/models"
 	"main-service/pkg/utils/response"
@@ -73,8 +77,57 @@ func (i *OrderHandler) OrderItemsFromCart(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, errorRes)
 		return
 	}
+
 	successRes := response.ClientResponse(http.StatusOK, "Successfully made the order", nil, nil)
 	c.JSON(http.StatusOK, successRes)
+
+	// **Send message to WebSocket server**
+	go i.sendOrderConfirmation(order) // Send in a goroutine to avoid blocking
+}
+
+func (i *OrderHandler) sendOrderConfirmation(order models.Order) {
+	// Construct the message payload
+	message := map[string]interface{}{
+		"userId":          order.UserID,
+		"addressId":       order.AddressID,
+		"paymentMethodId": order.PaymentMethodID,
+		"couponId":        order.CouponID,
+		"orderStatus":     "Order Placed",      // Or whatever status you want to send
+		"message":         "New order placed!", // A general message
+	}
+
+	messageBytes, err := json.Marshal(message)
+	if err != nil {
+		log.Println("Error marshalling message:", err)
+		return // Handle the error appropriately (log, etc.)
+	}
+
+	// Prepare the POST request
+	url := "http://localhost:3020/send-message/order" // Replace with your WebSocket server URL
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(messageBytes))
+	if err != nil {
+		log.Println("Error creating request:", err)
+		return // Handle the error
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	// Send the request
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Println("Error sending request to WebSocket server:", err)
+		return // Handle the error
+	}
+	defer resp.Body.Close()
+
+	// Handle the response (optional, but recommended)
+	if resp.StatusCode != http.StatusOK {
+		bodyBytes, _ := ioutil.ReadAll(resp.Body) // Read response body (for debugging)
+		log.Printf("WebSocket server returned status: %d, body: %s\n", resp.StatusCode, string(bodyBytes))
+		// Consider more robust error handling here based on your needs
+	} else {
+		log.Println("Successfully sent order confirmation to WebSocket server")
+	}
 }
 
 // @Summary		Order Cancel

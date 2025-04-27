@@ -1,4 +1,4 @@
-module github.com/abdurraufraihan/golang-blog-api
+module blog-service
 
 go 1.17
 

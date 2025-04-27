@@ -4,11 +4,12 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/abdurraufraihan/golang-blog-api/internal/dto"
-	"github.com/abdurraufraihan/golang-blog-api/internal/serializer"
-	"github.com/abdurraufraihan/golang-blog-api/internal/service"
-	"github.com/abdurraufraihan/golang-blog-api/internal/utils"
-	"github.com/abdurraufraihan/golang-blog-api/pkg/logger"
+	"blog-service/internal/dto"
+	"blog-service/internal/serializer"
+	"blog-service/internal/service"
+	"blog-service/internal/utils"
+	"blog-service/pkg/logger"
+
 	"github.com/gin-gonic/gin"
 )
 

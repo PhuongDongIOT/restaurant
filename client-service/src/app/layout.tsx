@@ -11,6 +11,7 @@ import { cookies } from 'next/headers';
 import './globals.css';
 import './theme.css';
 import ProvidersRedux from './providers';
+import SeoHead from '@/components/molecules/seo-head';
 
 const META_THEME_COLORS = {
   light: '#ffffff',
@@ -39,6 +40,7 @@ export default async function RootLayout({
 
   return (
     <html lang='en' suppressHydrationWarning>
+      <SeoHead />
       <body>
         <NextTopLoader showSpinner={false} />
         <NuqsAdapter>

@@ -68,43 +68,6 @@ export default function OrderPage({ orders }: OrderPageProps) {
     }
   }, [indexOrder])
 
-  const handleSpeak = async () => {
-
-    const sentences = [
-      "Xin chào!",
-      "Tôi là trợ lý ảo của bạn.",
-      "Bạn cần mình hỗ trợ gì hôm nay?"
-    ];
-
-    const urls = await Promise.all(
-      sentences.map(async (input) => {
-        const res = await fetch("https://api.openai.com/v1/audio/speech", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${"NEXT_PUBLIC_OPEN_API_KEY"}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model: "tts-1",
-            input,
-            voice: "nova",
-            response_format: "mp3",
-          }),
-        });
-        const blob = await res.blob();
-        return URL.createObjectURL(blob);
-      })
-    );
-    // Play lần lượt
-    for (const url of urls) {
-      const audio = new Audio(url);
-      await new Promise((resolve) => {
-        audio.onended = resolve;
-        audio.play();
-      });
-    }
-  };
-
   return (
     <div className="flex min-h-screen w-full flex-col">
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-4">
@@ -225,7 +188,7 @@ export default function OrderPage({ orders }: OrderPageProps) {
                   <CardTitle className="text-4xl">$5,329</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div onClick={handleSpeak} className="text-xs text-muted-foreground">
+                  <div className="text-xs text-muted-foreground">
                     +10% from last month
                   </div>
                 </CardContent>

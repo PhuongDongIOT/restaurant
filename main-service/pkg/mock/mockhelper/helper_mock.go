@@ -5,7 +5,7 @@
 package mockhelper
 
 import (
-	models "backend/pkg/utils/models"
+	models "main-service/pkg/utils/models"
 	multipart "mime/multipart"
 	reflect "reflect"
 

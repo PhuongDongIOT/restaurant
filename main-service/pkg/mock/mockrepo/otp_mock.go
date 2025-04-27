@@ -5,7 +5,7 @@
 package mockrepo
 
 import (
-	models "backend/pkg/utils/models"
+	models "main-service/pkg/utils/models"
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"

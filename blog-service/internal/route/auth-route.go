@@ -1,10 +1,11 @@
 package route
 
 import (
-	"github.com/abdurraufraihan/golang-blog-api/internal/controller"
-	"github.com/abdurraufraihan/golang-blog-api/internal/repository"
-	"github.com/abdurraufraihan/golang-blog-api/internal/service"
-	"github.com/abdurraufraihan/golang-blog-api/pkg/logger"
+	"blog-service/internal/controller"
+	"blog-service/internal/repository"
+	"blog-service/internal/service"
+	"blog-service/pkg/logger"
+
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )

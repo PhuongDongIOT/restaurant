@@ -3,7 +3,7 @@ import Link from "next/link"
 
 const images = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-const BlogPage = () => {
+export function BlogPage() {
     return (
         <>
             {/* Card Blog */}
@@ -64,5 +64,3 @@ const BlogPage = () => {
 
     )
 }
-
-export { BlogPage }

@@ -15,7 +15,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { categoryService } from '@/lib/services/category.service';
-import { defaultValuesCategory } from '@/lib/initials/categoryInit';
+import { defaultValuesCategory } from '@/lib/initials/category.init';
 import { IInsertCategory, InsertCategorySchema } from '@/lib/schemas/category.schema';
 
 export default function CategoryCreateForm({

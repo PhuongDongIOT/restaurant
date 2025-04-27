@@ -9,6 +9,10 @@ import PostVerticalCard from "@/components/organims/post-vertical-card";
 import NewsSection from "../_components/news-section";
 import NewsShowcase from "../_components/news-showcase";
 import SpotlightNews from "../_components/spotlight-news";
+import { SearchParams } from "nuqs";
+import { searchParamsCache, serialize } from "@/lib/customs/searchparams";
+import { categoryService } from "@/lib/services/category.service";
+import { blogService } from "@/lib/services/blog.service";
 
 const image = "https://awsbutket2468.s3.ap-northeast-1.amazonaws.com/baby%20tree_%2006-03-2025%20at%2002-06-39.jpeg";
 const postCard = {
@@ -22,7 +26,31 @@ const postCard = {
     "blogUrl": "/bai-viet/khong-bi-ho-mua-dat-nen"
 }
 
-export default async function IndexPage() {
+type pageProps = {
+    searchParams: Promise<SearchParams>;
+};
+export default async function Page(props: pageProps) {
+    const searchParams = await props.searchParams;
+    // Allow nested RSCs to access the search params (in a type-safe way)
+    searchParamsCache.parse(searchParams);
+
+    // This key is used for invoke suspense if any of the search params changed (used for filters).
+    const key = serialize({ ...searchParams });
+
+    const page = searchParamsCache.get('page');
+    const search = searchParamsCache.get('q');
+    const pageLimit = searchParamsCache.get('limit');
+
+    const filters = {
+        page,
+        limit: pageLimit,
+        ...(search && { search }),
+    };
+
+    const { data: { posts: blogs } } = await blogService.filters({
+        queryParams: filters
+    });
+
 
     return (
         <>
@@ -43,11 +71,9 @@ export default async function IndexPage() {
                 >
                     <div className="grid grid-cols-2 gap-6">
                         <div className="flex flex-col gap-4">
-                            <PostVerticalCard {...postCard} />
-                            <PostVerticalCard {...postCard} />
-                            <PostVerticalCard {...postCard} />
-                            <PostVerticalCard {...postCard} />
-                            <PostVerticalCard {...postCard} />
+                            {blogs.map((item) => {
+                                return <PostVerticalCard {...item} />
+                            })}
                         </div>
                         <div className="flex flex-col gap-4">
 

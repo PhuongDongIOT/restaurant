@@ -3,7 +3,8 @@ package repository
 import (
 	"errors"
 
-	"github.com/abdurraufraihan/golang-blog-api/internal/model"
+	"blog-service/internal/model"
+
 	"gorm.io/gorm"
 )
 

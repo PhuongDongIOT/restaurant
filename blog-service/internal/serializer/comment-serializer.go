@@ -1,6 +1,6 @@
 package serializer
 
-import "github.com/abdurraufraihan/golang-blog-api/internal/model"
+import "blog-service/internal/model"
 
 type CommentResponse struct {
 	ID   uint   `json:"id"`

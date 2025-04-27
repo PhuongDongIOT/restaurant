@@ -8,6 +8,8 @@ import type { Metadata } from 'next';
 // import { cookies } from 'next/headers';
 import { FooterSection } from './_components/footer-section';
 import { SelectedProductProvider } from '@/modules/products/contexts/selected-product.context';
+import { ModalUserProvider } from '@/modules/authentication/components/modal-user-provider';
+import { LoginDialog } from '@/modules/authentication/components/login-dialog/login.dialog';
 
 export const metadata: Metadata = {
     title: 'Bánh Cuốn Hoàng Vũ | Ngon Chuẩn Vị Nhà Làm',
@@ -26,7 +28,7 @@ export default async function DashboardLayout({
                 <NavigationMenuMain />
             </header>
             <ModalCartProvider>
-                <>
+                <ModalUserProvider>
                     <ModalProvider>
                         <SelectedProductProvider>
                             {children}
@@ -34,8 +36,9 @@ export default async function DashboardLayout({
                         </SelectedProductProvider>
                     </ModalProvider>
                     <NavBarFixed />
+                    <LoginDialog />
                     <ShoppingCarts />
-                </>
+                </ModalUserProvider>
             </ModalCartProvider>
             <footer className='relative z-[9]'>
                 <FooterSection />

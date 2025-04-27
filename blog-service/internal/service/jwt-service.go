@@ -4,7 +4,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/abdurraufraihan/golang-blog-api/internal/utils"
+	"blog-service/internal/utils"
+
 	"github.com/dgrijalva/jwt-go"
 )
 
