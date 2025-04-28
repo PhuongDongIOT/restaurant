@@ -174,9 +174,15 @@ export const cartsSlice = createSlice({
           isItemInCart.quantity
         );
     },
+    removeAll: (state) => {
+      state.cart = null;
+      state.totalPrice = 0;
+      state.adjustedTotalPrice = 0;
+      return;
+    },
   },
 });
 
-export const { addToCart, removeCartItem, remove } = cartsSlice.actions;
+export const { addToCart, removeCartItem, remove, removeAll } = cartsSlice.actions;
 
 export default cartsSlice.reducer;

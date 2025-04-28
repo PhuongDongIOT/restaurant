@@ -39,3 +39,12 @@ const OrderTypeSchema = z.object({
 
 export type IOrderItem = z.infer<typeof OrderItemSchema>;
 export type IOrderType = z.infer<typeof OrderTypeSchema>;
+
+export const CreateOrderSchema = z.object({
+    address_id: z.string().min(1, { message: "Vui lòng chọn đỉa chỉ" }),
+    coupon_id: z.number().optional(),
+    payment_id: z.number().optional(),
+    user_id: z.number().min(1, { message: "Vui lòng đăng nhập" }),
+});
+
+export type ICreateOrder = z.infer<typeof CreateOrderSchema>;

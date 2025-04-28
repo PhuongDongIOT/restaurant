@@ -1,17 +1,58 @@
 'use client'
-import Link from 'next/link';
-import { useAppSelector } from '@/lib/hooks/redux';
+
+import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from '@/lib/hooks/redux';
 import { RootState } from '@/lib/store';
 import { IconMinus, IconPlus } from '@tabler/icons-react';
 import { SelectDelivery } from '@/modules/delivery/components/select-delivery';
 import { Input } from '@/components/ui/input';
 import { OptionAdress } from '@/modules/address/components/option-adress';
 import { OptionPayment } from '@/modules/categorys/payment/components/option-payment';
+import { DialogAddress } from '@/modules/address/components/dialog-address';
+import { AddressOrder } from '../components/address-order';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { RadioGroup } from '@/components/ui/radio-group';
+import { CreateOrderSchema, ICreateOrder } from '@/lib/schemas/order.schema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { defaultValuesSignInUser } from '@/lib/initials/user.init';
+import { defaultValuesOrder } from '@/lib/initials/order.init';
+import { Button } from '@/components/ui/button';
+import { removeAll } from '@/lib/features/carts/carts.slice';
+import { orderUserService } from '@/lib/services/order.service';
 
 export default function OrderDetailPage() {
-    const { cart, totalPrice, adjustedTotalPrice } = useAppSelector(
+    const dispatch = useAppDispatch();
+    const router = useRouter();
+    const { cart, totalPrice } = useAppSelector(
         (state: RootState) => state.carts
     );
+    const { user } = useAppSelector(
+        (state: RootState) => state.auths
+    );
+
+    const form = useForm<ICreateOrder>({
+        resolver: zodResolver(CreateOrderSchema),
+        values: { ...defaultValuesOrder, user_id: user?.id ?? 0 },
+    });
+
+    const handleCheckout = async (values: ICreateOrder) => {
+        try {
+            await orderUserService.checkout(values);
+            dispatch(removeAll());
+
+            setTimeout(() => {
+                router.push("/order/success")
+            }, 500)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function onSubmit(values: ICreateOrder) {
+        await handleCheckout(values);
+    }
+
 
     return (
         <section className=" relative z-10 after:contents-[''] after:absolute after:z-0 after:h-full xl:after:w-1/3 after:top-0 after:right-0 after:bg-gray-50">
@@ -90,7 +131,7 @@ export default function OrderDetailPage() {
                                             </div>
                                             <div className="flex items-center max-[500px]:justify-center md:justify-end max-md:mt-3 h-full">
                                                 <p className="font-bold text-lg leading-8 text-gray-600 text-center transition-all duration-300 group-hover:text-indigo-600">
-                                                    ${product.price * product.quantity}
+                                                    {product.price * product.quantity} VND
                                                 </p>
                                             </div>
                                         </div>
@@ -101,7 +142,7 @@ export default function OrderDetailPage() {
 
                         <div className="flex items-center justify-end mt-8">
                             <button className="flex items-center px-5 py-3 rounded-full gap-2 border-none outline-0 group font-semibold text-lg leading-8 text-indigo-600 shadow-sm shadow-transparent transition-all duration-500 hover:text-indigo-700">
-                                Add Coupon Code
+                                Thêm mã khyến mãi
                                 <svg
                                     className="transition-all duration-500 group-hover:translate-x-2"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -126,61 +167,76 @@ export default function OrderDetailPage() {
                         </h2>
                         <div className="mt-8">
                             <div className="flex items-center justify-between pb-6">
-                                <p className="font-normal text-lg leading-8 text-black">3 Sản phẩm</p>
-                                <p className="font-medium text-lg leading-8 text-black">480000 VND</p>
+                                <p className="font-normal text-lg leading-8 text-black">{cart?.totalQuantities} Sản phẩm</p>
+                                <p className="font-medium text-lg leading-8 text-black">{totalPrice} VND</p>
                             </div>
-                            <form>
-                                <div className='flex flex-col gap-1 mt-2'>
-                                    <label className="flex  items-center mb-1.5 text-gray-600 text-sm font-medium">
-                                        Địa chỉ
-                                    </label>
-                                    <OptionAdress />
-                                </div>
-                                <div className='flex flex-col gap-1 mt-2'>
-                                    <label className="flex  items-center mb-1.5 text-gray-600 text-sm font-medium">
-                                        Phương thức thanh toán
-                                    </label>
-                                    <OptionPayment />
-                                </div>
-                                <label className="flex items-center mt-1 mb-1.5 text-gray-600 text-sm font-medium">
-                                    Vận chuyển
-                                </label>
-                                <div className="flex pb-6">
-                                    <div className="relative w-full">
-                                        <SelectDelivery />
+                            <Form {...form}>
+                                <form onSubmit={form.handleSubmit(onSubmit)}>
+                                    <div className='flex flex-col gap-1 mt-2'>
+                                        <FormField
+                                            control={form.control}
+                                            name="address_id"
+                                            render={({ field }) => (
+                                                <FormItem className="space-y-3">
+                                                    <FormLabel>Notify me about...</FormLabel>
+                                                    <FormControl>
+                                                        <RadioGroup
+                                                            onValueChange={field.onChange}
+                                                            defaultValue={`${field.value}`}
+                                                            className="flex flex-col space-y-1"
+                                                        >
+                                                            <AddressOrder id={`${user?.id}`} />
+                                                        </RadioGroup>
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
                                     </div>
-                                </div>
-                                <label className="flex items-center mb-1.5 text-gray-400 text-sm font-medium">
-                                    Mã khuyến mại
-                                </label>
-                                <div className="flex pb-4 w-full">
-                                    <div className="relative w-full ">
-                                        <Input type="code" placeholder="Code" />
+                                    <div className='flex flex-col gap-1 mt-2'>
+                                        <label className="flex  items-center mb-1.5 text-gray-600 text-sm font-medium">
+                                            Phương thức thanh toán
+                                        </label>
+                                        <OptionPayment />
                                     </div>
-                                </div>
-                                <div className="flex items-center border-b border-gray-200">
-                                    <button className="rounded-lg w-full bg-black py-2.5 px-4 text-white text-sm font-semibold text-center mb-8 transition-all duration-500 hover:bg-black/80">
-                                        Đồng ý
-                                    </button>
-                                </div>
-                                <div className="flex items-center justify-between py-8">
-                                    <p className="font-medium text-xl leading-8 text-black">
-                                        {cart?.totalQuantities} Sản phẩm
-                                    </p>
-                                    <p className="font-semibold text-xl leading-8 text-indigo-600">
-                                        ${adjustedTotalPrice}
-                                    </p>
-                                </div>
-                                <Link href="/">
-                                    <button className="w-full text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">
+                                    <label className="flex items-center mt-1 mb-1.5 text-gray-600 text-sm font-medium">
+                                        Vận chuyển
+                                    </label>
+                                    <div className="flex pb-6">
+                                        <div className="relative w-full">
+                                            <SelectDelivery />
+                                        </div>
+                                    </div>
+                                    <label className="flex items-center mb-1.5 text-gray-400 text-sm font-medium">
+                                        Mã khuyến mại
+                                    </label>
+                                    <div className="flex pb-4 w-full">
+                                        <div className="relative w-full ">
+                                            <Input type="code" placeholder="Code" />
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center border-b border-gray-200">
+                                        <Button className="rounded-lg w-full bg-black py-2.5 px-4 text-white text-sm font-semibold text-center mb-8 transition-all duration-500 hover:bg-black/80">
+                                            Đồng ý
+                                        </Button>
+                                    </div>
+                                    <div className="flex items-center justify-between py-8">
+                                        <p className="font-medium text-xl leading-8 text-black">
+                                            Tổng cộng
+                                        </p>
+                                        <p className="font-semibold text-xl leading-8 text-indigo-600">
+                                            ${totalPrice}
+                                        </p>
+                                    </div>
+                                    <Button type="submit" className="w-full text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">
                                         Thanh toán
-                                    </button>
-                                </Link>
-                            </form>
+                                    </Button>
+                                </form>
+                            </Form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </div >
+        </section >
     );
 }

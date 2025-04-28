@@ -2,6 +2,9 @@
 
 import { Checkbox } from "@/components/ui/checkbox"
 
+type OptionAdressPropsProps = {
+    id: string;
+}
 export function OptionAdress() {
     return (
         <div className="flex items-center space-x-2">

@@ -5,6 +5,8 @@ import { createContext, useContext, useState, ReactNode } from "react";
 interface ModalUserContextType {
     modalUser: boolean;
     setModalUser: (value: boolean) => void;
+    signupUser: boolean;
+    setSignupUser: (value: boolean) => void;
 }
 
 const ModalUserContext = createContext<ModalUserContextType | undefined>(undefined);
@@ -15,9 +17,10 @@ interface ModalUserProviderProps {
 
 export const ModalUserProvider: React.FC<ModalUserProviderProps> = ({ children }) => {
     const [modalUser, setModalUser] = useState<boolean>(false);
+    const [signupUser, setSignupUser] = useState<boolean>(false);
 
     return (
-        <ModalUserContext.Provider value={{ modalUser, setModalUser }}>
+        <ModalUserContext.Provider value={{ modalUser, setModalUser, signupUser, setSignupUser }}>
             {children}
         </ModalUserContext.Provider>
     );

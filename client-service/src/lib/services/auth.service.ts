@@ -24,7 +24,22 @@ const authService = {
 
 export const authUserService = {
     login: (body: any, options?: IApiOptions) => {
+        options = {
+            headers: {
+                "Content-Type": "application/json"
+            }, ...options
+        }
+        body = JSON.stringify(body);
         return Api.post<IResponseSchema<IAuth>>('users/login', body, options);
+    },
+    signup: (body: any, options?: IApiOptions) => {
+        options = {
+            headers: {
+                "Content-Type": "application/json"
+            }, ...options
+        }
+        body = JSON.stringify(body);
+        return Api.post<IResponseSchema<IAuth>>('users/signup', body, options);
     },
     quickLogin: (body: any, options?: IApiOptions) => {
         return Api.post<IResponseSchema<IAuth>>('users/quickLogin', body, options);

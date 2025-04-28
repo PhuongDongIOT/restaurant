@@ -13,4 +13,13 @@ export const orderUserService = {
     details: (id: string) => {
         return Api.get<IResponseSchema<IOrder>>(`users/profile/orders/${id}`);
     },
+    checkout: (body: any, options?: IApiOptions) => {
+        options = {
+            headers: {
+                "Content-Type": "application/json"
+            }, ...options
+        }
+        body = JSON.stringify(body);
+        return Api.post<IResponseSchema<any>>('users/check-out/order', body, options);
+    }
 };

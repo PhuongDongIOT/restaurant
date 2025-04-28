@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ISignInUser, SignInSchema } from "@/lib/schemas/user.schema";
 import { defaultValuesSignInUser } from "@/lib/initials/user.init";
-import { useLogin } from '../hook/use-login';
+import { useVerifyAdmin } from "../hook/use-verify-admin";
 
 export function LoginForm({
     className,
@@ -26,7 +26,7 @@ export function LoginForm({
         values: defaultValuesSignInUser,
     });
 
-    const { handleLogin } = useLogin();
+    const { handleLogin } = useVerifyAdmin();
 
     async function onSubmit(values: ISignInUser) {
         handleLogin(values);
@@ -34,9 +34,9 @@ export function LoginForm({
     return (
         <div className={cn("flex flex-col gap-6", className)}>
             <div className="flex flex-col items-center gap-2 text-center">
-                <h1 className="text-2xl font-bold">Login to your account</h1>
+                <h1 className="text-2xl font-bold">Đăng nhập vào tài khoản của bạn</h1>
                 <p className="text-balance text-sm text-muted-foreground">
-                    Enter your email below to login to your account
+                    Nhập email của bạn bên dưới để đăng nhập vào tài khoản của bạn.
                 </p>
             </div>
             <Form {...form}>
@@ -96,13 +96,13 @@ export function LoginForm({
                             Login with GitHub
                         </Button>
                     </div>
-
                 </form>
             </Form>
             <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
+                Bạn chưa có tài khoản?
+                {" "}
                 <a href="#" className="underline underline-offset-4">
-                    Sign up
+                    Đăng ký
                 </a>
             </div>
         </div>

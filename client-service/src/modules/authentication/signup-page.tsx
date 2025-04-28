@@ -4,7 +4,6 @@ import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import { IconStar } from '@tabler/icons-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import UserAuthForm from './components/user-auth-form';
 
 export const metadata: Metadata = {
   title: 'Authentication',
@@ -21,7 +20,7 @@ export default function SignUpPage({ stars }: { stars: number }) {
           'absolute top-4 right-4 hidden md:top-8 md:right-8'
         )}
       >
-        Login
+        Đăng nhập
       </Link>
       <div className='bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-r'>
         <div className='absolute inset-0 bg-zinc-900' />
@@ -43,11 +42,11 @@ export default function SignUpPage({ stars }: { stars: number }) {
         <div className='relative z-20 mt-auto'>
           <blockquote className='space-y-2'>
             <p className='text-lg'>
-              &ldquo;This starter template has saved me countless hours of work
-              and helped me deliver projects to my clients faster than ever
-              before.&rdquo;
+              &ldquo;Mẫu khởi đầu này đã giúp tôi tiết kiệm vô số giờ làm việc
+              và giúp tôi giao dự án cho khách hàng nhanh hơn bao giờ hết
+              trước đây.&rdquo;
             </p>
-            <footer className='text-sm'>Random Dude</footer>
+            <footer className='text-sm'>Anh chàng ngẫu nhiên</footer>
           </blockquote>
         </div>
       </div>
@@ -66,7 +65,7 @@ export default function SignUpPage({ stars }: { stars: number }) {
           >
             <div className='flex items-center'>
               <GitHubLogoIcon className='size-4' />
-              <span className='ml-1 inline'>Star on GitHub</span>{' '}
+              <span className='ml-1 inline'>Sao trên GitHub</span>{' '}
             </div>
             <div className='ml-2 flex items-center gap-1 text-sm md:flex'>
               <IconStar
@@ -78,27 +77,26 @@ export default function SignUpPage({ stars }: { stars: number }) {
           </Link>
           <div className='flex flex-col space-y-2 text-center'>
             <h1 className='text-2xl font-semibold tracking-tight'>
-              Create an account
+              Tạo một tài khoản
             </h1>
             <p className='text-muted-foreground text-sm'>
-              Enter your email below to create your account
+              Nhập email của bạn bên dưới để tạo tài khoản
             </p>
           </div>
-          <UserAuthForm />
           <p className='text-muted-foreground px-8 text-center text-sm'>
-            By clicking continue, you agree to our{' '}
+            Bằng cách nhấp vào tiếp tục, bạn đồng ý với chúng tôi{' '}
             <Link
               href='/terms'
               className='hover:text-primary underline underline-offset-4'
             >
               Terms of Service
             </Link>{' '}
-            and{' '}
+            và{' '}
             <Link
               href='/privacy'
               className='hover:text-primary underline underline-offset-4'
             >
-              Privacy Policy
+              Chính sách
             </Link>
             .
           </p>

@@ -10,6 +10,7 @@ import { FooterSection } from './_components/footer-section';
 import { SelectedProductProvider } from '@/modules/products/contexts/selected-product.context';
 import { ModalUserProvider } from '@/modules/authentication/components/modal-user-provider';
 import { LoginDialog } from '@/modules/authentication/components/login-dialog/login.dialog';
+import { SignupDialog } from '@/modules/authentication/components/signnup.dialog';
 
 export const metadata: Metadata = {
     title: 'Bánh Cuốn Hoàng Vũ | Ngon Chuẩn Vị Nhà Làm',
@@ -35,9 +36,10 @@ export default async function DashboardLayout({
                             <DialogDemo />
                         </SelectedProductProvider>
                     </ModalProvider>
+                    <ShoppingCarts />
                     <NavBarFixed />
                     <LoginDialog />
-                    <ShoppingCarts />
+                    <SignupDialog />
                 </ModalUserProvider>
             </ModalCartProvider>
             <footer className='relative z-[9]'>

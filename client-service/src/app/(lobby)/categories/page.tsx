@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
 import CategoryPage from '@/modules/categorys/category-page';
-import { productUserService } from '@/lib/services/product.service';
-import { categoryUserService } from '@/lib/services/category.service';
 import { SearchParams } from 'nuqs/server';
 import { authUserService } from '@/lib/services/auth.service';
 import { IAuth } from '@/lib/schemas/auth.schema';
 import { loadCategoriesSearchParams } from '@/lib/customs/searchServerSideParams';
+import { fetchAndCacheProducts } from '@/lib/caches/products';
+import { fetchAndCacheCategories } from '@/lib/caches/categories';
+import { kv } from '@vercel/kv';
 
 export const metadata: Metadata = {
   title: 'Danh mục sản phẩm',
@@ -13,12 +14,10 @@ export const metadata: Metadata = {
 Từ các sản phẩm công nghệ tiên tiến đến những vật dụng thiết yếu hằng ngày – tất cả đều có tại đây!`,
 };
 
-type PageProps = {
-  searchParams: Promise<SearchParams>;
-}
-export default async function Page({ searchParams }: PageProps) {
-  const { encryption } = await loadCategoriesSearchParams(searchParams)
-  let auth: IAuth | null = null
+async function initData(searchParams: any, kv: any) {
+  const { encryption } = await loadCategoriesSearchParams(searchParams);
+  let auth: IAuth | null = null;
+
   if (encryption) {
     try {
       const formData = new FormData();
@@ -29,16 +28,18 @@ export default async function Page({ searchParams }: PageProps) {
       console.log(error);
     }
   }
+  // Fetch và cache sản phẩm
+  const products = await fetchAndCacheProducts(kv);
 
-  const { data: products } = await productUserService.filters({
-    queryParams: {
-      page: 1
-    }
-  })
-  const { data: categories } = await categoryUserService.filters({
-    queryParams: {
-      page: 1
-    }
-  })
+  // Fetch và cache danh mục
+  const categories = await fetchAndCacheCategories(kv);
+
+  return { auth, products, categories };
+}
+type PageProps = {
+  searchParams: Promise<SearchParams>;
+}
+export default async function Page({ searchParams }: PageProps) {
+  const { auth, products, categories } = await initData(searchParams, kv);
   return <CategoryPage products={products} categories={categories} auth={auth} />;
 }

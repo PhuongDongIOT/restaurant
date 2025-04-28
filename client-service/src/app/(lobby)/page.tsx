@@ -1,9 +1,12 @@
+import { kv } from '@vercel/kv';
 import { Metadata } from 'next'
 import { Hero } from './_components/hero';
 import { ProductCategory } from './_components/product-category';
 import { ProductGallery, ProductGalleryProps } from './_components/product-gallery';
 import { productUserService } from '@/lib/services/product.service';
 import { bannerService } from '@/lib/services/banner.service';
+import { fetchAndCacheBanners } from '@/lib/caches/banners';
+import { fetchAndCacheProducts } from '@/lib/caches/products';
 
 export const metadata: Metadata = {
   title: 'Bánh Cuốn Hoàng Vũ | Ngon Chuẩn Vị Nhà Làm',
@@ -15,21 +18,21 @@ const initProductGallery: ProductGalleryProps = {
   description: "Món ăn cao cấp, xa xỉ, sử dụng nguyên liệu quý hiếm và có cách chế biến cầu kỳ, tinh tế.",
   products: []
 }
+// Main logic
+async function initData(kv: any, productUserService: any, bannerService: any) {
+  const products = await fetchAndCacheProducts(kv, productUserService);
+  const banners = await fetchAndCacheBanners(kv, bannerService);
+
+  const initPGOne = { ...initProductGallery, products: products ?? [] };
+  return { products, banners, initPGOne };
+}
 
 export default async function Page() {
-  const { data: products } = await productUserService.filters({
-    queryParams: {
-      page: 1
-    }
-  })
-
-  const { data } = await bannerService.filters();
-
-  const initPGOne = { ...initProductGallery, products: products ?? [] }
+  const { banners, initPGOne } = await initData(kv, productUserService, bannerService);
 
   return (
     <>
-      <Hero items={data} />
+      <Hero items={banners} />
       <div className='py-8 flex flex-col gap-12 mx-auto max-w-6xl'>
         <ProductCategory {...initPGOne} />
         <ProductGallery {...initPGOne} />
