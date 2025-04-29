@@ -45,7 +45,13 @@ export function ProductCard({
                 "h-auto w-full object-cover transition-all hover:scale-105"
               )}
             />
-            <div className={cn(`absolute bottom-0 right-0 bg-red-500 p-2 z-10 rounded-xl`, { 'opacity-45': disabled })} onClick={() => !disabled && addProductToCart(product)}>
+            <div
+              className={cn(
+                `absolute bottom-0 right-0 bg-red-500 p-2 z-10 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg`,
+                { 'opacity-45 pointer-events-none': disabled }
+              )}
+              onClick={() => !disabled && addProductToCart(product)}
+            >
               <ShoppingCart color="white" />
             </div>
           </div>

@@ -430,9 +430,13 @@ func (u *userUseCase) GetCart(id int) (models.GetCartResponse, error) {
 
 }
 
-func (i *userUseCase) RemoveFromCart(cart, inventory int) error {
+func (i *userUseCase) RemoveFromCart(id, inventory int) error {
 
-	err := i.userRepo.RemoveFromCart(cart, inventory)
+	cart_id, err := i.userRepo.GetCartID(id)
+	if err != nil {
+		return err
+	}
+	err = i.userRepo.RemoveFromCart(cart_id, inventory)
 	if err != nil {
 		return err
 	}

@@ -21,7 +21,14 @@ export const cartService = {
 
         return Api.post<IResponseSchema<any>>('users/home/add-to-cart', body, options);
     },
-
+    removeItem:  (body: IUpdateCart, options?: IApiOptions) => {
+        options = {
+            queryParams: {
+                ...body
+            }
+        }
+        return Api.delete<IResponseSchema<any>>('users/cart/remove', options);
+    },
     updateQuantityPlus: (body: IUpdateCart, options?: IApiOptions) => {
         options = {
             queryParams: {

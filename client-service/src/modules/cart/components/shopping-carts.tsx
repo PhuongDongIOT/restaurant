@@ -6,15 +6,16 @@ import { useModalCart } from '../../categorys/components/modal-cart-provider'
 import Link from 'next/link';
 import { useAppSelector } from '@/lib/hooks/redux';
 import { RootState } from '@/lib/store';
+import CartItemSmall from './cart-item-small';
 
 export default function ShoppingCarts() {
     const { modalCart, setModalCart } = useModalCart();
-    const { cart, totalPrice, adjustedTotalPrice } = useAppSelector(
+    const { cart, adjustedTotalPrice } = useAppSelector(
         (state: RootState) => state.carts
     );
 
     return (
-        <Dialog open={modalCart} onClose={setModalCart} className="relative z-10">
+        <Dialog open={modalCart} onClose={setModalCart} className="relative z-99">
             <DialogBackdrop
                 transition
                 className="fixed inset-0 bg-gray-500/75 transition-opacity duration-500 ease-in-out data-closed:opacity-0"
@@ -50,32 +51,7 @@ export default function ShoppingCarts() {
                                                 {
                                                     cart?.items.map((product, index) => {
                                                         return (
-                                                            <li key={product.id} className="flex py-6">
-                                                            <div className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                                <img alt={product.product_name} src={product.image} className="size-full object-cover" />
-                                                            </div>
-    
-                                                            <div className="ml-4 flex flex-1 flex-col">
-                                                                <div>
-                                                                    <div className="flex justify-between text-base font-medium text-gray-900">
-                                                                        <h3>
-                                                                            <a href={'#'}>{product.product_name}</a>
-                                                                        </h3>
-                                                                        <p className="ml-4">{product.price}</p>
-                                                                    </div>
-                                                                    <p className="mt-1 text-sm text-gray-500 line-clamp-2">{product.description}</p>
-                                                                </div>
-                                                                <div className="flex flex-1 items-end justify-between text-sm">
-                                                                    <p className="text-gray-500">Số lượng {product.quantity}</p>
-    
-                                                                    <div className="flex">
-                                                                        <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
-                                                                            Xóa
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
+                                                            <CartItemSmall key={index} product={product}/>
                                                         )
                                                     })
                                                 }
@@ -87,7 +63,7 @@ export default function ShoppingCarts() {
                                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                         <p>Tổng phụ</p>
-                                        <p>{totalPrice} VND</p>
+                                        <p>{0} VND</p>
                                     </div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                         <p>Tổng</p>

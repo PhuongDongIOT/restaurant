@@ -475,20 +475,21 @@ func (i *UserHandler) GetCart(c *gin.Context) {
 // @Accept			json
 // @Produce		    json
 // @Param			id	query	string	true	"id"
+// @Param			inventory	query	string	true	"inventory"
 // @Security		Bearer
 // @Success		200	{object}	response.Response{}
 // @Failure		500	{object}	response.Response{}
 // @Router			/users/cart/remove [delete]
 func (i *UserHandler) RemoveFromCart(c *gin.Context) {
 
-	cartID, err := strconv.Atoi(c.Query("cart_id"))
+	cartID, err := strconv.Atoi(c.Query("id"))
 	if err != nil {
 		errorRes := response.ClientResponse(http.StatusBadRequest, "check parameters properly", nil, err.Error())
 		c.JSON(http.StatusBadRequest, errorRes)
 		return
 	}
 
-	InventoryID, err := strconv.Atoi(c.Query("inventory_id"))
+	InventoryID, err := strconv.Atoi(c.Query("inventory"))
 	if err != nil {
 		errorRes := response.ClientResponse(http.StatusBadRequest, "check parameters properly", nil, err.Error())
 		c.JSON(http.StatusBadRequest, errorRes)

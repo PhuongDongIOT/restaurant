@@ -3,7 +3,7 @@ import { DiscountSchema } from './discount.schema';
 // If not, define DiscountSchema first
 export const RemoveCartItemSchema = z.object({
     id: z.number(),
-    attributes: z.array(z.string()),
+    // attributes: z.array(z.string()),
 });
 
 export const CartItemSchema = z.object({

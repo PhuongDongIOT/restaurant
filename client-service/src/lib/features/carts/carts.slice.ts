@@ -102,26 +102,25 @@ export const cartsSlice = createSlice({
     },
     removeCartItem: (state, action: PayloadAction<IRemoveCartItem>) => {
       if (state.cart === null) return;
-
+      const itemsCurrent: ICartItem[] = JSON.parse(JSON.stringify(state.cart.items)) ?? [];
       // check item in cart
-      const isItemInCart = state.cart.items.find(
+      const isItemInCart = itemsCurrent.find(
         (item) =>
-          action.payload.id === item.id &&
-          compareArrays(action.payload.attributes, item.attributes)
+          action.payload.id === item.id/* &&
+          compareArrays(action.payload.attributes, item.attributes)*/
       );
-
+      
       if (isItemInCart) {
         state.cart = {
           ...state.cart,
-          items: state.cart.items
-            .map((eachCartItem) => {
+          items: itemsCurrent.map((eachCartItem) => {
               if (
-                eachCartItem.id === action.payload.id
-                  ? !compareArrays(
-                    eachCartItem.attributes,
-                    isItemInCart.attributes
+                eachCartItem.id !== action.payload.id
+                  /*  ? !compareArrays(
+                      eachCartItem.attributes,
+                      isItemInCart.attributes
                   )
-                  : eachCartItem.id !== action.payload.id
+                  : eachCartItem.id !== action.payload.id*/
               )
                 return eachCartItem;
 
@@ -133,7 +132,7 @@ export const cartsSlice = createSlice({
             .filter((item) => item.quantity > 0),
           totalQuantities: state.cart.totalQuantities - 1,
         };
-
+        
         state.totalPrice = state.totalPrice - isItemInCart.price * 1;
         state.adjustedTotalPrice =
           state.adjustedTotalPrice -
@@ -149,8 +148,8 @@ export const cartsSlice = createSlice({
       // check item in cart
       const isItemInCart = state.cart.items.find(
         (item) =>
-          action.payload.id === item.id &&
-          compareArrays(action.payload.attributes, item.attributes)
+          action.payload.id === item.id/* &&
+          compareArrays(action.payload.attributes, item.attributes)*/
       );
 
       if (!isItemInCart) return;

@@ -10,12 +10,14 @@ import { createCartPayload, createUpdateCartPayload, mappperCreateCartItem } fro
 import { showAddToCartErrorToast, showAddToCartSuccessToast } from "../components/notifycations/add-to-cart-success.noti";
 import { isProductInCart } from "../utils";
 import { IProduct } from "@/lib/schemas/product.schema";
+import { useCheckUser } from "@/modules/authentication/hook/use-check-user";
 
 export function useProductInteraction() {
     const [disabled, setDisabled] = useState(false);
     const { setModal } = useModal();
-    const { setSelectedProduct } = useSelectedProduct();
+    const { functionCheckauth, token } = useCheckUser();
     const dispatch = useAppDispatch();
+    const { setSelectedProduct } = useSelectedProduct();
     const { cart } = useAppSelector((state: RootState) => state.carts);
     const { user } = useAppSelector((state: RootState) => state.auths);
 
@@ -38,6 +40,10 @@ export function useProductInteraction() {
     };
 
     const addProductToCart = async (product: IProduct) => {
+        if(!token) {
+            functionCheckauth();
+            return;
+        }
         notify(true);
         const userId = user?.id ?? 1;
         const itemCart = mappperCreateCartItem(product);
