@@ -6,6 +6,10 @@ import { stringify } from 'qs';
 import { IApiOptions } from '../schemas/api.schema';
 
 export const WEB_API_URL = process.env.WEB_API_URL ? process.env.WEB_API_URL : process.env.NEXT_PUBLIC_WEB_API_URL; // Store this as a constant
+export const WEB_API_BLOG_URL = process.env.WEB_BLOG_API_URL ? process.env.WEB_BLOG_API_URL : process.env.NEXT_PUBLIC_WEB_API_BLOG_URL; 
+export const WEB_API_PICTURE_URL = process.env.WEB_API_PICTURE_URL ? process.env.WEB_API_PICTURE_URL : process.env.NEXT_PUBLIC_WEB_API_PICTURE_URL; 
+export const WEB_SOCKET_URL = process.env.WEB_SOCKET_URL ? process.env.WEB_SOCKET_URL : process.env.NEXT_PUBLIC_WEB_SOCKET_URL; 
+export const WEB_AI_URL = process.env.WEB_AI_URL ? process.env.WEB_AI_URL : process.env.NEXT_PUBLIC_WEB_AI_URL; 
 
 let isRefreshingToken = false;
 
@@ -143,8 +147,6 @@ export const Api = {
   delete: <T>(urlPath: string, options?: IApiOptions): Promise<T> => apiCall<T>(urlPath, 'DELETE', undefined, options),
 };
 
-const WEB_API_PICTURE_URL = process.env.WEB_API_PICTURE_URL ? process.env.WEB_API_PICTURE_URL : process.env.NEXT_PUBLIC_WEB_API_PICTURE_URL; 
-
 // Generic API functions.  'T' is the expected response type.
 const apiPictureCall = async <T>(urlPath: string, method: string, data?: object, options?: IApiOptions): Promise<T> => {
   const url = `${WEB_API_PICTURE_URL}${urlPath}${handleQueryParams(options)}`;
@@ -169,8 +171,6 @@ export const ApiPicture = {
   delete: <T>(urlPath: string, options?: IApiOptions): Promise<T> => apiPictureCall<T>(urlPath, 'DELETE', undefined, options),
 };
 
-
-const WEB_API_BLOG_URL = process.env.WEB_BLOG_API_URL ? process.env.WEB_BLOG_API_URL : process.env.NEXT_PUBLIC_WEB_API_BLOG_URL; 
 
 // Generic API functions.  'T' is the expected response type.
 const apiBlogCall = async <T>(urlPath: string, method: string, data?: object, options?: IApiOptions): Promise<T> => {

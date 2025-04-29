@@ -4,6 +4,7 @@ import React, { useEffect, useTransition } from 'react';
 import { Button } from '@/components/ui/button';
 import { IconBrandGithub } from '@tabler/icons-react';
 import useOrderWebSocket from '@/modules/order/hooks/use-order-web-socket';
+import { WEB_AI_URL } from '@/lib/cores/api';
 
 export default function CtaGithub() {
 
@@ -13,7 +14,7 @@ export default function CtaGithub() {
   useEffect(() => {
     async function handleSpeak(text: string) {
       
-      const res = await fetch(`http://localhost:3030/api/tts?text=${encodeURIComponent(text)}`);
+      const res = await fetch(`${WEB_AI_URL}api/tts?text=${encodeURIComponent(text)}`);
       const mediaSource = new MediaSource();
       const audio = new Audio();
       audio.src = URL.createObjectURL(mediaSource);

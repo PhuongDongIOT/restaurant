@@ -1,3 +1,4 @@
+import { WEB_SOCKET_URL } from '@/lib/cores/api';
 import { useState, useEffect, useRef } from 'react';
 
 interface WebSocketMessage {
@@ -17,7 +18,7 @@ function useOrderWebSocket(): UseOrderWebSocketResult {
 
     useEffect(() => {
         const connect = () => {
-            ws.current = new WebSocket('ws://localhost:3020/socket');
+            ws.current = new WebSocket(`ws://${WEB_SOCKET_URL}socket`);
 
             ws.current.onopen = () => {
                 console.log('WebSocket connected');
