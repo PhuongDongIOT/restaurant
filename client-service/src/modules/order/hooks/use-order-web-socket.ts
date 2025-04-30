@@ -18,7 +18,7 @@ function useOrderWebSocket(): UseOrderWebSocketResult {
 
     useEffect(() => {
         const connect = () => {
-            ws.current = new WebSocket(`ws://${WEB_SOCKET_URL}socket`);
+            ws.current = new WebSocket(`${WEB_SOCKET_URL}socket`);
 
             ws.current.onopen = () => {
                 console.log('WebSocket connected');
