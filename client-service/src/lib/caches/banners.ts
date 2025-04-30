@@ -8,6 +8,8 @@ export async function fetchAndCacheBanners(kv: any, bannerService: any) {
     const { data } = await bannerService.filters({
       queryParams: { page: 1 },
   });
+  console.log(data);
+  
     await kv.set('banners', JSON.stringify(data));
     return data;
   }
