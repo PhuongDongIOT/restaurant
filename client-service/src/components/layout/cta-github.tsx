@@ -5,15 +5,20 @@ import { Button } from '@/components/ui/button';
 import { IconBrandGithub } from '@tabler/icons-react';
 import useOrderWebSocket from '@/modules/order/hooks/use-order-web-socket';
 import { WEB_AI_URL } from '@/lib/cores/api';
+import useSound from 'use-sound';
 
 export default function CtaGithub() {
 
+  const [isPending, startTransition] = useTransition();  
   const { messages } = useOrderWebSocket();
-  const [isPending, startTransition] = useTransition();
+
+  const [play] = useSound('/audio/money.mp3', {
+    volume: 0.75,
+    interrupt: true,
+  });
 
   useEffect(() => {
-    async function handleSpeak(text: string) {
-      
+    async function handleSpeak(text: string) {      
       const res = await fetch(`${WEB_AI_URL}api/tts?text=${encodeURIComponent(text)}`);
       const mediaSource = new MediaSource();
       const audio = new Audio();
@@ -59,10 +64,8 @@ export default function CtaGithub() {
 
   }, [messages])
 
-
-
   return (
-    <Button variant='ghost' asChild size='sm' className='relative hidden sm:flex'>
+    <Button variant='ghost' asChild size='sm' className='relative hidden sm:flex' onClick={() => play()}>
       <div className='relative'>
         {isPending ? <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span> : null}
         <IconBrandGithub />
