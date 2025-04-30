@@ -20,8 +20,8 @@ const initProductGallery: ProductGalleryProps = {
 }
 // Main logic
 async function initData(kv: any, productUserService: any, bannerService: any) {
-  const products = await fetchAndCacheProducts(kv, productUserService);
-  const banners = await fetchAndCacheBanners(kv, bannerService);
+  const products = await fetchAndCacheProducts(kv, 1);
+  const banners = await fetchAndCacheBanners(kv, 1);
 
   const initPGOne = { ...initProductGallery, products: products ?? [] };
   return { products, banners, initPGOne };

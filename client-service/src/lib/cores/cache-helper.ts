@@ -11,7 +11,6 @@ export async function getOrFetchData<T>(
     if (cachedData) {
         return JSON.parse(JSON.stringify(cachedData) as string);
     } else {
-
         const { data } = await fetchFunction();
         await kv.set(key, JSON.stringify(data));
         return data;

@@ -1,15 +1,11 @@
-import { getKVData } from "../cores/get-kv-data";
-import { ICategoryBanner } from "../schemas/category.schema";
+import { getOrFetchData } from "../cores/cache-helper";
+import { bannerService } from "../services/banner.service";
 
-export async function fetchAndCacheBanners(kv: any, bannerService: any) {
-  const bannersFromKV = await getKVData<ICategoryBanner[]>('banners', [], kv);
-
-  if (bannersFromKV.length === 0) {
-    const { data } = await bannerService.filters({
-      queryParams: { page: 1 },
-  });  
-    await kv.set('banners', JSON.stringify(data));
+export async function fetchAndCacheBanners(kv: any, page: number = 1) {
+  return await getOrFetchData('banners', [], async () => {
+    const data = await bannerService.filters({
+      queryParams: { page },
+    });
     return data;
-  }
-  return bannersFromKV;
+  }, kv);
 }
