@@ -119,6 +119,8 @@
   "devDependencies": {
     "@faker-js/faker": "^9.7.0",
     "@next/swc-wasm-nodejs": "^15.3.1",
+    "@opentelemetry/core": "^2.0.0",
+    "@opentelemetry/sdk-trace-base": "^2.0.0",
     "@sentry/nextjs": "^9.12.0",
     "@types/node": "22.10.2",
     "@types/react": "19.0.1",
@@ -126,6 +128,7 @@
     "@types/sort-by": "^1.2.3",
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "framer-motion": "^12.9.2",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.11",
     "mapbox-gl": "^3.11.0",

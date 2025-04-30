@@ -65,7 +65,7 @@ export default function CtaGithub() {
   }, [messages])
 
   return (
-    <Button variant='ghost' asChild size='sm' className='relative hidden sm:flex' onClick={() => play()}>
+    <Button variant='ghost' asChild size='sm' className='relative sm:flex' onClick={() => play()}>
       <div className='relative'>
         {isPending ? <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span> : null}
         <IconBrandGithub />
