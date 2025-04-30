@@ -19,12 +19,34 @@ export default function CtaGithub() {
 
   useEffect(() => {
     async function handleSpeak(text: string) {
-      const res = await fetch(`${WEB_AI_URL}api/tts?text=${encodeURIComponent(text)}`);
-      const blob = await res.blob();
-      const audioUrl = URL.createObjectURL(blob);
-      const audio = new Audio(audioUrl);
+      try {
+        const res = await fetch(`${WEB_AI_URL}api/tts?text=${encodeURIComponent(text)}`);
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
 
-      audio.play()  
+        const blob = await res.blob();
+
+        const contentType = res.headers.get('Content-Type');
+        if (contentType && contentType.startsWith('audio/')) {
+          const audioUrl = URL.createObjectURL(blob);
+          const audio = new Audio(audioUrl);
+
+          return new Promise((resolve, reject) => {
+            audio.addEventListener('ended', resolve);
+            audio.addEventListener('error', reject);
+            audio.play().catch(reject);
+          });
+
+        } else {
+          throw new Error(`Unsupported Content-Type: ${contentType}`);
+        }
+
+      } catch (error) {
+        console.error('Error fetching or playing TTS audio:', error);
+        // **Xử lý lỗi ở đây (ví dụ: hiển thị thông báo cho người dùng)**
+        throw error; // Rethrow để component gọi hàm này cũng có thể xử lý
+      }
 
       // try {
       //   mediaSource.addEventListener("sourceopen", () => {
