@@ -20,47 +20,48 @@ export default function CtaGithub() {
   useEffect(() => {
     async function handleSpeak(text: string) {
       const res = await fetch(`${WEB_AI_URL}api/tts?text=${encodeURIComponent(text)}`);
-      const mediaSource = new MediaSource();
-      const audio = new Audio();
-      audio.src = URL.createObjectURL(mediaSource);
-      audio.setAttribute('crossorigin', 'anonymous');
+      const blob = await res.blob();
+      const audioUrl = URL.createObjectURL(blob);
+      const audio = new Audio(audioUrl);
 
-      try {
-        mediaSource.addEventListener("sourceopen", () => {
-          const sourceBuffer = mediaSource.addSourceBuffer("audio/mpeg");
-          const reader = res.body?.getReader();
+      audio.play()  
 
-          function pump() {
-            reader?.read().then(({ done, value }) => {
-              if (done) {
-                if (sourceBuffer.updating) {
-                  sourceBuffer.addEventListener("updateend", () => {
-                    mediaSource.endOfStream();
-                  }, { once: true });
-                } else {
-                  mediaSource.endOfStream();
-                }
-                return;
-              }
-              if (!sourceBuffer.updating) {
-                sourceBuffer.appendBuffer(value!);
-                pump();
-              } else {
-                sourceBuffer.addEventListener("updateend", () => {
-                  sourceBuffer.appendBuffer(value!);
-                  pump();
-                }, { once: true });
-              }
-            });
-          }
+      // try {
+      //   mediaSource.addEventListener("sourceopen", () => {
+      //     const sourceBuffer = mediaSource.addSourceBuffer("audio/mpeg");
+      //     const reader = res.body?.getReader();
 
-          pump();
-        });
+      //     function pump() {
+      //       reader?.read().then(({ done, value }) => {
+      //         if (done) {
+      //           if (sourceBuffer.updating) {
+      //             sourceBuffer.addEventListener("updateend", () => {
+      //               mediaSource.endOfStream();
+      //             }, { once: true });
+      //           } else {
+      //             mediaSource.endOfStream();
+      //           }
+      //           return;
+      //         }
+      //         if (!sourceBuffer.updating) {
+      //           sourceBuffer.appendBuffer(value!);
+      //           pump();
+      //         } else {
+      //           sourceBuffer.addEventListener("updateend", () => {
+      //             sourceBuffer.appendBuffer(value!);
+      //             pump();
+      //           }, { once: true });
+      //         }
+      //       });
+      //     }
 
-        audio.play()
-      } catch (error) {
-        audio.play()
-      }
+      //     pump();
+      //   });
+
+      //   audio.play()
+      // } catch (error) {
+      //   audio.play()
+      // }
     }
     startTransition(() => {
       handleSpeak(messages[messages.length - 1]);
