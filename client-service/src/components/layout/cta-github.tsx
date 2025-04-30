@@ -9,7 +9,7 @@ import useSound from 'use-sound';
 
 export default function CtaGithub() {
 
-  const [isPending, startTransition] = useTransition();  
+  const [isPending, startTransition] = useTransition();
   const { messages } = useOrderWebSocket();
 
   const [play] = useSound('/audio/money.mp3', {
@@ -18,44 +18,49 @@ export default function CtaGithub() {
   });
 
   useEffect(() => {
-    async function handleSpeak(text: string) {      
+    async function handleSpeak(text: string) {
       const res = await fetch(`${WEB_AI_URL}api/tts?text=${encodeURIComponent(text)}`);
       const mediaSource = new MediaSource();
       const audio = new Audio();
       audio.src = URL.createObjectURL(mediaSource);
-      
-      mediaSource.addEventListener("sourceopen", () => {
-        const sourceBuffer = mediaSource.addSourceBuffer("audio/mpeg");
-        const reader = res.body?.getReader();
-      
-        function pump() {
-          reader?.read().then(({ done, value }) => {
-            if (done) {
-              if (sourceBuffer.updating) {
-                sourceBuffer.addEventListener("updateend", () => {
+      audio.setAttribute('crossorigin', 'anonymous');
+
+      try {
+        mediaSource.addEventListener("sourceopen", () => {
+          const sourceBuffer = mediaSource.addSourceBuffer("audio/mpeg");
+          const reader = res.body?.getReader();
+
+          function pump() {
+            reader?.read().then(({ done, value }) => {
+              if (done) {
+                if (sourceBuffer.updating) {
+                  sourceBuffer.addEventListener("updateend", () => {
+                    mediaSource.endOfStream();
+                  }, { once: true });
+                } else {
                   mediaSource.endOfStream();
-                }, { once: true });
-              } else {
-                mediaSource.endOfStream();
+                }
+                return;
               }
-              return;
-            }
-            if (!sourceBuffer.updating) {
-              sourceBuffer.appendBuffer(value!);
-              pump();
-            } else {
-              sourceBuffer.addEventListener("updateend", () => {
+              if (!sourceBuffer.updating) {
                 sourceBuffer.appendBuffer(value!);
                 pump();
-              }, { once: true });
-            }
-          });
-        }
-      
-        pump();
-      });
-      
-      audio.play()
+              } else {
+                sourceBuffer.addEventListener("updateend", () => {
+                  sourceBuffer.appendBuffer(value!);
+                  pump();
+                }, { once: true });
+              }
+            });
+          }
+
+          pump();
+        });
+
+        audio.play()
+      } catch (error) {
+        audio.play()
+      }
     }
     startTransition(() => {
       handleSpeak(messages[messages.length - 1]);
