@@ -43,6 +43,7 @@ export default async function RootLayout({
         <SeoHead />
         <GoogleAnalytic />
         <GoogleTag />
+        <link href="https://api.mapbox.com/mapbox-gl-js/v3.11.1/mapbox-gl.css" rel="stylesheet" />
       </head>
       <body>
         <NextTopLoader showSpinner={false} />
