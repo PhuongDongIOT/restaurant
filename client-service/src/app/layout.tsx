@@ -3,9 +3,9 @@ import Providers from '@/components/layout/providers';
 import { Toaster } from '@/components/ui/sonner';
 import type { Metadata, Viewport } from 'next';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
-import { Inter } from 'next/font/google';
+// import { Inter } from 'next/font/google';
 import NextTopLoader from 'nextjs-toploader';
-import { cookies } from 'next/headers';
+// import { cookies } from 'next/headers';
 // import { cn } from '@/lib/utils';
 // import { fontVariables } from '@/lib/font';
 import './globals.css';
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   description: 'Basic dashboard with Next.js and Shadcn'
 };
 
-const inter = Inter({ subsets: ['latin'] });
+// const inter = Inter({ subsets: ['latin'] });
 
 export const viewport: Viewport = {
   themeColor: META_THEME_COLORS.light
@@ -35,7 +35,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await auth();
-  const cookieStore = await cookies();
+  // const cookieStore = await cookies();
   // const activeThemeValue = cookieStore.get('active_theme')?.value;
 
   return (
