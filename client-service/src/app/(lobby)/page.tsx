@@ -3,10 +3,9 @@ import { kv } from '@vercel/kv';
 import { Hero } from './_components/hero';
 import { ProductCategory } from './_components/product-category';
 import { ProductGallery, ProductGalleryProps } from './_components/product-gallery';
-import { productUserService } from '@/lib/services/product.service';
-import { bannerService } from '@/lib/services/banner.service';
 import { fetchAndCacheBanners } from '@/lib/caches/banners';
 import { fetchAndCacheProducts } from '@/lib/caches/products';
+import MapBox from './_components/map-box';
 
 // export const metadata: Metadata = {
 //   title: 'Bánh Cuốn Hoàng Vũ | Ngon Chuẩn Vị Nhà Làm',
@@ -19,7 +18,7 @@ const initProductGallery: ProductGalleryProps = {
   products: []
 }
 // Main logic
-async function initData(kv: any, productUserService: any, bannerService: any) {
+async function initData(kv: any) {
   const products = await fetchAndCacheProducts(kv, 1);
   const banners = await fetchAndCacheBanners(kv, 1);
 
@@ -28,7 +27,7 @@ async function initData(kv: any, productUserService: any, bannerService: any) {
 }
 
 export default async function Page() {
-  const { banners, initPGOne } = await initData(kv, productUserService, bannerService);
+  const { banners, initPGOne } = await initData(kv);
 
   return (
     <>
@@ -36,7 +35,8 @@ export default async function Page() {
       <div className='py-8 flex flex-col gap-12 mx-auto max-w-6xl'>
         <ProductCategory {...initPGOne} />
         <ProductGallery {...initPGOne} />
-        <ProductGallery {...initPGOne} />
+        {/* <ProductGallery {...initPGOne} /> */}
+        <MapBox />
       </div>
     </>
   );

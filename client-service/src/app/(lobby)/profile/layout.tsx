@@ -11,23 +11,23 @@ export const metadata: Metadata = {
 const sidebarNavItems = [
   {
     title: "Profile",
-    href: "/dashboard/profile",
+    href: "/profile",
   },
   {
     title: "Account",
-    href: "/dashboard/profile/account",
+    href: "/profile/account",
   },
   {
     title: "Appearance",
-    href: "/dashboard/profile/appearance",
+    href: "/profile/appearance",
   },
   {
     title: "Notifications",
-    href: "/dashboard/profile/notifications",
+    href: "/profile/notifications",
   },
   {
     title: "Display",
-    href: "/dashboard/profile/display",
+    href: "/profile/display",
   },
 ]
 
@@ -37,7 +37,7 @@ interface SettingsLayoutProps {
 
 export default function SettingsLayout({ children }: SettingsLayoutProps) {
   return (
-    <>
+    <div className="w-full max-w-6xl mx-auto">
       <div className="space-y-6 p-10 pb-16">
         <div className="space-y-0.5">
           <h2 className="text-2xl font-bold tracking-tight">Settings</h2>
@@ -53,6 +53,6 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
           <div className="flex-1 lg:max-w-2xl">{children}</div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { CollapsibleFAQ } from '@/modules/faq/components/collapsible-faq';
+import { ContactInfo } from '@/modules/faq/components/contact-info';
 import FaqPage from '@/modules/faq/faq-page';
 
 export default function FaqDemo() {
@@ -19,16 +21,26 @@ export default function FaqDemo() {
         }
     ];
     return (
-        <FaqPage
-            title="Câu hỏi thường gặp"
-            description="Mọi thứ bạn cần biết về nền tảng của chúng tôi"
-            items={DEMO_FAQS}
-            contactInfo={{
-                title: "Vẫn còn thắc mắc?",
-                description: "Chúng tôi ở đây để giúp bạn",
-                buttonText: "Liên hệ hỗ trợ",
-                onContact: () => console.log("Đã nhấp vào liên hệ hỗ trợ"),
-            }
-            } />
+        <div className='py-8 mx-auto max-w-6xl grid grid-cols-4'>
+            <div className='col-span-1'>
+                <CollapsibleFAQ />
+                <CollapsibleFAQ />
+                <CollapsibleFAQ />
+            </div>
+            <div className='col-span-3'>
+                <FaqPage
+                    title="Câu hỏi thường gặp"
+                    description="Mọi thứ bạn cần biết về nền tảng của chúng tôi"
+                    items={DEMO_FAQS} />
+            </div>
+            <div className='col-span-4'>
+                <ContactInfo {...{
+                    title: "Vẫn còn thắc mắc?",
+                    description: "Chúng tôi ở đây để giúp bạn",
+                    buttonText: "Liên hệ hỗ trợ",
+                    onContact: () => console.log("Đã nhấp vào liên hệ hỗ trợ"),
+                }} />
+            </div>
+        </div>
     )
 }

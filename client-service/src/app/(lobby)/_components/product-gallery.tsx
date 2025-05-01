@@ -46,8 +46,8 @@ export function ProductGallery({
     }, [carouselApi]);
 
     return (
-        <section className="w-full">
-            <div className="flex w-full items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl">
+        <section className="w-full max-w-6xl mx-auto px-4 xl:px-0">
+            <div className="flex w-full items-center space-x-2 lg:max-w-6xl">
                 <div className="mb-4 w-full flex items-end justify-between md:mb-14 lg:mb-16">
                     <div className="flex flex-col gap-4">
                         <h2 className="text-3xl font-medium md:text-4xl lg:text-5xl line-clamp-1">
@@ -104,7 +104,7 @@ export function ProductGallery({
                                 className="basis-1/2 md:basis-1/3 lg:basis-1/5 xl:basis-1/6"
                             >
                                 <Link href={`/product/${product.id}`} className="group rounded-xl">
-                                    <div className="group relative h-full min-h-[18rem] max-w-full overflow-hidden rounded-xl md:aspect-[5/4] lg:aspect-[16/9] ">
+                                    <div className="group relative h-full min-h-[14rem] max-w-full overflow-hidden rounded-xl md:aspect-[5/4] lg:aspect-[16/9] ">
                                         <img
                                             src={product.image}
                                             alt={product.product_name}
@@ -112,16 +112,16 @@ export function ProductGallery({
                                         />
                                         <div className="absolute inset-0 h-full bg-[linear-gradient(hsl(var(--primary)/0),hsl(var(--primary)/0.4),hsl(var(--primary)/0.8)_100%)] mix-blend-multiply" />
                                         <div className="absolute inset-x-0 bottom-0 flex flex-col items-start text-black dark:text-white font-bold gap-2">
-                                            <div className="relative">
+                                            <div className="w-full relative">
                                                 <div className="absolute w-full h-full bg-amber-50 rounded-md opacity-75"></div>
-                                                <div className="relative z-1">
-                                                    <div className="pt-4 text-2xl font-medium md:pt-4 lg:pt-4 line-clamp-2">
+                                                <div className="w-full relative z-1 px-2 flex flex-col gap-1 pt-2 pb-2">
+                                                    <div className="text-xl font-medium line-clamp-2">
                                                         {product.product_name}
                                                     </div>
-                                                    <div className="text-xs line-clamp-2">
+                                                    <div className="text-xs font-medium line-clamp-1">
                                                         {product.description}
                                                     </div>
-                                                    <div className="flex items-center text-sm">
+                                                    <div className="flex items-center text-blue-700 hover:text-blue-600 text- font-medium">
                                                         Xem thêm
                                                         <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
                                                     </div>

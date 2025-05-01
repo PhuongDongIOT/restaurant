@@ -14,21 +14,15 @@ interface FaqPageProps extends React.HTMLAttributes<HTMLElement> {
         question: string;
         answer: string;
     }[];
-    contactInfo?: {
-        title: string;
-        description: string;
-        buttonText: string;
-        onContact?: () => void;
-    };
 }
 
 const FaqPage = React.forwardRef<HTMLElement, FaqPageProps>(
-    ({ className, title, description, items, contactInfo, ...props }, ref) => {
+    ({ className, title, description, items, ...props }, ref) => {
         return (
             <section
                 ref={ref}
                 className={cn(
-                    "py-16 w-full bg-gradient-to-b from-transparent via-muted/50 to-transparent",
+                    "w-full bg-gradient-to-b from-transparent via-muted/50 to-transparent",
                     className
                 )}
                 {...props}
@@ -39,7 +33,7 @@ const FaqPage = React.forwardRef<HTMLElement, FaqPageProps>(
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="max-w-2xl mx-auto text-center mb-12"
+                        className="max-w-2xl mx-auto mb-12"
                     >
                         <h2 className="text-3xl font-semibold mb-3 bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text text-transparent">
                             {title}
@@ -60,29 +54,6 @@ const FaqPage = React.forwardRef<HTMLElement, FaqPageProps>(
                             />
                         ))}
                     </div>
-
-                    {/* Contact Section */}
-                    {contactInfo && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.3 }}
-                            className="max-w-md mx-auto mt-12 p-6 rounded-lg text-center"
-                        >
-                            <div className="inline-flex items-center justify-center p-1.5 rounded-full mb-4">
-                                <Mail className="h-4 w-4" />
-                            </div>
-                            <p className="text-sm font-medium text-foreground mb-1">
-                                {contactInfo.title}
-                            </p>
-                            <p className="text-xs text-muted-foreground mb-4">
-                                {contactInfo.description}
-                            </p>
-                            <Button size="sm" onClick={contactInfo.onContact}>
-                                {contactInfo.buttonText}
-                            </Button>
-                        </motion.div>
-                    )}
                 </div>
             </section>
         );

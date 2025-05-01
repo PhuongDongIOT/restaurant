@@ -40,9 +40,7 @@ export default async function DashboardLayout({
                     <SignupDialog />
                 </ModalUserProvider>
             </ModalCartProvider>
-            <footer className='relative z-[9]'>
-                <FooterSection />
-            </footer>
+            <FooterSection />
         </main>
     );
 }

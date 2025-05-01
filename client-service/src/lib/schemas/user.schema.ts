@@ -12,10 +12,10 @@ export type IUser = z.infer<typeof UserSchema>;
 
 export const RegisterSchema = z
   .object({
-    name: z.string().min(1, "Name is required"),
-    email: z.string().email("Invalid email"),
-    phone: z.string().regex(/^\d{9,11}$/, "Phone number must be 9-11 digits"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
+    name: z.string().min(1, "Tên là bắt buộc"),
+    email: z.string().email("Email không hợp lệ"),
+    phone: z.string().regex(/^\d{9,11}$/, "Số điện thoại phải có 9-11 chữ số"),
+    password: z.string().min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
     confirmpassword: z.string(),
   })
   .refine((data) => data.password === data.confirmpassword, {
@@ -27,8 +27,8 @@ export type IRegisterUser = z.infer<typeof RegisterSchema>;
 
 export const SignInSchema = z
   .object({
-    email: z.string().email("Invalid email"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
+    email: z.string().email("Email không hợp lệ"),
+    password: z.string().min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
   });
 
 export type ISignInUser = z.infer<typeof SignInSchema>;

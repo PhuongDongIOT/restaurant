@@ -11,7 +11,7 @@ type SidebarProps = React.HTMLAttributes<HTMLDivElement> & {
 export function SidebarComponent({ className, categories }: SidebarProps) {
   return (
     <Sidebar className={cn("pb-6 max-w-2xs", className)} collapsible='icon'>
-      <SidebarGroupLabel className="h-8 text-md self-center">Application</SidebarGroupLabel>
+      <SidebarGroupLabel className="h-8 text-md self-center"></SidebarGroupLabel>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent className="space-y-4 py-4">

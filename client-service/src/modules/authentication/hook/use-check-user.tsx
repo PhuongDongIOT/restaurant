@@ -1,6 +1,5 @@
 import { useAppSelector } from "@/lib/hooks/redux";
 import { RootState } from "@/lib/store";
-import { useModalCart } from "@/modules/categorys/components/modal-cart-provider";
 import { useModalUser } from "../components/modal-user-provider";
 
 export function useCheckUser() {

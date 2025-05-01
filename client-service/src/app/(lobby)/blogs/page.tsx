@@ -1,6 +1,6 @@
 import * as React from "react";
 // import { LobbySkeleton } from "../../_components/lobby-skeleton";
-import Gallery from "../../_components/gallary";
+import Gallery from "../_components/gallery";
 import HeroGeometric from "@/components/molecules/hero-geometric";
 import PostCard from "@/components/organims/post-card";
 import { ContentSection } from "@/components/organims/content-section";
@@ -11,20 +11,9 @@ import NewsShowcase from "../_components/news-showcase";
 import SpotlightNews from "../_components/spotlight-news";
 import { SearchParams } from "nuqs";
 import { searchParamsCache, serialize } from "@/lib/customs/searchparams";
-import { categoryService } from "@/lib/services/category.service";
 import { blogService } from "@/lib/services/blog.service";
 
 const image = "https://awsbutket2468.s3.ap-northeast-1.amazonaws.com/baby%20tree_%2006-03-2025%20at%2002-06-39.jpeg";
-const postCard = {
-    "imageUrl": image,
-    "category": "MUA BĐS",
-    "date": "18/02/2025 16:01",
-    "author": "Nguyễn Nam",
-    "title": "Để Không Bị Hớ Khi Mua Đất Nền, Nhà Đầu Tư Đừng Bỏ Qua Các Bước Này",
-    "description": "Hiểu và xác định được giá trị lô đất là một trong những yếu tố hạn chế tối đa rủi ro nhà đầu tư phải đối mặt khi đầu tư đất nền...",
-    "tags": ["Bất động sản Hà Nội", "đất nền", "Thị trường đất nền"],
-    "blogUrl": "/bai-viet/khong-bi-ho-mua-dat-nen"
-}
 
 type pageProps = {
     searchParams: Promise<SearchParams>;

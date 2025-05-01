@@ -17,7 +17,7 @@ export function ProductCategory ({
     products
 }: ProductCategoryProps) {
     return (
-        <section className="w-full">
+        <section className="w-full mx-auto max-w-6xl px-4 xl:px-0">
             <div className="mx-auto">
                 <div className="flex flex-col gap-4 mb-4 md:mb-14 lg:mb-16">
                     <div className="flex flex-col gap-4">
@@ -28,7 +28,7 @@ export function ProductCategory ({
                     </div>
                     <div className="relative">
                         <ScrollArea>
-                            <div className="grid grid-cols-4 lg:grid-cols-6 gap-4">
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                                 {products.map((product) => (
                                     <ProductCard
                                         key={product.id}
