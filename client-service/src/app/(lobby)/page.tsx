@@ -1,5 +1,5 @@
 import { kv } from '@vercel/kv';
-import { Metadata } from 'next'
+// import { Metadata } from 'next'
 import { Hero } from './_components/hero';
 import { ProductCategory } from './_components/product-category';
 import { ProductGallery, ProductGalleryProps } from './_components/product-gallery';
@@ -8,10 +8,10 @@ import { bannerService } from '@/lib/services/banner.service';
 import { fetchAndCacheBanners } from '@/lib/caches/banners';
 import { fetchAndCacheProducts } from '@/lib/caches/products';
 
-export const metadata: Metadata = {
-  title: 'Bánh Cuốn Hoàng Vũ | Ngon Chuẩn Vị Nhà Làm',
-  description: 'Khám phá hương vị bánh cuốn truyền thống tại Bánh Cuốn Hoàng Vũ – mỏng mịn, nóng hổi, chuẩn vị quê nhà.'
-};
+// export const metadata: Metadata = {
+//   title: 'Bánh Cuốn Hoàng Vũ | Ngon Chuẩn Vị Nhà Làm',
+//   description: 'Khám phá hương vị bánh cuốn truyền thống tại Bánh Cuốn Hoàng Vũ – mỏng mịn, nóng hổi, chuẩn vị quê nhà.'
+// };
 
 const initProductGallery: ProductGalleryProps = {
   title: "Món Thượng hạng",
