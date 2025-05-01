@@ -44,11 +44,11 @@ export default async function RootLayout({
 
   return (
     <html lang='en' suppressHydrationWarning>
-      <Head>
+      <head>
         <SeoHead />
         <GoogleAnalytic />
         <GoogleTag />
-      </Head>
+      </head>
       <body>
         <NextTopLoader showSpinner={false} />
         <NuqsAdapter>
