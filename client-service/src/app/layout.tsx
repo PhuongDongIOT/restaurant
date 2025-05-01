@@ -5,6 +5,8 @@ import type { Metadata, Viewport } from 'next';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 // import { Inter } from 'next/font/google';
 import NextTopLoader from 'nextjs-toploader';
+
+import Head from 'next/head';
 // import { cookies } from 'next/headers';
 // import { cn } from '@/lib/utils';
 // import { fontVariables } from '@/lib/font';
@@ -12,6 +14,8 @@ import './globals.css';
 import './theme.css';
 import ProvidersRedux from './providers';
 import SeoHead from '@/components/molecules/seo-head';
+import GoogleAnalytic from '@/modules/seo-manager/components/google-analytic';
+import GoogleTag from '@/modules/seo-manager/components/google-tag';
 
 const META_THEME_COLORS = {
   light: '#ffffff',
@@ -40,13 +44,17 @@ export default async function RootLayout({
 
   return (
     <html lang='en' suppressHydrationWarning>
-      <SeoHead />
+      <Head>
+        <SeoHead />
+        <GoogleAnalytic />
+        <GoogleTag />
+      </Head>
       <body>
         <NextTopLoader showSpinner={false} />
         <NuqsAdapter>
           <Providers
             session={session}
-            // activeThemeValue={activeThemeValue as string}
+          // activeThemeValue={activeThemeValue as string}
           >
             <Toaster />
             <ProvidersRedux>

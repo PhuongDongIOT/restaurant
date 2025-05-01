@@ -1,10 +1,9 @@
 // components/SeoHead.tsx
-import Head from 'next/head';
 
 interface SeoHeadProps { }
 export default function SeoHead({ }: SeoHeadProps) {
     return (
-        <Head>
+        <>
             {/* Basic Meta */}
             <meta charSet="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
@@ -101,6 +100,6 @@ export default function SeoHead({ }: SeoHeadProps) {
                     "description": "Bánh Cuốn Anh Vũ - Chuyên cung cấp những món bánh cuốn đặc sản ngon và hấp dẫn, mang đậm hương vị Việt."
                 })
             }} />
-        </Head>
+        </>
     );
 }
