@@ -1,7 +1,7 @@
 import { auth } from '@/lib/auths/auth';
 import Providers from '@/components/layout/providers';
 import { Toaster } from '@/components/ui/sonner';
-import type { Metadata, Viewport } from 'next';
+import type { Viewport } from 'next';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 // import { Inter } from 'next/font/google';
 import NextTopLoader from 'nextjs-toploader';
@@ -20,11 +20,6 @@ import GoogleTag from '@/modules/seo-manager/components/google-tag';
 const META_THEME_COLORS = {
   light: '#ffffff',
   dark: '#09090b'
-};
-
-export const metadata: Metadata = {
-  title: 'Next Shadcn',
-  description: 'Basic dashboard with Next.js and Shadcn'
 };
 
 // const inter = Inter({ subsets: ['latin'] });

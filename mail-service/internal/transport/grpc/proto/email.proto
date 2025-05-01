@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package email;
+
+option go_package = "internal/transport/grpc/proto/emailpb";
+
+service EmailService {
+  rpc Send (SendEmailRequest) returns (SendEmailResponse);
+}
+
+message SendEmailRequest {
+  string from = 1;
+  repeated string to = 2;
+  string subject = 3;
+  string html = 4;
+  repeated string cc = 5;
+  repeated string bcc = 6;
+  string reply_to = 7;
+}
+
+message SendEmailResponse {
+  string id = 1;
+}
