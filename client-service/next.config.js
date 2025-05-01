@@ -1,9 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  // experimental: {
-  //   forceSwcTransforms: true,
-  // },
+  experimental: {
+    forceSwcTransforms: true,
+  },
+  swcMinify: true,
+  experimental: {
+    swcLoader: false,
+  },
   images: {
     domains: ['localhost', 'images.unsplash.com', 'awsbutket2468.s3.ap-northeast-1.amazonaws.com'],
     remotePatterns: [
