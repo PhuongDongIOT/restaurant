@@ -1,11 +1,13 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+// src/app/api/sitemap/route.ts
 
-const baseUrl = 'https://banhcuonanhvu.com';
+import { NextResponse } from 'next/server';
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
-    // Fetch động các item nếu có
-    const blogs = await fetch(`${baseUrl}/api/blogs`).then(res => res.json()); // giả sử bạn có API này
-    const products = await fetch(`${baseUrl}/api/products`).then(res => res.json());
+export async function GET() {
+    const baseUrl = 'https://banhcuonanhvu.com';
+
+    // Giả lập dữ liệu, bạn có thể fetch từ DB hoặc API thật
+    const blogs = [{ slug: 'huong-vi-truyen-thong' }];
+    const products = [{ slug: 'banh-cuon-nhan-thit' }];
 
     const staticRoutes = ['', '/categories', '/faq', '/order', '/profile'];
 
@@ -15,14 +17,17 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
             .map(route => `<url><loc>${baseUrl}${route}</loc></url>`)
             .join('')}
     ${blogs
-            .map((blog: any) => `<url><loc>${baseUrl}/blogs/${blog.slug}</loc></url>`)
+            .map(blog => `<url><loc>${baseUrl}/blogs/${blog.slug}</loc></url>`)
             .join('')}
     ${products
-            .map((product: any) => `<url><loc>${baseUrl}/product/${product.slug}</loc></url>`)
+            .map(product => `<url><loc>${baseUrl}/product/${product.slug}</loc></url>`)
             .join('')}
   </urlset>`;
 
-    res.setHeader('Content-Type', 'application/xml');
-    res.write(sitemap);
-    res.end();
+    return new NextResponse(sitemap, {
+        status: 200,
+        headers: {
+            'Content-Type': 'application/xml',
+        },
+    });
 }
