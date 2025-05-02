@@ -45,27 +45,25 @@ export const metadata: Metadata = {
 type pageProps = {
     searchParams: Promise<SearchParams>;
 };
-export default async function Page(props: pageProps) {
-    const searchParams = await props.searchParams;
-    // Allow nested RSCs to access the search params (in a type-safe way)
-    searchParamsCache.parse(searchParams);
+export default async function Page() {
+    // const searchParams = await props.searchParams;
+    // // Allow nested RSCs to access the search params (in a type-safe way)
+    // searchParamsCache.parse(searchParams);
 
-    // This key is used for invoke suspense if any of the search params changed (used for filters).
-    const key = serialize({ ...searchParams });
+    // // This key is used for invoke suspense if any of the search params changed (used for filters).
+    // const key = serialize({ ...searchParams });
 
-    const page = searchParamsCache.get('page');
-    const search = searchParamsCache.get('q');
-    const pageLimit = searchParamsCache.get('limit');
+    // const page = searchParamsCache.get('page');
+    // const search = searchParamsCache.get('q');
+    // const pageLimit = searchParamsCache.get('limit');
 
-    const filters = {
-        page,
-        limit: pageLimit,
-        ...(search && { search }),
-    };
+    // const filters = {
+    //     page,
+    //     limit: pageLimit,
+    //     ...(search && { search }),
+    // };
 
-    const { data: { posts: blogs } } = await blogService.filters({
-        queryParams: filters
-    });
+    const { data: { posts: blogs } } = await blogService.filters();
 
 
     return (
