@@ -81,7 +81,7 @@ export default function SeoHead({ }: SeoHeadProps) {
             <link rel="apple-touch-startup-image" href="/startup.png" />
 
             {/* Favicon */}
-            <link rel="shortcut icon" href="/logo.ico" type="image/x-icon" />
+            <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
             {/* Preconnect fonts */}
             <link rel="preconnect" href="https://fonts.googleapis.com" />

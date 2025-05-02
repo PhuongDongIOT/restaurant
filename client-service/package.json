@@ -119,6 +119,7 @@
     "zustand": "^5.0.2"
   },
   "devDependencies": {
+    "@builder.io/partytown": "^0.10.3",
     "@faker-js/faker": "^9.7.0",
     "@next/swc-wasm-nodejs": "^15.3.1",
     "@opentelemetry/core": "^2.0.0",

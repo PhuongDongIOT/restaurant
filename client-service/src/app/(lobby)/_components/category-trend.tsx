@@ -28,7 +28,7 @@ export function CategoryTrend({
                         <p className="text-blue-600 font-medium line-clamp-1 transition-all hover:text-blue-700">Xem thêm</p>
                     </div>
                     <ScrollArea>
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="block lg:grid lg:grid-cols-3 gap-4">
                             {products.slice(0, 1).map((product) => (
                                 <ProductCardHorizontal
                                     key={product.id}
@@ -40,7 +40,7 @@ export function CategoryTrend({
                                     disable={true}
                                 />
                             ))}
-                            <div className="col-span-2 grid grid-cols-4 gap-4">
+                            <div className="col-span-2 grid grid-cols-2 md:grid-cols-4 gap-4">
                                 {products.map((product) => (
                                     <ProductCardHorizontal
                                         key={product.id}

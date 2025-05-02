@@ -10,10 +10,14 @@ import { BannerFooter } from './_components/banner-footer';
 import { ProductTrend } from './_components/product-trend';
 import { CategoryTrend } from './_components/category-trend';
 import { ProductCommon } from './_components/product-common';
+import dynamic from 'next/dynamic';
 // export const metadata: Metadata = {
 //   title: 'Bánh Cuốn Hoàng Vũ | Ngon Chuẩn Vị Nhà Làm',
 //   description: 'Khám phá hương vị bánh cuốn truyền thống tại Bánh Cuốn Hoàng Vũ – mỏng mịn, nóng hổi, chuẩn vị quê nhà.'
 // };
+
+// const ComponentA = dynamic(() => import('./_components/banner-footer'))
+// const ComponentB = dynamic(() => import('./_components/product-trend'))
 
 const initProductGallery: ProductGalleryProps = {
   title: "Món yêu thích",

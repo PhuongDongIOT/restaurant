@@ -30,7 +30,7 @@ export function ProductCommon({
                     <div className="relative md:col-span-3">
                         <ScrollArea>
                             <div className="flex flex-col gap-2">
-                                <div className="grid grid-cols-3 gap-2">
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                                     {products.slice(0, 3).map((product) => (
                                         <ProductCardHorizontal
                                             key={product.id}
