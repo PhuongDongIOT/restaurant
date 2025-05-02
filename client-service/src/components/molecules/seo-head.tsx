@@ -51,6 +51,9 @@ export default function SeoHead({ }: SeoHeadProps) {
             <meta name="syndication-source" content="https://banhcuonanhvu.vn" />
             <meta name="original-source" content="https://banhcuonanhvu.vn" />
 
+            <meta name="google-site-verification" content="8tiU_TboUzEiIT9UbZVc_UBtIE-ELBlmchwVPegm9tU" />
+            
+
             {/* Open Graph */}
             <meta property="og:type" content="website" />
             <meta property="og:title" content="Bánh Cuốn Anh Vũ" />
