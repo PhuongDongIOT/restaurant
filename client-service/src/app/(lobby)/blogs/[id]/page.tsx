@@ -3,38 +3,38 @@ import { Shell } from "@/components/atoms/shell"
 import HeroBlogCard from "@/components/organims/hero-blog-card";
 import ArticleContent from "@/components/molecules/article-content";
 import TableOfContents from "@/components/organims/table-of-contents";
-import { Metadata } from "next";
+// import { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-    // const blog = await getBlogBySlug(params.slug);
+// export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+//     // const blog = await getBlogBySlug(params.slug);
 
-    return {
-        title: 'blog.title' + ' - Blog Bánh cuốn Anh Vũ',
-        description: 'Bài viết về bánh cuốn và văn hóa ẩm thực Việt.',
-        openGraph: {
-            title: 'blog.title',
-            description: 'blog.excerpt',
-            url: `https://banhcuonanhvu.com/blog/${params.slug}`,
-            siteName: 'Bánh cuốn Anh Vũ',
-            images: [
-                {
-                    url: 'https://banhcuonanhvu.com/og-default.png',
-                    width: 1200,
-                    height: 630,
-                    alt: 'blog.title',
-                },
-            ],
-            locale: 'vi_VN',
-            type: 'article',
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: 'blog.title',
-            description: 'blog.excerpt',
-            images: ['https://banhcuonanhvu.com/og-default.png'],
-        },
-    };
-}
+//     return {
+//         title: 'blog.title' + ' - Blog Bánh cuốn Anh Vũ',
+//         description: 'Bài viết về bánh cuốn và văn hóa ẩm thực Việt.',
+//         openGraph: {
+//             title: 'blog.title',
+//             description: 'blog.excerpt',
+//             url: `https://banhcuonanhvu.com/blog/${params.slug}`,
+//             siteName: 'Bánh cuốn Anh Vũ',
+//             images: [
+//                 {
+//                     url: 'https://banhcuonanhvu.com/og-default.png',
+//                     width: 1200,
+//                     height: 630,
+//                     alt: 'blog.title',
+//                 },
+//             ],
+//             locale: 'vi_VN',
+//             type: 'article',
+//         },
+//         twitter: {
+//             card: 'summary_large_image',
+//             title: 'blog.title',
+//             description: 'blog.excerpt',
+//             images: ['https://banhcuonanhvu.com/og-default.png'],
+//         },
+//     };
+// }
 
 const image = "https://awsbutket2468.s3.ap-northeast-1.amazonaws.com/baby%20tree_%2006-03-2025%20at%2002-06-39.jpeg";
 const itemBlog = {

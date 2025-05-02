@@ -90,8 +90,7 @@ export function ProfileForm() {
                 <Input placeholder="shadcn" {...field} />
               </FormControl>
               <FormDescription>
-                This is your public display name. It can be your real name or a
-                pseudonym. You can only change this once every 30 days.
+              Đây là tên hiển thị công khai của bạn. Có thể là tên thật hoặc bút danh. Bạn chỉ có thể thay đổi tên này một lần sau mỗi 30 ngày.
               </FormDescription>
               <FormMessage />
             </FormItem>
