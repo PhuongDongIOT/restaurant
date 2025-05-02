@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const baseUrl = 'https://banhcuonanhvu.com';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
     // Fetch động các item nếu có
     const blogs = await fetch(`${baseUrl}/api/blogs`).then(res => res.json()); // giả sử bạn có API này
     const products = await fetch(`${baseUrl}/api/products`).then(res => res.json());
