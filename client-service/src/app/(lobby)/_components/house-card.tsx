@@ -22,7 +22,7 @@ const house = {
 export default function HouseCard() {
     const [thumbnail, setThumbnail] = useState<string>(house.images[0])
     return (
-        <Card className="overflow-hidden rounded-2xl shadow-lg transition duration-300 hover:shadow-xl">
+        <Card className="overflow-hidden rounded-none py-0 border-0 transition duration-300 hover:shadow-xl">
             <div className="relative">
                 {/* Main Image */}
                 <motion.div
@@ -32,19 +32,19 @@ export default function HouseCard() {
                     exit={{ opacity: 0, x: 10 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <div className="overflow-hidden max-h-[30rem]">
+                    <div className="relative overflow-hidden h-[30rem] shadow-lg rounded-xl">
                     <Image
                         src={thumbnail}
                         alt={house.title}
                         width={800}
                         height={400}
-                        className="w-full object-cover rounded-t-2xl"
+                        className="w-full h-auto object-cover rounded-t-2xl"
                     />
                     </div>
                 </motion.div>
 
                 {/* Small Images */}
-                <div className="absolute bottom-3 left-3 flex space-x-2 bg-white/80 p-1 rounded-lg shadow-md">
+                <div className="absolute w-full max-w-md grid grid-cols-4 bottom-0 left-3 space-x-2 p-1 rounded-lg shadow-md">
                     {house.images.slice(0, 4).map((img, index) => (
                         <Image
                             key={index}
@@ -58,7 +58,7 @@ export default function HouseCard() {
                     ))}
                 </div>
             </div>
-            <CardContent className="p-5 hidden" >
+            <CardContent className="p-5" >
             </CardContent>
         </Card>
     );

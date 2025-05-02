@@ -13,11 +13,13 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import CTABanner from "../molecules/cta-banner"
 
 export function NavigationMenuMain() {
   return (
     <div className="w-full hidden md:block">
-      <NavigationMenu>
+      <CTABanner />
+      <NavigationMenu className="px-4 py-2">
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger>Chào Mừng</NavigationMenuTrigger>

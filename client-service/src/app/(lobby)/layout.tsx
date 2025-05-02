@@ -10,6 +10,7 @@ import { SelectedProductProvider } from '@/modules/products/contexts/selected-pr
 import { ModalUserProvider } from '@/modules/authentication/components/modal-user-provider';
 import { LoginDialog } from '@/modules/authentication/components/login-dialog/login.dialog';
 import { SignupDialog } from '@/modules/authentication/components/signnup.dialog';
+import CategoryChipList from '@/components/molecules/category-chip-list';
 
 export const metadata: Metadata = {
     title: 'Bánh Cuốn Hoàng Vũ | Ngon Chuẩn Vị Nhà Làm',
@@ -20,10 +21,10 @@ export default async function DashboardLayout({
 }: {
     children: React.ReactNode;
 }) {
-    
+
     return (
         <main>
-            <header className='bg-white relative z-[999] px-4 py-2 w-full'>
+            <header className='bg-white relative z-[999] w-full'>
                 <NavigationMenuMain />
             </header>
             <ModalCartProvider>
@@ -40,6 +41,9 @@ export default async function DashboardLayout({
                     <SignupDialog />
                 </ModalUserProvider>
             </ModalCartProvider>
+            <section className='mx-auto max-w-6xl py-4'>
+                <CategoryChipList items={['Phở', 'Cơm Tấm', 'Bún Bò', 'Gà Rán', 'Mì Xào', 'Phở', 'Cơm Tấm', 'Bún Bò', 'Gà Rán', 'Mì Xào', 'Phở', 'Cơm Tấm', 'Bún Bò', 'Gà Rán', 'Mì Xào']} />
+            </section>
             <FooterSection />
         </main>
     );

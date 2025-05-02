@@ -11,7 +11,7 @@ export interface ProductCategoryProps {
     products: IProduct[];
 }
 
-export function ProductCategory ({
+export function ProductCategory({
     title,
     description,
     products
@@ -19,12 +19,12 @@ export function ProductCategory ({
     return (
         <section className="w-full mx-auto max-w-6xl px-4 xl:px-0">
             <div className="mx-auto">
-                <div className="flex flex-col gap-4 mb-4 md:mb-14 lg:mb-16">
-                    <div className="flex flex-col gap-4">
-                        <h2 className="text-3xl font-medium md:text-4xl lg:text-5xl line-clamp-1">
+                <div className="flex flex-col gap-4 mb-4 md:mb-6 lg:mb-8">
+                    <div className="flex flex-col">
+                        <h2 className="text-xl pb-2 font-medium md:text-2xl lg:text-3xl line-clamp-1">
                             {title}
                         </h2>
-                        <p className="max-w-lg text-muted-foreground line-clamp-2">{description}</p>
+                        <p className="max-w-lg text-muted-foreground line-clamp-1">{description}</p>
                     </div>
                     <div className="relative">
                         <ScrollArea>

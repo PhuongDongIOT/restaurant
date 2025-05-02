@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import { ICategoryBanner } from "@/lib/schemas/category.schema";
 import HouseCard from "./house-card";
+import Image from "next/image";
 
 export interface GalleryProps {
     title?: string;
@@ -68,10 +69,10 @@ const Hero = ({
                                 className="basis-1/1 max-h-[32rem] w-full pl-0"
                             >
                                 <div className="group w-full">
-                                    <div className="group relative h-full min-h-[18rem] w-full max-w-full overflow-hidden md:aspect-[5/4] lg:aspect-[16/9] ">
+                                    <div className="group relative h-full min-h-[18rem] w-full max-w-full overflow-hidden">
                                         {
                                             item.images.length === 1 ? (
-                                                <img
+                                                <Image
                                                     src={item.images[0]}
                                                     alt={item.category_name}
                                                     className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"

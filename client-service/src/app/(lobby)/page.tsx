@@ -6,14 +6,17 @@ import { ProductGallery, ProductGalleryProps } from './_components/product-galle
 import { fetchAndCacheBanners } from '@/lib/caches/banners';
 import { fetchAndCacheProducts } from '@/lib/caches/products';
 import MapBox from './_components/map-box';
-
+import { BannerFooter } from './_components/banner-footer';
+import { ProductTrend } from './_components/product-trend';
+import { CategoryTrend } from './_components/category-trend';
+import { ProductCommon } from './_components/product-common';
 // export const metadata: Metadata = {
 //   title: 'Bánh Cuốn Hoàng Vũ | Ngon Chuẩn Vị Nhà Làm',
 //   description: 'Khám phá hương vị bánh cuốn truyền thống tại Bánh Cuốn Hoàng Vũ – mỏng mịn, nóng hổi, chuẩn vị quê nhà.'
 // };
 
 const initProductGallery: ProductGalleryProps = {
-  title: "Món Thượng hạng",
+  title: "Món yêu thích",
   description: "Món ăn cao cấp, xa xỉ, sử dụng nguyên liệu quý hiếm và có cách chế biến cầu kỳ, tinh tế.",
   products: []
 }
@@ -33,9 +36,12 @@ export default async function Page() {
     <>
       <Hero items={banners} />
       <div className='py-8 flex flex-col gap-12 mx-auto max-w-6xl'>
-        <ProductCategory {...initPGOne} />
+        <ProductTrend {...initPGOne} title='Món ăn đặc sắc' />
+        <CategoryTrend  {...initPGOne} title='Danh mục phổ biến'/>
+        <ProductCategory {...initPGOne} title='Món ăn phổ biến'/>
+        <ProductCommon  {...initPGOne} title='Món ăn phổ biến'/>
         <ProductGallery {...initPGOne} />
-        {/* <ProductGallery {...initPGOne} /> */}
+        <BannerFooter src="/images/banner-hot-port.jpg" />
         <MapBox />
       </div>
     </>

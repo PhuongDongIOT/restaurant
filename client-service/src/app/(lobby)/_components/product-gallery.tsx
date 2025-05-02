@@ -48,12 +48,12 @@ export function ProductGallery({
     return (
         <section className="w-full max-w-6xl mx-auto px-4 xl:px-0">
             <div className="flex w-full items-center space-x-2 lg:max-w-6xl">
-                <div className="mb-4 w-full flex items-end justify-between md:mb-14 lg:mb-16">
-                    <div className="flex flex-col gap-4">
-                        <h2 className="text-3xl font-medium md:text-4xl lg:text-5xl line-clamp-1">
+                <div className="w-full flex justify-between gap-4 mb-4 md:mb-6 lg:mb-8">
+                    <div className="flex flex-col">
+                        <h2 className="text-xl pb-2 font-medium md:text-2xl lg:text-3xl line-clamp-1">
                             {title}
                         </h2>
-                        <p className="max-w-lg text-muted-foreground line-clamp-2">{description}</p>
+                        <p className="max-w-lg text-muted-foreground line-clamp-1">{description}</p>
                     </div>
                     <div className="hidden shrink-0 gap-2 md:flex">
                         <Button
