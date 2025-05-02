@@ -42,9 +42,9 @@ export const metadata: Metadata = {
   };
   
 
-type pageProps = {
-    searchParams: Promise<SearchParams>;
-};
+// type pageProps = {
+//     searchParams: Promise<SearchParams>;
+// };
 export default async function Page() {
     // const searchParams = await props.searchParams;
     // // Allow nested RSCs to access the search params (in a type-safe way)
