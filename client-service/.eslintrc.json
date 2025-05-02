@@ -42,7 +42,8 @@
         "@next/next/no-img-element": "off",
         "jsx-a11y/no-noninteractive-element-interactions": "off",
         "jsx-a11y/anchor-has-content": "off",
-        "@next/next/no-page-custom-font": "off"
+        "@next/next/no-page-custom-font": "off",
+        "react/no-unknown-property": "off"
     },
     "settings": {
         "react": {
