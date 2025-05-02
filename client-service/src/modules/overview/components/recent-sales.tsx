@@ -50,7 +50,7 @@ export function RecentSales() {
     <Card className='h-full'>
       <CardHeader>
         <CardTitle>Recent Sales</CardTitle>
-        <CardDescription>You made 265 sales this month.</CardDescription>
+        <CardDescription>You made 265 sales Tháng này.</CardDescription>
       </CardHeader>
       <CardContent>
         <div className='space-y-8'>

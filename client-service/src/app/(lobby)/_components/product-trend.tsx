@@ -1,7 +1,6 @@
 "use client";
 
 import { ScrollArea } from "@radix-ui/react-scroll-area";
-import { ProductCard } from "@/modules/products/components/product-card";
 import { ScrollBar } from "@/components/ui/scroll-area";
 import { IProduct } from "@/lib/schemas/product.schema";
 import { ProductCardHorizontal } from "@/modules/products/components/product-card-horizontal";
@@ -13,7 +12,7 @@ export interface ProductTrendProps {
     products: IProduct[];
 }
 
-export function ProductTrend({
+export default function ProductTrend({
     title,
     description,
     products

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { NavBarFixed } from '@/app/(lobby)/_components/navbar-fixed';
 import { NavigationMenuMain } from '@/components/layout/navigation-menu-main';
 import { DialogDemo } from '@/modules/categorys/components/dialog-demo';
@@ -10,7 +11,11 @@ import { SelectedProductProvider } from '@/modules/products/contexts/selected-pr
 import { ModalUserProvider } from '@/modules/authentication/components/modal-user-provider';
 import { LoginDialog } from '@/modules/authentication/components/login-dialog/login.dialog';
 import { SignupDialog } from '@/modules/authentication/components/signnup.dialog';
-import CategoryChipList from '@/components/molecules/category-chip-list';
+
+const CategoryChipList = dynamic(() => import('../../components/molecules/category-chip-list'), {
+  ssr: true,
+  loading: () => <p>Loading...</p>,
+})
 
 export const metadata: Metadata = {
     title: 'Bánh Cuốn Hoàng Vũ | Ngon Chuẩn Vị Nhà Làm',

@@ -9,9 +9,30 @@ import { fetchAndCacheCategories } from '@/lib/caches/categories';
 import { kv } from '@vercel/kv';
 
 export const metadata: Metadata = {
-  title: 'Danh mục sản phẩm',
-  description: `Khám phá danh mục sản phẩm đa dạng, được tuyển chọn kỹ lưỡng để đáp ứng mọi nhu cầu của bạn.
-Từ các sản phẩm công nghệ tiên tiến đến những vật dụng thiết yếu hằng ngày – tất cả đều có tại đây!`,
+  title: 'Danh mục sản phẩm - Bánh cuốn Anh Vũ',
+  description: 'Khám phá các loại bánh cuốn và đặc sản truyền thống được yêu thích tại Bánh cuốn Anh Vũ.',
+  openGraph: {
+    title: 'Danh mục sản phẩm - Bánh cuốn Anh Vũ',
+    description: 'Khám phá các dòng bánh cuốn ngon, chuẩn vị Hà Nội – phục vụ bữa sáng, bữa xế lý tưởng.',
+    url: 'https://banhcuonanhvu.com/categories',
+    siteName: 'Bánh cuốn Anh Vũ',
+    images: [
+      {
+        url: 'https://banhcuonanhvu.com/og-categories.png',
+        width: 1200,
+        height: 630,
+        alt: 'Danh sách các loại bánh cuốn truyền thống',
+      },
+    ],
+    locale: 'vi_VN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Danh mục bánh cuốn',
+    description: 'Các loại bánh cuốn ngon và truyền thống tại Bánh cuốn Anh Vũ.',
+    images: ['https://banhcuonanhvu.com/og-categories.png'],
+  },
 };
 
 async function initData(searchParams: any, kv: any) {

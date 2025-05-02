@@ -84,21 +84,20 @@ export default function OfferPage() {
                         className="sm:col-span-2" x-chunk="dashboard-05-chunk-0"
                     >
                         <CardHeader className="pb-3">
-                            <CardTitle>Your Orders</CardTitle>
+                            <CardTitle>Đơn đặt hàng của bạn</CardTitle>
                             <CardDescription className="max-w-lg text-balance leading-relaxed">
-                                Introducing Our Dynamic Orders Dashboard for Seamless
-                                Management and Insightful Analysis.
+                            Giới thiệu Bảng điều khiển đơn hàng động của chúng tôi để quản lý liền mạch và phân tích sâu sắc.
                             </CardDescription>
                         </CardHeader>
                     </Card>
                     <Card x-chunk="dashboard-05-chunk-1">
                         <CardHeader className="pb-2">
-                            <CardDescription>This Week</CardDescription>
+                            <CardDescription>Tuần này</CardDescription>
                             <CardTitle className="text-4xl">$1,329</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <div className="text-xs text-muted-foreground">
-                                +25% from last week
+                                +25% từ tuần trước
                             </div>
                         </CardContent>
                         <CardFooter>
@@ -107,12 +106,12 @@ export default function OfferPage() {
                     </Card>
                     <Card x-chunk="dashboard-05-chunk-2">
                         <CardHeader className="pb-2">
-                            <CardDescription>This Month</CardDescription>
+                            <CardDescription>Tháng này</CardDescription>
                             <CardTitle className="text-4xl">$5,329</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <div className="text-xs text-muted-foreground">
-                                +10% from last month
+                                +10% từ tháng trước
                             </div>
                         </CardContent>
                         <CardFooter>

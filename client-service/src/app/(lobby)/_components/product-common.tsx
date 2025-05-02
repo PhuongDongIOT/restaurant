@@ -11,7 +11,7 @@ export interface ProductCommonProps {
     products: IProduct[];
 }
 
-export function ProductCommon({
+export default function ProductCommon({
     title,
     description,
     products

@@ -12,7 +12,7 @@ export interface CategoryTrendProps {
     products: IProduct[];
 }
 
-export function CategoryTrend({
+export default function CategoryTrend({
     title,
     description,
     products

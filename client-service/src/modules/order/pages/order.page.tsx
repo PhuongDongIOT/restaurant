@@ -48,7 +48,7 @@ import { orderUserService } from "@/lib/services/order.service"
 import { Input } from "@/components/ui/input"
 
 export const description =
-  "An orders dashboard with a sidebar navigation. The sidebar has icon navigation. The content area has a breadcrumb and search in the header. The main area has a list of recent orders with a filter and export button. The main area also has a detailed view of a single order with order details, shipping information, billing information, customer information, and payment information."
+  "An orders dashboard with a sidebar navigation. The sidebar has icon navigation. The content area has a breadcrumb and search in the header. The main area has a list of Đơn đặt hàng gần đây with a filter and export button. The main area also has a detailed view of a single order with order details, shipping information, billing information, customer information, and payment information."
 
 type OrderPageProps = {
   orders: IOrderItem[]
@@ -141,7 +141,7 @@ export default function OrderPage({ orders }: OrderPageProps) {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage>Recent Orders</BreadcrumbPage>
+                <BreadcrumbPage>Đơn đặt hàng gần đây</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -161,21 +161,20 @@ export default function OrderPage({ orders }: OrderPageProps) {
                 className="sm:col-span-2" x-chunk="dashboard-05-chunk-0"
               >
                 <CardHeader className="pb-3">
-                  <CardTitle>Your Orders</CardTitle>
+                  <CardTitle>Đơn đặt hàng của bạn</CardTitle>
                   <CardDescription className="max-w-lg text-balance leading-relaxed">
-                    Introducing Our Dynamic Orders Dashboard for Seamless
-                    Management and Insightful Analysis.
+                    Giới thiệu Bảng điều khiển đơn hàng động của chúng tôi để quản lý liền mạch và phân tích sâu sắc.
                   </CardDescription>
                 </CardHeader>
               </Card>
               <Card x-chunk="dashboard-05-chunk-1">
                 <CardHeader className="pb-2">
-                  <CardDescription>This Week</CardDescription>
+                  <CardDescription>Tuần này</CardDescription>
                   <CardTitle className="text-4xl">$1,329</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-xs text-muted-foreground">
-                    +25% from last week
+                    +25% từ tuần trước
                   </div>
                 </CardContent>
                 <CardFooter>
@@ -184,12 +183,12 @@ export default function OrderPage({ orders }: OrderPageProps) {
               </Card>
               <Card x-chunk="dashboard-05-chunk-2">
                 <CardHeader className="pb-2">
-                  <CardDescription>This Month</CardDescription>
+                  <CardDescription>Tháng này</CardDescription>
                   <CardTitle className="text-4xl">$5,329</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-xs text-muted-foreground">
-                    +10% from last month
+                    +10% từ tháng trước
                   </div>
                 </CardContent>
                 <CardFooter>
@@ -202,7 +201,7 @@ export default function OrderPage({ orders }: OrderPageProps) {
               <CardHeader className="px-7">
                 <CardTitle>Orders</CardTitle>
                 <CardDescription>
-                  Recent orders from your store.
+                  Đơn hàng gần đây từ cửa hàng của bạn.
                 </CardDescription>
               </CardHeader>
               <CardContent>

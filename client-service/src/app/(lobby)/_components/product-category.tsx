@@ -11,7 +11,7 @@ export interface ProductCategoryProps {
     products: IProduct[];
 }
 
-export function ProductCategory({
+export default function ProductCategory({
     title,
     description,
     products

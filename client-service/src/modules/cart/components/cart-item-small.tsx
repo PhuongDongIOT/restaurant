@@ -28,13 +28,13 @@ export default function CartItemSmall({ product }: CartItemSmallProps) {
                     </h3>
                     <p className="ml-4">{product.price.toLocaleString()} VND</p>
                 </div>
-                <p className="mt-1 text-sm text-gray-500 line-clamp-2">
+                <div className="mt-1 text-sm text-gray-500 line-clamp-2">
                     <QuantitySelector
                         quantity={product.quantity}
                         onIncrease={() => { addProductToCart(product) }}
                         onDecrease={() => { minusProductToCart(product) }}
                     />
-                </p>
+                </div>
 
                 <div className="flex flex-1 items-end justify-between text-sm">
                     <p className="text-gray-500">Số lượng: {product.quantity}</p>

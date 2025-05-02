@@ -20,7 +20,7 @@ const statusColors: Record<string, string> = {
 };
 
 export default function TableManagementPage() {
-    const [tables, setTables] = useState(initialTables);
+    const tables = initialTables;
     const [base64, setBase64] = useState('');
 
     useEffect(() => {

@@ -19,7 +19,7 @@ export type ProductGalleryProps = {
     description: string;
     products: IProduct[];
 }
-export function ProductGallery({
+export default function ProductGallery({
     title,
     description,
     products,

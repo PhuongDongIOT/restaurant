@@ -12,8 +12,35 @@ import SpotlightNews from "../_components/spotlight-news";
 import { SearchParams } from "nuqs";
 import { searchParamsCache, serialize } from "@/lib/customs/searchparams";
 import { blogService } from "@/lib/services/blog.service";
+import { Metadata } from "next";
 
-const image = "https://awsbutket2468.s3.ap-northeast-1.amazonaws.com/baby%20tree_%2006-03-2025%20at%2002-06-39.jpeg";
+export const metadata: Metadata = {
+    title: 'Blog ẩm thực - Bánh cuốn Anh Vũ',
+    description: 'Khám phá câu chuyện ẩm thực, công thức truyền thống và tin tức mới nhất từ Bánh cuốn Anh Vũ.',
+    openGraph: {
+      title: 'Blog ẩm thực - Bánh cuốn Anh Vũ',
+      description: 'Khám phá các bài viết hấp dẫn về bánh cuốn, ẩm thực Việt và hành trình của Bánh cuốn Anh Vũ.',
+      url: 'https://banhcuonanhvu.com/blogs',
+      siteName: 'Bánh cuốn Anh Vũ',
+      images: [
+        {
+          url: 'https://banhcuonanhvu.com/og-blog.png',
+          width: 1200,
+          height: 630,
+          alt: 'Hình ảnh món bánh cuốn truyền thống Hà Nội',
+        },
+      ],
+      locale: 'vi_VN',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Blog - Bánh cuốn Anh Vũ',
+      description: 'Góc chia sẻ về bánh cuốn và văn hóa ẩm thực truyền thống Việt Nam.',
+      images: ['https://banhcuonanhvu.com/og-blog.png'],
+    },
+  };
+  
 
 type pageProps = {
     searchParams: Promise<SearchParams>;

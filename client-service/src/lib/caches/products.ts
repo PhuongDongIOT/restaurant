@@ -9,3 +9,10 @@ export async function fetchAndCacheProducts(kv: any, page: number = 1) {
     return data;
   }, kv);
 }
+
+export async function fetchAndCacheProductDetail(kv: any, id: string) {
+  return await getOrFetchData(`products-${id}`, [], async () => {
+    const data = await productUserService.details(id);
+    return data;
+  }, kv);
+}

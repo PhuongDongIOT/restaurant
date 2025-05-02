@@ -1,23 +1,40 @@
 import { kv } from '@vercel/kv';
+import dynamic from 'next/dynamic';
 // import { Metadata } from 'next'
 import { Hero } from './_components/hero';
-import { ProductCategory } from './_components/product-category';
-import { ProductGallery, ProductGalleryProps } from './_components/product-gallery';
+import { ProductGalleryProps } from './_components/product-gallery';
 import { fetchAndCacheBanners } from '@/lib/caches/banners';
 import { fetchAndCacheProducts } from '@/lib/caches/products';
-import MapBox from './_components/map-box';
-import { BannerFooter } from './_components/banner-footer';
-import { ProductTrend } from './_components/product-trend';
-import { CategoryTrend } from './_components/category-trend';
-import { ProductCommon } from './_components/product-common';
-import dynamic from 'next/dynamic';
-// export const metadata: Metadata = {
-//   title: 'Bánh Cuốn Hoàng Vũ | Ngon Chuẩn Vị Nhà Làm',
-//   description: 'Khám phá hương vị bánh cuốn truyền thống tại Bánh Cuốn Hoàng Vũ – mỏng mịn, nóng hổi, chuẩn vị quê nhà.'
-// };
 
-// const ComponentA = dynamic(() => import('./_components/banner-footer'))
-// const ComponentB = dynamic(() => import('./_components/product-trend'))
+const ProductCategory = dynamic(() => import('./_components/product-category'), {
+  ssr: true,
+  loading: () => <p>Loading...</p>,
+})
+const ProductTrend = dynamic(() => import('./_components/product-trend'), {
+  ssr: true,
+  loading: () => <p>Loading...</p>,
+})
+const CategoryTrend = dynamic(() => import('./_components/category-trend'), {
+  ssr: true,
+  loading: () => <p>Loading...</p>,
+})
+const ProductCommon = dynamic(() => import('./_components/product-common'), {
+  ssr: true,
+  loading: () => <p>Loading...</p>,
+})
+const BannerFooter = dynamic(() => import('./_components/banner-footer'), {
+  ssr: true,
+  loading: () => <p>Loading...</p>,
+})
+const MapBox = dynamic(() => import('./_components/map-box'), {
+  ssr: true,
+  loading: () => <p>Loading...</p>,
+})
+const ProductGallery = dynamic(() => import('./_components/product-gallery'), {
+  ssr: true,
+  loading: () => <p>Loading...</p>,
+})
+
 
 const initProductGallery: ProductGalleryProps = {
   title: "Món yêu thích",
@@ -41,9 +58,9 @@ export default async function Page() {
       <Hero items={banners} />
       <div className='py-8 flex flex-col gap-12 mx-auto max-w-6xl'>
         <ProductTrend {...initPGOne} title='Món ăn đặc sắc' />
-        <CategoryTrend  {...initPGOne} title='Danh mục phổ biến'/>
-        <ProductCategory {...initPGOne} title='Món ăn phổ biến'/>
-        <ProductCommon  {...initPGOne} title='Món ăn phổ biến'/>
+        <CategoryTrend  {...initPGOne} title='Danh mục phổ biến' />
+        <ProductCategory {...initPGOne} title='Món ăn phổ biến' />
+        <ProductCommon  {...initPGOne} title='Món ăn phổ biến' />
         <ProductGallery {...initPGOne} />
         <BannerFooter src="/images/banner-hot-port.jpg" />
         <MapBox />
