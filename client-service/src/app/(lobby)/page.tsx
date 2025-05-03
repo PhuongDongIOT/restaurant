@@ -1,11 +1,13 @@
 import { kv } from '@vercel/kv';
 import dynamic from 'next/dynamic';
-// import { Metadata } from 'next'
-import { Hero } from './_components/hero';
 import { ProductGalleryProps } from './_components/product-gallery';
 import { fetchAndCacheBanners } from '@/lib/caches/banners';
 import { fetchAndCacheProducts } from '@/lib/caches/products';
 
+const Hero = dynamic(() => import('./_components/hero'), {
+  ssr: true,
+  loading: () => <p>Loading...</p>,
+})
 const ProductCategory = dynamic(() => import('./_components/product-category'), {
   ssr: true,
   loading: () => <p>Loading...</p>,
@@ -15,26 +17,25 @@ const ProductTrend = dynamic(() => import('./_components/product-trend'), {
   loading: () => <p>Loading...</p>,
 })
 const CategoryTrend = dynamic(() => import('./_components/category-trend'), {
-  ssr: true,
+  ssr: false,
   loading: () => <p>Loading...</p>,
 })
 const ProductCommon = dynamic(() => import('./_components/product-common'), {
-  ssr: true,
+  ssr: false,
   loading: () => <p>Loading...</p>,
 })
 const BannerFooter = dynamic(() => import('./_components/banner-footer'), {
-  ssr: true,
+  ssr: false,
   loading: () => <p>Loading...</p>,
 })
 const MapBox = dynamic(() => import('./_components/map-box'), {
-  ssr: true,
+  ssr: false,
   loading: () => <p>Loading...</p>,
 })
 const ProductGallery = dynamic(() => import('./_components/product-gallery'), {
   ssr: true,
   loading: () => <p>Loading...</p>,
 })
-
 
 const initProductGallery: ProductGalleryProps = {
   title: "Món yêu thích",
@@ -62,7 +63,7 @@ export default async function Page() {
         <ProductCategory {...initPGOne} title='Món ăn phổ biến' />
         <ProductCommon  {...initPGOne} title='Món ăn phổ biến' />
         <ProductGallery {...initPGOne} />
-        <BannerFooter src="/images/banner-hot-port.jpg" />
+        <BannerFooter src="/images/banner-hot-port.webp" />
         <MapBox />
       </div>
     </>

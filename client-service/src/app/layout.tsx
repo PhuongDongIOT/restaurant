@@ -39,12 +39,12 @@ export default async function RootLayout({
 
   return (
     <html lang='en' suppressHydrationWarning>
-      <head>
+      <Head>
         <SeoHead />
         <GoogleAnalytic />
         <GoogleTag />
         <link href="https://api.mapbox.com/mapbox-gl-js/v3.11.1/mapbox-gl.css" rel="stylesheet" />
-      </head>
+      </Head>
       <body>
         <NextTopLoader showSpinner={false} />
         <NuqsAdapter>

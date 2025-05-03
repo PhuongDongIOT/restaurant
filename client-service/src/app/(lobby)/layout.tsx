@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { NavBarFixed } from '@/app/(lobby)/_components/navbar-fixed';
 import { NavigationMenuMain } from '@/components/layout/navigation-menu-main';
@@ -17,10 +16,6 @@ const CategoryChipList = dynamic(() => import('../../components/molecules/catego
   loading: () => <p>Loading...</p>,
 })
 
-export const metadata: Metadata = {
-    title: 'Bánh Cuốn Hoàng Vũ | Ngon Chuẩn Vị Nhà Làm',
-    description: 'Khám phá hương vị bánh cuốn truyền thống tại Bánh Cuốn Hoàng Vũ – mỏng mịn, nóng hổi, chuẩn vị quê nhà.'
-};
 export default async function DashboardLayout({
     children
 }: {

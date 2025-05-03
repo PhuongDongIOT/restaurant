@@ -20,7 +20,7 @@ const nextConfig = {
     nextScriptWorkers: true,
   },
   images: {
-    domains: ['localhost', 'images.unsplash.com', 'awsbutket2468.s3.ap-northeast-1.amazonaws.com'],
+    domains: ['localhost', 'api-picture.banhcuonanhvu.com'],
     remotePatterns: [
       {
         protocol: 'https',

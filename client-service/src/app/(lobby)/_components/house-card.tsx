@@ -5,8 +5,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const image = "https://awsbutket2468.s3.ap-northeast-1.amazonaws.com/baby%20tree_%2006-03-2025%20at%2002-06-39.jpeg";
-const image_2 = "https://awsbutket2468.s3.ap-northeast-1.amazonaws.com/Gemini_Generated_Image_argmcoargmcoargm.jpg"
+const image = "https://api-picture.banhcuonanhvu.com/picture/3/image";
+const image_2 = "https://api-picture.banhcuonanhvu.com/picture/3/image"
 const house = {
     title: "CHO THUÊ NHÀ ÂU CƠ, TÂY HỒ, HN - NHÀ RỘNG - HĐ LÂU DÀI",
     price: "20 triệu/tháng",

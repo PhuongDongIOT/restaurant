@@ -14,9 +14,9 @@ export default function SeoHead({ }: SeoHeadProps) {
             <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
             <title>Bánh Cuốn Anh Vũ | Ngon Chuẩn Vị Nhà Làm</title>
-            <link rel="canonical" href="https://banhcuonanhvu.vn" />
+            <link rel="canonical" href="https://banhcuonanhvu.com" />
 
-            <meta name="keywords" content="Bánh Cuốn Anh Vũ, bánh cuốn ngon, đặc sản bánh cuốn, món ăn Việt Nam" />
+            <meta name="keywords" content="bánh cuốn hà nội, bánh buốn anh vũ, bánh cuốn, bánh cuốn ngon, đặc sản bánh cuốn, món ăn Việt Nam" />
             <meta name="description" content="Bánh Cuốn Anh Vũ - Nơi cung cấp những món bánh cuốn ngon tuyệt vời, đặc sản từ miền Bắc Việt Nam với hương vị đậm đà, hấp dẫn." />
             <meta name="subject" content="Bánh Cuốn Anh Vũ - Chuyên cung cấp bánh cuốn đặc sản" />
             <meta name="copyright" content="Bánh Cuốn Anh Vũ" />
@@ -29,10 +29,10 @@ export default function SeoHead({ }: SeoHeadProps) {
             <meta name="classification" content="Ẩm thực, Bánh cuốn" />
             <meta name="author" content="Bánh Cuốn Anh Vũ" />
             <meta name="designer" content="Bánh Cuốn Anh Vũ" />
-            <meta name="reply-to" content="contact@banhcuonanhvu.vn" />
+            <meta name="reply-to" content="contact@banhcuonanhvu.com" />
             <meta name="owner" content="Bánh Cuốn Anh Vũ" />
-            <meta name="url" content="https://banhcuonanhvu.vn" />
-            <meta name="identifier-URL" content="https://banhcuonanhvu.vn" />
+            <meta name="url" content="https://banhcuonanhvu.com" />
+            <meta name="identifier-URL" content="https://banhcuonanhvu.com" />
             <meta name="directory" content="submission" />
             <meta name="pagename" content="Bánh Cuốn Anh Vũ" />
             <meta name="category" content="Ẩm thực, Bánh cuốn, Đặc sản" />
@@ -48,26 +48,26 @@ export default function SeoHead({ }: SeoHeadProps) {
             <meta name="search_date" content="2025-04-24" />
             <meta name="DC.title" content="Bánh Cuốn Anh Vũ" />
             <meta name="medium" content="website" />
-            <meta name="syndication-source" content="https://banhcuonanhvu.vn" />
-            <meta name="original-source" content="https://banhcuonanhvu.vn" />
+            <meta name="syndication-source" content="https://banhcuonanhvu.com" />
+            <meta name="original-source" content="https://banhcuonanhvu.com" />
 
             <meta name="google-site-verification" content="8tiU_TboUzEiIT9UbZVc_UBtIE-ELBlmchwVPegm9tU" />
-            
+
 
             {/* Open Graph */}
             <meta property="og:type" content="website" />
             <meta property="og:title" content="Bánh Cuốn Anh Vũ" />
             <meta property="og:description" content="Bánh Cuốn Anh Vũ chuyên cung cấp những món bánh cuốn ngon, đặc sản Việt Nam." />
-            <meta property="og:image" content="https://banhcuonanhvu.vn/logo.png" />
-            <meta property="og:url" content="https://banhcuonanhvu.vn" />
+            <meta property="og:image" content="https://banhcuonanhvu.com/logo.png" />
+            <meta property="og:url" content="https://banhcuonanhvu.com" />
             <meta property="og:site_name" content="Bánh Cuốn Anh Vũ" />
 
             {/* Twitter Card */}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content="Bánh Cuốn Anh Vũ" />
             <meta name="twitter:description" content="Bánh Cuốn Anh Vũ chuyên cung cấp bánh cuốn đặc sản ngon và hấp dẫn." />
-            <meta name="twitter:image" content="https://banhcuonanhvu.vn/logo.png" />
-            <meta name="twitter:url" content="https://banhcuonanhvu.vn" />
+            <meta name="twitter:image" content="https://banhcuonanhvu.com/logo.png" />
+            <meta name="twitter:url" content="https://banhcuonanhvu.com" />
 
             {/* Apple Mobile Web App */}
             <meta name="apple-mobile-web-app-title" content="Bánh Cuốn Anh Vũ" />
@@ -92,15 +92,29 @@ export default function SeoHead({ }: SeoHeadProps) {
             <script type="application/ld+json" dangerouslySetInnerHTML={{
                 __html: JSON.stringify({
                     "@context": "https://schema.org",
-                    "@type": "Organization",
+                    "@type": "LocalBusiness",
+                    "@id": "https://banhcuonanhvu.com",
                     "name": "Bánh Cuốn Anh Vũ",
-                    "url": "https://banhcuonanhvu.vn",
-                    "image": "https://banhcuonanhvu.vn/logo.png",
+                    "url": "https://banhcuonanhvu.com",
+                    "image": "https://banhcuonanhvu.com/logo.png",
+                    "description": "Bánh Cuốn Anh Vũ - Chuyên cung cấp những món bánh cuốn đặc sản ngon và hấp dẫn, mang đậm hương vị Việt, bao gồm bánh cuốn và bánh xèo.",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": "Your Street Address",
+                        "addressLocality": "Your City",
+                        "addressRegion": "Your Region",
+                        "postalCode": "Your Postal Code",
+                        "addressCountry": "VN"
+                    },
+                    "telephone": "+84 Your Phone Number",
+                    "openingHours": [
+                        "Mo-Su 06:00-21:00"
+                    ],
                     "sameAs": [
                         "https://www.facebook.com/banhcuonanhvu",
                         "https://www.instagram.com/banhcuonanhvu"
                     ],
-                    "description": "Bánh Cuốn Anh Vũ - Chuyên cung cấp những món bánh cuốn đặc sản ngon và hấp dẫn, mang đậm hương vị Việt."
+                    "keywords": ["bánh cuốn", "bánh xèo", "bánh cuốn Hà Nội", "bánh xèo miền Tây", "món ăn Việt Nam", "đặc sản Việt Nam"] // Add keywords
                 })
             }} />
         </>

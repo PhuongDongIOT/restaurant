@@ -22,7 +22,7 @@ export default function SignInPage() {
             </div>
             <div className="relative hidden bg-muted lg:block"> 
                 <img
-                    src="https://awsbutket2468.s3.ap-northeast-1.amazonaws.com/Gemini_Generated_Image_argmcoargmcoargm.jpg"
+                    src="https://api-picture.banhcuonanhvu.com/picture/3/image"
                     alt="Image"
                     className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
                 />

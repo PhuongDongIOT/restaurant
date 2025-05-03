@@ -18,11 +18,11 @@ export interface GalleryProps {
     items?: ICategoryBanner[];
 }
 
-const Hero = ({
+export default function Hero ({
     title = "Nghiên cứu điển hình",
     description = "Khám phá cách các công ty và nhà phát triển hàng đầu đang tận dụng công nghệ web hiện đại để xây dựng trải nghiệm kỹ thuật số đặc biệt.",
     items = [],
-}: GalleryProps) => {
+}: GalleryProps) {
     const [carouselApi, setCarouselApi] = useState<CarouselApi>();
     const [canScrollPrev, setCanScrollPrev] = useState(false);
     const [canScrollNext, setCanScrollNext] = useState(false);
@@ -92,5 +92,3 @@ const Hero = ({
         </section>
     );
 };
-
-export { Hero };
