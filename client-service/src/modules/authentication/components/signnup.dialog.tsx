@@ -6,7 +6,7 @@ import { UserSignUpForm } from '../user-signup-form';
 import { useModalUser } from './modal-user-provider';
 
 type SignDialogProps = {}
-export function SignupDialog() {
+export default function SignupDialog() {
     const { signupUser, setSignupUser, setModalUser } = useModalUser();
 
     return (

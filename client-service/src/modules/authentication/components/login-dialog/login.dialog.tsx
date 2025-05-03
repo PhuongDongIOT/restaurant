@@ -6,7 +6,7 @@ import { Fragment } from "react";
 import { UserLoginForm } from '../user-login-form';
 
 type LoginDialogProps = {}
-export function LoginDialog() {
+export default function LoginDialog() {
     const { modalUser, setModalUser, setSignupUser } = useModalUser();
 
     return (

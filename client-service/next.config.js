@@ -16,7 +16,7 @@ try {
 const nextConfig = {
   reactStrictMode: false,
   experimental: {
-    // forceSwcTransforms: true,
+    forceSwcTransforms: true,
     nextScriptWorkers: true,
   },
   images: {

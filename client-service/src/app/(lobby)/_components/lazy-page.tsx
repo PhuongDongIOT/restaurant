@@ -1,10 +1,9 @@
 "use client";
 import dynamic from 'next/dynamic';
 
-
 const ProductCategory = dynamic(() => import('./product-category'), {
-  ssr: true,
-  loading: () => <p>Loading...</p>,
+    ssr: false,
+    loading: () => <p>Loading...</p>,
 })
 const CategoryTrend = dynamic(() => import('./category-trend'), {
     ssr: false,
@@ -34,7 +33,7 @@ type LazyPageProps = {
         description: string;
     }
 }
-export default function LazyPage({initPGOne}: LazyPageProps) {
+export default function LazyPage({ initPGOne }: LazyPageProps) {
     return (
         <>
             <CategoryTrend  {...initPGOne} title='Danh mục phổ biến' />

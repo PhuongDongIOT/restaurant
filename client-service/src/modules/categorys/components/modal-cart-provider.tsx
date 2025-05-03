@@ -13,7 +13,7 @@ interface ModalCartProviderProps {
     children: ReactNode;
 }
 
-export const ModalCartProvider: React.FC<ModalCartProviderProps> = ({ children }) => {
+const ModalCartProvider: React.FC<ModalCartProviderProps> = ({ children }) => {
     const [modalCart, setModalCart] = useState<boolean>(false);
 
     return (
@@ -22,6 +22,8 @@ export const ModalCartProvider: React.FC<ModalCartProviderProps> = ({ children }
         </ModalCartContext.Provider>
     );
 };
+
+export default ModalCartProvider;
 
 export const useModalCart = (): ModalCartContextType => {
     const context = useContext(ModalCartContext);

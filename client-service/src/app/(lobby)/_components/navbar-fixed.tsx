@@ -6,7 +6,7 @@ import { useModalCart } from '@/modules/categorys/components/modal-cart-provider
 import { useCheckUser } from '@/modules/authentication/hook/use-check-user';
 import { useRouter } from 'next/navigation';
 
-export function NavBarFixed() {
+export default function NavBarFixed() {
   const router = useRouter();
   const { setModalCart } = useModalCart();
   const { functionCheckauth, token } = useCheckUser();

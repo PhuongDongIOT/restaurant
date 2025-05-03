@@ -16,7 +16,7 @@ interface ModalProviderProps {
   children: ReactNode;
 }
 
-export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
+const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   const [modal, setModal] = useState<boolean>(false);
 
   return (
@@ -25,6 +25,8 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     </ModalContext.Provider>
   );
 };
+
+export default ModalProvider;
 
 // Hook để sử dụng Context
 export const useModal = (): ModalContextType => {

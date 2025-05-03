@@ -33,7 +33,7 @@ export function ProductCardHorizontal({
         <div className={cn("space-y-3 relative border-orange-200 border-1 p-1 rounded-sm")} {...props}>
             <ContextMenu>
                 <ContextMenuTrigger>
-                    <div className={cn(className, "overflow-hidden w-full rounded-md relative")}>
+                    <div className={cn(className, "overflow-hidden w-full h-full rounded-md relative")}>
                         <Image
                             onClick={() => openModalProductOverview(`${product.id}`)}
                             src={product.image}
@@ -41,14 +41,14 @@ export function ProductCardHorizontal({
                             width={width}
                             height={height}
                             className={cn(
-                                "h-auto w-full object-cover transition-all hover:scale-105"
+                                "h-full w-full object-cover transition-all hover:scale-105"
                             )}
                         />
                         <div className="absolute bottom-0 left-0 space-y-1 text-sm z-10 w-full rounded-xl">
                             <div className="absolute w-full h-full bg-amber-50 rounded-md opacity-75"></div>
                             <div className="relative z-10 px-2 py-1">
                                 <h3 className="text-lg font-medium leading-none">{product.product_name}</h3>
-                                <p className="text-2xs text-cyan-500 line-clamp-1">{product.price} VND</p>
+                                <p className="text-2xs text-orange-600 font-medium line-clamp-1">{product.price} VND</p>
                                 <p className="text-xs max-w-md text-muted-foreground line-clamp-1">{product.description}</p>
                             </div>
                         </div>

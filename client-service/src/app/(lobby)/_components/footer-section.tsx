@@ -4,8 +4,6 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-// import { Switch } from "@/components/ui/switch"
-// import { Textarea } from "@/components/ui/textarea"
 import {
     Tooltip,
     TooltipContent,
@@ -14,17 +12,7 @@ import {
 } from "@/components/ui/tooltip"
 import { Facebook, Instagram, Linkedin, Moon, Send, Sun, Twitter } from "lucide-react"
 
-function FooterSection() {
-    // const [isDarkMode, setIsDarkMode] = React.useState(true)
-
-    // React.useEffect(() => {
-    //     if (isDarkMode) {
-    //         document.documentElement.classList.add("dark")
-    //     } else {
-    //         document.documentElement.classList.remove("dark")
-    //     }
-    // }, [isDarkMode])
-
+export default function FooterSection() {
     return (
         <footer className="relative border-t bg-background text-foreground transition-colors duration-300 z-50">
             <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
@@ -170,5 +158,3 @@ function FooterSection() {
         </footer>
     )
 }
-
-export { FooterSection }

@@ -15,7 +15,7 @@ interface ModalUserProviderProps {
     children: ReactNode;
 }
 
-export const ModalUserProvider: React.FC<ModalUserProviderProps> = ({ children }) => {
+const ModalUserProvider: React.FC<ModalUserProviderProps> = ({ children }) => {
     const [modalUser, setModalUser] = useState<boolean>(false);
     const [signupUser, setSignupUser] = useState<boolean>(false);
 
@@ -25,6 +25,7 @@ export const ModalUserProvider: React.FC<ModalUserProviderProps> = ({ children }
         </ModalUserContext.Provider>
     );
 };
+export default ModalUserProvider;
 
 export const useModalUser = (): ModalUserContextType => {
     const context = useContext(ModalUserContext);

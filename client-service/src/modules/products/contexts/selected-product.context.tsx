@@ -12,7 +12,7 @@ type SelectedProductContextType = {
 
 const SelectedProductContext = createContext<SelectedProductContextType | undefined>(undefined);
 
-export const SelectedProductProvider = ({ children }: { children: ReactNode }) => {
+const SelectedProductProvider = ({ children }: { children: ReactNode }) => {
     const [selectedProduct, setSelectedProductState] = useState<IProduct | null>(null);
 
     const setSelectedProduct = (product: IProduct) => {
@@ -37,6 +37,8 @@ export const SelectedProductProvider = ({ children }: { children: ReactNode }) =
         </SelectedProductContext.Provider>
     );
 };
+
+export default SelectedProductProvider;
 
 export const useSelectedProduct = (): SelectedProductContextType => {
     const context = useContext(SelectedProductContext);
