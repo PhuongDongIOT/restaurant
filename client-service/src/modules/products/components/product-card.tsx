@@ -29,7 +29,7 @@ export function ProductCard({
     <div className={cn('space-y-3 relative border-orange-200 border-1 p-1 rounded-sm')} {...props}>
       <ContextMenu>
         <ContextMenuTrigger>
-          <div className={cn(className, 'overflow-hidden w-full h-[7rem] md:h-[20rem] rounded-md relative')}>
+          <div className={cn(className, 'overflow-hidden w-full h-[7rem] md:h-[10rem] rounded-md relative')}>
             <Image
               onClick={() => openModalProductOverview(`${product.id}`)}
               src={product.image}
@@ -54,7 +54,7 @@ export function ProductCard({
       </ContextMenu>
       <div className='mt-2 space-y-1 text-sm'>
         <h3 className='text-lg font-medium leading-none'>{product.product_name}</h3>
-        <p className='text-2xs text-cyan-500 line-clamp-1'>{product.price} VND</p>
+        <p className='text-2xs text-orange-600 font-medium line-clamp-1'>{product.price} VND</p>
         <p className='text-xs text-muted-foreground line-clamp-1'>{product.description}</p>
       </div>
     </div>
