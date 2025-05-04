@@ -1,23 +1,13 @@
 import { auth } from '@/lib/auths/auth';
 import Providers from '@/components/layout/providers';
 import { Toaster } from '@/components/ui/sonner';
-import type { Viewport } from 'next';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import NextTopLoader from 'nextjs-toploader';
-import './globals.css';
-import './theme.css';
 import ProvidersRedux from './providers';
 import GoogleAnalytic from '@/modules/seo-manager/components/google-analytic';
 import GoogleTag from '@/modules/seo-manager/components/google-tag';
-
-const META_THEME_COLORS = {
-  light: '#ffffff',
-  dark: '#09090b'
-};
-
-export const viewport: Viewport = {
-  themeColor: META_THEME_COLORS.light
-};
+import './globals.css';
+import './theme.css';
 
 export default async function RootLayout({
   children
@@ -25,9 +15,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await auth();
-  // const cookieStore = await cookies();
-  // const activeThemeValue = cookieStore.get('active_theme')?.value;
-
+  
   return (
     <html lang='en' suppressHydrationWarning>
       <head>
@@ -152,7 +140,6 @@ export default async function RootLayout({
         <NuqsAdapter>
           <Providers
             session={session}
-          // activeThemeValue={activeThemeValue as string}
           >
             <Toaster />
             <ProvidersRedux>

@@ -1,16 +1,16 @@
-const fs = require('fs');
-const path = require('path');
-const yaml = require('js-yaml');
+// const fs = require('fs');
+// const path = require('path');
+// const yaml = require('js-yaml');
 
-const configPath = path.join(process.cwd(), '.coderabbit.yaml');
-let config = {};
+// const configPath = path.join(process.cwd(), '.coderabbit.yaml');
+// let config = {};
 
-try {
-  const fileContents = fs.readFileSync(configPath, 'utf8');
-  config = yaml.load(fileContents);
-} catch (e) {
-  console.error("Error reading the .coderabbit.yaml file", e);
-}
+// try {
+//   const fileContents = fs.readFileSync(configPath, 'utf8');
+//   config = yaml.load(fileContents);
+// } catch (e) {
+//   console.error("Error reading the .coderabbit.yaml file", e);
+// }
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -20,7 +20,7 @@ const nextConfig = {
     nextScriptWorkers: true,
   },
   images: {
-    domains: ['localhost', 'api-picture.banhcuonanhvu.com'],
+    domains: ['localhost', 'banhcuonanhvu.com', 'api-picture.banhcuonanhvu.com'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -34,9 +34,9 @@ const nextConfig = {
       }
     ]
   },
-  env: {
-    CoderabbitConfig: JSON.stringify(config),
-  },
+  // env: {
+  //   CoderabbitConfig: JSON.stringify(config),
+  // },
   // transpilePackages: ['geist']
 };
 

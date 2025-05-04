@@ -1,8 +1,9 @@
 'use client';
+
 import Image from 'next/image';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 
 const image = 'https://api-picture.banhcuonanhvu.com/picture/3/image';
 
@@ -32,13 +33,15 @@ export default function HouseCard() {
                     transition={{ duration: 0.5 }}
                 >
                     <div className='relative overflow-hidden h-[20rem] md:h-[30rem] shadow-lg rounded-xl'>
-                    <Image
-                        src={thumbnail}
-                        alt={house.title}
-                        width={800}
-                        height={400}
-                        className='w-full h-auto object-cover rounded-t-2xl'
-                    />
+                        <Image
+                            priority
+                            src={thumbnail}
+                            alt={`Bánh cuốn Anh Vũ - ${house.title}`}
+                            width={800}
+                            height={400}
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            className='w-full h-auto object-cover rounded-t-2xl'
+                        />
                     </div>
                 </motion.div>
 

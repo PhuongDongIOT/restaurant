@@ -37,24 +37,26 @@ export function ProductCardHorizontal({
                         <Image
                             onClick={() => openModalProductOverview(`${product.id}`)}
                             src={product.image}
-                            alt={product.description}
+                            alt={`Bánh cuốn Anh Vũ - ${product.product_name}`}
                             width={width}
                             height={height}
                             className={cn(
                                 "h-full w-full object-cover transition-all hover:scale-105"
                             )}
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            priority
                         />
                         <div className="absolute bottom-0 left-0 space-y-1 text-sm z-10 w-full rounded-xl">
                             <div className="absolute w-full h-full bg-amber-50 rounded-md opacity-75"></div>
                             <div className="relative z-10 px-2 py-1">
                                 <h3 className="text-lg font-medium leading-none">{product.product_name}</h3>
-                                <p className="text-2xs text-orange-600 font-medium line-clamp-1">{product.price} VND</p>
+                                <p className="text-2xs text-black font-medium line-clamp-1">{product.price} VND</p>
                                 <p className="text-xs max-w-md text-muted-foreground line-clamp-1">{product.description}</p>
                             </div>
                         </div>
                         {!disable ? <div
                             className={cn(
-                                `absolute bottom-0 right-0 bg-red-500 p-2 z-20 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg`,
+                                `absolute bottom-0 right-0 bg-black p-2 z-20 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg`,
                                 { 'opacity-45 pointer-events-none': disabled }
                             )}
                             onClick={() => !disabled && addProductToCart(product)}
