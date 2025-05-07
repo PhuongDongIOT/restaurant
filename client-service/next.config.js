@@ -16,8 +16,8 @@
 const nextConfig = {
   reactStrictMode: false,
   experimental: {
-    // forceSwcTransforms: true,
-    // nextScriptWorkers: true,
+    forceSwcTransforms: true,
+    nextScriptWorkers: true,
   },
   images: {
     domains: ['localhost', 'banhcuonanhvu.com', 'api-picture.banhcuonanhvu.com', 'awsbutket2468.s3.ap-northeast-1.amazonaws.com'],
