@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from "react";
 import { Shell } from "@/components/atoms/shell"
 import HeroBlogCard from "@/components/organims/hero-blog-card";
@@ -50,7 +52,7 @@ const textBlogDetail = {
     content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit sequi molestiae aspernatur magni laudantium tempora assumenda sunt nulla enim modi, pariatur iusto hic et porro at, est rerum. Sint, numquam?"
 }
 
-export default async function IndexPage() {
+export default function IndexPage() {
 
     return (
         <Shell className="mx-auto w-full max-w-6xl gap-4">
