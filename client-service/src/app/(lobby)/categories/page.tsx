@@ -50,10 +50,10 @@ async function initData(searchParams: any, kv: any) {
     }
   }
   // Fetch và cache sản phẩm
-  const products = await fetchAndCacheProducts(kv);
+  const products = await fetchAndCacheProducts();
 
   // Fetch và cache danh mục
-  const categories = await fetchAndCacheCategories(kv);
+  const categories = await fetchAndCacheCategories();
 
   return { auth, products, categories };
 }

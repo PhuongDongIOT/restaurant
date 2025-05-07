@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
-import { kv } from '@vercel/kv';
-import ProductOverview from '@/modules/categorys/components/product-overviews';
 import { fetchAndCacheProductDetail } from '@/lib/caches/products';
+import ProductOverviewPage from '@/modules/products/pages/product-overview.page';
 
 export const metadata: Metadata = {
   title: 'Bánh cuốn Anh Vũ - Thơm ngon trứ danh Hà Nội',
@@ -35,8 +34,8 @@ type PageProps = {
 };
 export default async function Page({ params }: PageProps) {
   const { id } = await params;
-  const { data: product } = await fetchAndCacheProductDetail(kv, id);
+  const data = await fetchAndCacheProductDetail(id);  
   return (
-    <ProductOverview product={product} />
+    <ProductOverviewPage product={data} />
   );
 }

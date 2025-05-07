@@ -1,18 +1,18 @@
 import { IResponseSchema } from "../schemas/response.schema";
+import redis from "./redis";
 
 export async function getOrFetchData<T>(
     key: string,
     fallbackData: T,
     fetchFunction: () => Promise<IResponseSchema<T>>,
-    kv: any
 ): Promise<T> {
 
-    const cachedData = await kv.get(key);
-    if (cachedData) {
-        return JSON.parse(JSON.stringify(cachedData) as string);
+    const cached = await redis.get(key);    
+    if (cached) {
+        return JSON.parse(cached);
     } else {
-        const { data } = await fetchFunction();
-        await kv.set(key, JSON.stringify(data));
+        const { data } = await fetchFunction();        
+        await redis.set(key, JSON.stringify(data), 'EX', parseInt(process.env.REDIS_CACHE_TIME ?? "3600") ?? 3600);
         return data;
     }
 }

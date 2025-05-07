@@ -1,4 +1,6 @@
 import { Minus, Plus } from "lucide-react";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 type QuantitySelectorProps = {
   quantity: number;
@@ -13,24 +15,24 @@ export default function QuantitySelector({
   return (
     <div className="flex items-center max-[400px]:justify-center max-md:mt-3">
       <div className="flex items-center border border-gray-200 rounded-xl overflow-hidden shadow-sm transition-all">
-        <button
+        <Button
           onClick={onDecrease}
-          className="group px-2 py-2 flex items-center justify-center hover:bg-gray-50 hover:border-gray-300 focus:outline-none"
+          className="border-none bg-white group px-2 py-2 flex items-center justify-center hover:bg-gray-50 hover:border-gray-300 focus:outline-none"
         >
           <Minus className="w-4 h-3 text-gray-700 group-hover:text-black transition-all" />
-        </button>
-        <input
+        </Button>
+        <Input
           readOnly
           type="text"
           value={quantity}
-          className="w-[70px] text-center py-1 text-lg font-semibold bg-transparent text-gray-900 border-x border-gray-200 outline-none"
+          className="outline-0 border-none w-[3em] text-center py-1 text-lg font-semibold bg-transparent text-gray-900 border-x border-gray-200 outline-none"
         />
-        <button
+        <Button
           onClick={onIncrease}
-          className="group px-2 py-2 flex items-center justify-center hover:bg-gray-50 hover:border-gray-300 focus:outline-none"
+          className="border-none bg-white group px-2 py-2 flex items-center justify-center hover:bg-gray-50 hover:border-gray-300 focus:outline-none"
         >
           <Plus className="w-4 h-3 text-gray-700 group-hover:text-black transition-all" />
-        </button>
+        </Button>
       </div>
     </div>
   );

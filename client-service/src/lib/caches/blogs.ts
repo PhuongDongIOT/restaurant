@@ -6,5 +6,5 @@ export async function fetchAndCacheProducts(kv: any, option?: IApiOptions) {
   return await getOrFetchData('blogs', [] as any, async () => {
     const data = await blogService.filters(option);
     return data;
-  }, kv);
+  });
 }

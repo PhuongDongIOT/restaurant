@@ -4,7 +4,6 @@ import { useSelectedProduct } from "@/modules/products/contexts/selected-product
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/redux";
 import { addToCart } from "@/lib/features/carts/carts.slice";
 import { RootState } from "@/lib/store";
-import { productUserService } from "@/lib/services/product.service";
 import { cartService } from "@/lib/services/cart.service";
 import { createCartPayload, createUpdateCartPayload, mappperCreateCartItem } from "../mappers/product.mapper";
 import { showAddToCartErrorToast, showAddToCartSuccessToast } from "../components/notifycations/add-to-cart-success.noti";
@@ -14,10 +13,8 @@ import { useCheckUser } from "@/modules/authentication/hook/use-check-user";
 
 export function useProductInteraction() {
     const [disabled, setDisabled] = useState(false);
-    const { setModal } = useModal();
     const { functionCheckauth, token } = useCheckUser();
     const dispatch = useAppDispatch();
-    const { setSelectedProduct } = useSelectedProduct();
     const { cart } = useAppSelector((state: RootState) => state.carts);
     const { user } = useAppSelector((state: RootState) => state.auths);
 
@@ -31,12 +28,6 @@ export function useProductInteraction() {
                 showAddToCartSuccessToast(productName);
                 break;
         }
-    };
-
-    const openModalProductOverview = async (id: string) => {
-        const { data: product } = await productUserService.details(id);
-        setSelectedProduct(product);
-        setModal(true);
     };
 
     const addProductToCart = async (product: IProduct) => {
@@ -70,7 +61,6 @@ export function useProductInteraction() {
 
     return {
         disabled,
-        openModalProductOverview,
         addProductToCart,
     };
 }

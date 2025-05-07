@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import dynamic from 'next/dynamic';
 
 const ProductCategory = dynamic(() => import('./product-category'), {
@@ -40,7 +40,7 @@ export default function LazyPage({ initPGOne }: LazyPageProps) {
             <ProductCategory {...initPGOne} title='Món ăn phổ biến' />
             <ProductCommon  {...initPGOne} title='Món ăn phổ biến' />
             <ProductGallery {...initPGOne} />
-            <BannerFooter src="/images/banner-hot-port.webp" />
+            <BannerFooter src='/images/banner-hot-port.webp' />
             <MapBox />
         </>
     );

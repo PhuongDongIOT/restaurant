@@ -4,8 +4,11 @@ import { useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { Radio, RadioGroup } from '@headlessui/react'
 import { cn } from '@/lib/utils'
-import { useModalCart } from './modal-cart-provider'
+import { useModalCart } from '../../categorys/components/modal-cart-provider'
 import { IProduct } from '@/lib/schemas/product.schema'
+import ProductCardOrder from '@/modules/products/components/product-card-order'
+import { AccordionDescription } from '@/components/molecules/accordion-description'
+import ReviewAndComment from '@/modules/reviews/components/review-and-comment'
 
 
 const images = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
@@ -63,10 +66,10 @@ const productExample = {
     'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
 }
 const reviews = { href: '#', average: 4, totalCount: 117 }
-type productExampleOverviewProps = {
+type ProductOverviewPageProps = {
   product: IProduct | null;
 }
-export default function productExampleOverview({ product }: productExampleOverviewProps) {
+export default function ProductOverviewPage({ product }: ProductOverviewPageProps) {
   const [selectedColor, setSelectedColor] = useState(productExample.colors[0])
   const [selectedSize, setSelectedSize] = useState(productExample.sizes[2])
   const { setModalCart } = useModalCart()
@@ -126,24 +129,24 @@ export default function productExampleOverview({ product }: productExampleOvervi
             <img
               alt={product.product_name}
               src={product.image}
-              className="sm:max-h-96 md:max-h-screen aspect-4/5 size-full object-cover sm:rounded-lg lg:aspect-auto"
+              className="sm:max-h-96 md:max-h-screen md:aspect-4/5 size-full object-cover sm:rounded-lg lg:aspect-auto"
             />
           </div>
 
           {/* productExample info */}
-          <div className="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
+          <div className="mx-auto max-w-2xl pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.product_name}</h1>
             </div>
 
             {/* Options */}
-            <div className="mt-4 lg:row-span-3 lg:mt-0">
+            <div className="lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">{product.product_name}</h2>
-              <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
+              <p className="text-xl tracking-tight text-red-500">{product.price} VND</p>
 
               {/* Reviews */}
-              <div className="mt-6">
-                <h3 className="sr-only">Reviews</h3>
+              <div className="mt-2">
+                <h3 className="sr-only">Đánh giá</h3>
                 <div className="flex items-center">
                   <div className="flex items-center">
                     {[0, 1, 2, 3, 4].map((rating) => (
@@ -248,9 +251,9 @@ export default function productExampleOverview({ product }: productExampleOvervi
                 <button
                   type="button"
                   onClick={() => setModalCart(true)}
-                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
+                  className="hidden mt-10 md:flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
                 >
-                  Add to cart
+                  Thêm vào giỏ hảng
                 </button>
               </div>
             </div>
@@ -266,29 +269,29 @@ export default function productExampleOverview({ product }: productExampleOvervi
               </div>
 
               <div className="mt-10">
-                <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
-
-                <div className="mt-4">
-                  <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                    {productExample.highlights.map((highlight) => (
-                      <li key={highlight} className="text-gray-400">
-                        <span className="text-gray-600">{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <AccordionDescription />
               </div>
-
-              <div className="mt-10">
-                <h2 className="text-sm font-medium text-gray-900">Details</h2>
-
-                <div className="mt-4 space-y-6">
-                  <p className="text-sm text-gray-600">{productExample.details}</p>
-                </div>
+              <div className='border-b border-gray-200'>
+                <h3 className="mt-2 text-xl font-semibold text-gray-950 @max-[theme(--breakpoint-sm)]:hidden dark:text-white">Bánh ép</h3>
+                <ProductCardOrder />
+                <ProductCardOrder />
+              </div>
+              <div className='border-b border-gray-200'>
+                <h3 className="mt-2 text-xl font-semibold text-gray-950 @max-[theme(--breakpoint-sm)]:hidden dark:text-white">Nước ép</h3>
+                <ProductCardOrder />
+                <ProductCardOrder />
               </div>
             </div>
+            <button
+              type="button"
+              onClick={() => setModalCart(true)}
+              className="flex md:hidden w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
+            >
+              Thêm vào giỏ hàng
+            </button>
           </div>
         </div> : null}
+        <ReviewAndComment />
     </div>
   )
 }

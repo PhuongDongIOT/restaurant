@@ -6,6 +6,7 @@ import { ContextMenu, ContextMenuTrigger, } from "@/components/ui/context-menu";
 import { IProduct } from "@/lib/schemas/product.schema";
 import { ShoppingCart } from "lucide-react";
 import { useProductInteraction } from "../hook/use-product-interaction";
+import { useRouter } from "next/navigation";
 
 interface ProductCardHorizontalProps extends React.HTMLAttributes<HTMLDivElement> {
     product: IProduct;
@@ -14,6 +15,7 @@ interface ProductCardHorizontalProps extends React.HTMLAttributes<HTMLDivElement
     height?: number;
     onClick?: () => void;
     disable?: boolean;
+    openModalProductOverview?: (id: string) => Promise<void>;
 }
 
 export function ProductCardHorizontal({
@@ -24,18 +26,25 @@ export function ProductCardHorizontal({
     className,
     onClick,
     disable,
+    openModalProductOverview,
     ...props
 }: ProductCardHorizontalProps) {
-
-    const { disabled, addProductToCart, openModalProductOverview } = useProductInteraction();
-
+    const router = useRouter();
+    const { disabled, addProductToCart } = useProductInteraction();
+    const onHandleProduct = (id: number) => {
+        if (openModalProductOverview) {
+            openModalProductOverview(`${product.id}`)
+        } else {
+            router.push(`/product/${id}`);
+        }
+    }
     return (
         <div className={cn("space-y-3 relative border-orange-200 border-1 p-1 rounded-sm")} {...props}>
             <ContextMenu>
                 <ContextMenuTrigger>
                     <div className={cn(className, "overflow-hidden w-full h-full rounded-md relative")}>
                         <Image
-                            onClick={() => openModalProductOverview(`${product.id}`)}
+                            onClick={() => onHandleProduct(product.id)}
                             src={product.image}
                             alt={`Bánh cuốn Anh Vũ - ${product.product_name}`}
                             width={width}
@@ -50,13 +59,13 @@ export function ProductCardHorizontal({
                             <div className="absolute w-full h-full bg-amber-50 rounded-md opacity-75"></div>
                             <div className="relative z-10 px-2 py-1">
                                 <h3 className="text-lg font-medium leading-none">{product.product_name}</h3>
-                                <p className="text-2xs text-black font-medium line-clamp-1">{product.price} VND</p>
+                                <p className="text-2xs text-red-500 font-medium line-clamp-1 hover:text-red-600">{product.price} VND</p>
                                 <p className="text-xs max-w-md text-muted-foreground line-clamp-1">{product.description}</p>
                             </div>
                         </div>
                         {!disable ? <div
                             className={cn(
-                                `absolute bottom-0 right-0 bg-black p-2 z-20 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg`,
+                                `absolute bottom-0 right-0 bg-red-500 p-2 z-20 rounded-xl transition-all duration-300 hover:text-red-600 hover:scale-110 hover:shadow-lg`,
                                 { 'opacity-45 pointer-events-none': disabled }
                             )}
                             onClick={() => !disabled && addProductToCart(product)}

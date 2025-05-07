@@ -32,8 +32,8 @@ export default async function Provider({
                     <SignupDialog />
                 </ModalUserProvider>
             </ModalCartProvider>
-            <CategoryChipList items={['Phở', 'Cơm Tấm', 'Bún Bò', 'Gà Rán', 'Mì Xào', 'Phở', 'Cơm Tấm', 'Bún Bò', 'Gà Rán', 'Mì Xào', 'Phở', 'Cơm Tấm', 'Bún Bò', 'Gà Rán', 'Mì Xào']} />
-            <FooterSection />
+            {/* <CategoryChipList items={['Phở', 'Cơm Tấm', 'Bún Bò', 'Gà Rán', 'Mì Xào', 'Phở', 'Cơm Tấm', 'Bún Bò', 'Gà Rán', 'Mì Xào', 'Phở', 'Cơm Tấm', 'Bún Bò', 'Gà Rán', 'Mì Xào']} />
+            <FooterSection /> */}   
         </>
     );
 }

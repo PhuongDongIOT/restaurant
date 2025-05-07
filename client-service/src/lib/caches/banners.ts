@@ -7,5 +7,5 @@ export async function fetchAndCacheBanners(kv: any, page: number = 1) {
       queryParams: { page },
     });
     return data;
-  }, kv);
+  });
 }
