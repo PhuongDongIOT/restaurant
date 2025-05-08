@@ -2,13 +2,11 @@ import PageContainer from '@/components/layout/page-container';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
-import { DataTableSkeleton } from '@/components/ui/table/data-table-skeleton';
 import { searchParamsCache, serialize } from '@/lib/customs/searchparams';
 import { cn } from '@/lib/utils';
 import { IconPlus } from '@tabler/icons-react';
 import Link from 'next/link';
 import { SearchParams } from 'nuqs/server';
-import { Suspense } from 'react';
 import ProductListingPage from '@/modules/products/pages/products.page';
 import ProductTableAction from '@/modules/products/components/product-tables/product-table-action';
 import { ProductCreateDialog } from '@/modules/products/components/product-dialog/product-create-dialog';
@@ -86,12 +84,7 @@ export default async function Page(props: pageProps) {
         </div>
         <Separator />
         <ProductTableAction categories={categories} />
-        {/* <Suspense
-          key={key}
-          fallback={<DataTableSkeleton columnCount={5} rowCount={10} />}
-        >
           <ProductListingPage products={products} />
-        </Suspense> */}
       </div>
     </PageContainer>
   );
