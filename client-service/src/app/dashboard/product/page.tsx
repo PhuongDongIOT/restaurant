@@ -16,10 +16,6 @@ import { CategoryCreateDialog } from '@/modules/categorys/components/category-di
 import { categoryService } from '@/lib/services/category.service';
 import { productService } from '@/lib/services/product.service';
 
-export const metadata = {
-  title: 'Dashboard: Products'
-};
-
 type pageProps = {
   searchParams: Promise<SearchParams>;
 };
@@ -90,12 +86,12 @@ export default async function Page(props: pageProps) {
         </div>
         <Separator />
         <ProductTableAction categories={categories} />
-        <Suspense
+        {/* <Suspense
           key={key}
           fallback={<DataTableSkeleton columnCount={5} rowCount={10} />}
         >
           <ProductListingPage products={products} />
-        </Suspense>
+        </Suspense> */}
       </div>
     </PageContainer>
   );

@@ -5,7 +5,7 @@ type ProductListingPage = {
   products: any;
 };
 
-export default async function ProductListingPage({ products }: ProductListingPage) {
+export default function ProductListingPage({ products }: ProductListingPage) {
 return (
     <ProductTable
       columns={columns}
