@@ -1,11 +1,9 @@
-import { Suspense } from 'react';
 import Link from 'next/link';
 import { SearchParams } from 'nuqs/server';
 import PageContainer from '@/components/layout/page-container';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
-import { DataTableSkeleton } from '@/components/ui/table/data-table-skeleton';
 import { searchParamsCache, serialize } from '@/lib/customs/searchparams';
 import { cn } from '@/lib/utils';
 import { IconPlus } from '@tabler/icons-react';
@@ -88,12 +86,7 @@ export default async function Page(props: pageProps) {
         </div>
         <Separator />
         <BlogTableAction categories={categories} />
-        <Suspense
-          key={key}
-          fallback={<DataTableSkeleton columnCount={5} rowCount={10} />}
-        >
           <BlogListingPage blogs={blogs} />
-        </Suspense>
       </div>
     </PageContainer>
   );
