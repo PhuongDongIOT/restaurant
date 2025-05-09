@@ -1,18 +1,18 @@
-import Link from 'next/link';
+// import Link from 'next/link';
 import { SearchParams } from 'nuqs/server';
 import PageContainer from '@/components/layout/page-container';
-import { Button, buttonVariants } from '@/components/ui/button';
-import { Heading } from '@/components/ui/heading';
-import { Separator } from '@/components/ui/separator';
+// import { Button, buttonVariants } from '@/components/ui/button';
+// import { Heading } from '@/components/ui/heading';
+// import { Separator } from '@/components/ui/separator';
 import { searchParamsCache, serialize } from '@/lib/customs/searchparams';
-import { cn } from '@/lib/utils';
-import { IconPlus } from '@tabler/icons-react';
-import { CategoryCreateDialog } from '@/modules/categorys/components/category-dialog/category-create.dialog';
+// import { cn } from '@/lib/utils';
+// import { IconPlus } from '@tabler/icons-react';
+// import { CategoryCreateDialog } from '@/modules/categorys/components/category-dialog/category-create.dialog';
 import { categoryService } from '@/lib/services/category.service';
 import BlogListingPage from '@/modules/blog/pages/blogs.page';
-import { CategoryBlogCreateDialog } from '@/modules/categorys-blogs/components/category-dialog/category-blog-create.dialog';
+// import { CategoryBlogCreateDialog } from '@/modules/categorys-blogs/components/category-dialog/category-blog-create.dialog';
 import BlogTableAction from '@/modules/blog/components/blog-tables/blog-table-action';
-import { BlogCreateDialog } from '@/modules/blog/components/blog-dialog/blog-create-dialog';
+// import { BlogCreateDialog } from '@/modules/blog/components/blog-dialog/blog-create-dialog';
 import { blogService } from '@/lib/services/blog.service';
 
 export const metadata = {
@@ -49,7 +49,7 @@ export default async function Page(props: pageProps) {
   return (
     <PageContainer scrollable={false}>
       <div className='flex flex-1 flex-col space-y-4'>
-        <div className='flex items-start justify-between'>
+        {/* <div className='flex items-start justify-between'>
           <Heading
             title='Tin túc'
             description='Quản lý tin tức (Chức năng của bảng phía máy chủ.)'
@@ -84,7 +84,7 @@ export default async function Page(props: pageProps) {
             </Link>
           </div>
         </div>
-        <Separator />
+        <Separator /> */}
         <BlogTableAction categories={categories} />
           <BlogListingPage blogs={blogs} />
       </div>

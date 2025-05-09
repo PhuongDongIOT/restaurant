@@ -1,16 +1,16 @@
 import PageContainer from '@/components/layout/page-container';
-import { Button, buttonVariants } from '@/components/ui/button';
-import { Heading } from '@/components/ui/heading';
-import { Separator } from '@/components/ui/separator';
+// import { Button, buttonVariants } from '@/components/ui/button';
+// import { Heading } from '@/components/ui/heading';
+// import { Separator } from '@/components/ui/separator';
 import { searchParamsCache, serialize } from '@/lib/customs/searchparams';
-import { cn } from '@/lib/utils';
-import { IconPlus } from '@tabler/icons-react';
-import Link from 'next/link';
+// import { cn } from '@/lib/utils';
+// import { IconPlus } from '@tabler/icons-react';
+// import Link from 'next/link';
 import { SearchParams } from 'nuqs/server';
 import ProductListingPage from '@/modules/products/pages/products.page';
 import ProductTableAction from '@/modules/products/components/product-tables/product-table-action';
-import { ProductCreateDialog } from '@/modules/products/components/product-dialog/product-create-dialog';
-import { CategoryCreateDialog } from '@/modules/categorys/components/category-dialog/category-create.dialog';
+// import { ProductCreateDialog } from '@/modules/products/components/product-dialog/product-create-dialog';
+// import { CategoryCreateDialog } from '@/modules/categorys/components/category-dialog/category-create.dialog';
 import { categoryService } from '@/lib/services/category.service';
 import { productService } from '@/lib/services/product.service';
 
@@ -47,7 +47,7 @@ export default async function Page(props: pageProps) {
   return (
     <PageContainer scrollable={false}>
       <div className='flex flex-1 flex-col space-y-4'>
-        <div className='flex items-start justify-between'>
+        {/* <div className='flex items-start justify-between'>
           <Heading
             title='Products'
             description='Manage products (Server side table functionalities.)'
@@ -82,7 +82,7 @@ export default async function Page(props: pageProps) {
             </Link>
           </div>
         </div>
-        <Separator />
+        <Separator /> */}
         <ProductTableAction categories={categories} />
           <ProductListingPage products={products} />
       </div>
